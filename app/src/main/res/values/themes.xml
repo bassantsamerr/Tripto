@@ -23,5 +23,10 @@
         <item name="cornerSizeTopLeft">48dp</item>
         <item name="cornerSizeTopRight">48dp</item>
     </style>
-        
+    <style name="customChip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipStrokeWidth">2dp</item>
+
+    </style>
 </resources>

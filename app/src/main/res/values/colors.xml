@@ -12,4 +12,11 @@
     <color name="primary_color">#D7B965</color>
     <color name="font_color">#8A7C35</color>
     <color name="background_color">#FFF2CA</color>
+    <color name="lightYellow">#FFF2CA</color>
+    <color name="red">#FF0000</color>
+    <color name="mustarda">#FFD966</color>
+    <color name="orange">#ED7D31</color>
+<color name="yellow">#F3F302</color>
+    <color name="lighter_grey">#D5CACA</color>
+
 </resources>
