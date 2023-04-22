@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.example.tripto.MainActivity2" />
+            type="com.example.tripto.HomeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity2">
+        tools:context=".HomeActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMain"

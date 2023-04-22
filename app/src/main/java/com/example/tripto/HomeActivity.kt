@@ -6,7 +6,7 @@ import com.example.tripto.adapter.MainAdapter
 import com.example.tripto.databinding.ActivityMainBinding
 import com.example.tripto.utils.SampleData
 
-class MainActivity2 : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
