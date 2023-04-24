@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,12 @@ class SignupActivity : AppCompatActivity() {
             val intent = Intent(this, InterestsActivty::class.java)
             startActivity(intent)
         }
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://tripto-api.onrender.com/docs#/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val apiInterface = retrofit.create(ApiInterface::class.java)
+
 
     }
 }
