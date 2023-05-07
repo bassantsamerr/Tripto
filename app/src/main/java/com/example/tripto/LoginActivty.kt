@@ -12,7 +12,6 @@ class LoginActivty : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         val bt_login_click = findViewById<Button>(R.id.bt_login)
         bt_login_click.setOnClickListener {
             Toast.makeText(this,"Login Successfully",Toast.LENGTH_SHORT).show()

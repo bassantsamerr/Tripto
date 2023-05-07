@@ -30,7 +30,7 @@ class SignupActivity : AppCompatActivity() {
             startActivity(intent)
         }
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://tripto-api.onrender.com/docs#/")
+            .baseUrl("https://www.google.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val apiInterface = retrofit.create(ApiInterface::class.java)
