@@ -1,7 +1,6 @@
-package com.example.tripto
-import com.google.gson.annotations.SerializedName
+package com.example.tripto.model
 
-data class User(
+data class UserModel(
   val email: String,
   val age: Int,
   val country: String,

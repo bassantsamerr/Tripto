@@ -1,4 +1,4 @@
-package com.example.tripto
+package com.example.tripto.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripto.R
 import com.example.tripto.adapter.MainAdapter
 import com.example.tripto.utils.SampleData
 
@@ -25,5 +26,6 @@ class FirstFragment : Fragment() {
         // Set the RecyclerView adapter
         recyclerView.adapter = MainAdapter(SampleData.collections)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
     }
 }

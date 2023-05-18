@@ -21,10 +21,10 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".InterestsActivty"
+            android:name=".LoginActivty"
             android:exported="false" />
         <activity
-            android:name=".LoginActivty"
+            android:name=".InterestsActivty"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,14 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
+import com.example.tripto.model.UserModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class SignupActivity : AppCompatActivity(), Callback<ResponseBody> {
 
@@ -42,7 +40,7 @@ class SignupActivity : AppCompatActivity(), Callback<ResponseBody> {
         imageView.setOnClickListener { popupMenu.show() }
         val bt_createAccount_click = findViewById<TextView>(R.id.bt_createAccount)
         bt_createAccount_click.setOnClickListener {
-            val user = User(etEmail!!.text.toString(),20, nationality.text.toString(), etUsername!!.text.toString(),1, etPassword!!.text.toString())
+            val user = UserModel(etEmail!!.text.toString(),20, nationality.text.toString(), etUsername!!.text.toString(),1, etPassword!!.text.toString())
             service.addUser(user)?.enqueue(this)
         }
     }
