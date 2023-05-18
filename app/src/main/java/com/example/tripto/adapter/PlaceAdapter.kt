@@ -18,7 +18,7 @@ class PlaceAdapter (private val placeModel: List<PlaceModel>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
         holder.binding.apply {
-            placeMoviePoster.load(placeModel[position].imageUrl)
+            placePoster.load(placeModel[position].imageUrl)
             placeName.text=placeModel[position].title
             placeLocation.text=placeModel[position].location
             placeRating.text=placeModel[position].ratings.toString()
