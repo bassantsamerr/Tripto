@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,46 +9,36 @@
     tools:context=".InterestsActivty">
 
     <ImageView
-        android:contentDescription="logo"
-        android:id="@+id/imageView"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="logo"
+        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/picture1" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_below="@id/logo"
+        android:id="@+id/interests"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose Your Interests"
         android:textColor="@color/black"
-        android:gravity="center_horizontal"
         android:textSize="40sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:gravity="center"
+        />
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="230dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/interests"
         android:fillViewport="true">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:padding="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            android:padding="20dp">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip1"
@@ -56,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Modern"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip2"
@@ -64,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Natural"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip3"
@@ -72,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fun"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip4"
@@ -80,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Romanian"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip5"
@@ -88,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pharaonic"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip6"
@@ -96,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Coptic"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip7"
@@ -104,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Islamic"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip8"
@@ -112,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ancient"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip9"
@@ -120,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Adventure"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip10"
@@ -128,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Heritage"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip11"
@@ -136,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Medical"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip12"
@@ -144,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Religious"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip13"
@@ -152,10 +142,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Others"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
 
         </com.google.android.material.chip.ChipGroup>
+
     </ScrollView>
 
     <ImageButton
@@ -165,20 +156,19 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/next"
         android:backgroundTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="45dp"
+        android:layout_below="@+id/interests"
+        android:layout_alignEnd="@id/interests"
+        android:layout_marginTop="350dp"
         />
 
     <TextView
         android:id="@+id/notNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Not Now"
-        android:textSize="18sp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Skip"
+        android:textSize="22sp"
+        android:layout_below="@+id/Next"
+        android:layout_alignEnd="@id/Next"
+        android:layout_marginRight="30dp"
+        />
+</RelativeLayout>

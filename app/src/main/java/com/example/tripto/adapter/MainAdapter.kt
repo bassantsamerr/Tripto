@@ -25,7 +25,7 @@ class MainAdapter(private val collection : List<MainModel>) : RecyclerView.Adapt
             val placeAdapter = PlaceAdapter(currentCollection.placeModels)
             rvChild.adapter = placeAdapter
             placeAdapter.onItemClick={
-                val intent= Intent(holder.itemView.context,DetailedActivity::class.java)
+                val intent= Intent(holder.itemView.context, DetailedActivity::class.java)
                 intent.putExtra("placemodel",it)
                 holder.itemView.context.startActivity(intent)
             }

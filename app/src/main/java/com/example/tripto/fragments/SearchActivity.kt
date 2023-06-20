@@ -16,14 +16,12 @@ class SearchActivity : Fragment() {
     private lateinit var searchEditText: EditText
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchAdapter: SearchAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.activity_search, container, false)
-
         return view
     }
 
@@ -49,7 +47,6 @@ class SearchActivity : Fragment() {
 
     private fun performSearch() {
         val query = searchEditText.text.toString().trim()
-
         // Filter the data based on the search query
         val filteredData = SampleData.collections[3].placeModels.filter { placeModel ->
             placeModel.title.contains(query, ignoreCase = true) ||

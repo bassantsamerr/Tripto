@@ -89,7 +89,6 @@ class ChatbotActivity : Fragment() {
         textView.textSize = 25f
         textView.setTextColor(Color.BLACK)
         messageLayout.addView(textView)
-
         return messageLayout
     }
 
