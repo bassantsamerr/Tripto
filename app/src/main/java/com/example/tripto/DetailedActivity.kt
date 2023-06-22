@@ -1,10 +1,17 @@
 package com.example.tripto
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tripto.adapter.ImageSwiperAdapter
+import com.example.tripto.databinding.ActivityDetailedBinding
+import com.example.tripto.databinding.ActivityHomeBinding
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.utils.Images
 import me.relex.circleindicator.CircleIndicator3
@@ -14,6 +21,7 @@ private var imageList = mutableListOf<String>()
 class DetailedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_detailed)
         val place = intent.getParcelableExtra<PlaceModel>("placemodel")
         if(place!=null){
@@ -29,8 +37,13 @@ class DetailedActivity : AppCompatActivity() {
         val indicator = findViewById<CircleIndicator3>(R.id.indicator)
         indicator.setViewPager(view_pager2)
 
-
-    }
+        val showAct = findViewById<Button>(R.id.showActivities)
+        showAct.setOnClickListener {
+            val intent = Intent(this, PlaceActivity::class.java)
+            intent.putExtra("placemodel",place)
+            startActivity(intent)
+        }
+        }
 
     private fun addToList(image: String){
         imageList.add(image)
@@ -49,4 +62,5 @@ class DetailedActivity : AppCompatActivity() {
             addToList(Images.imageUrl9)
         }
     }
+
 }

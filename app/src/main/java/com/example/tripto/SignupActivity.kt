@@ -40,10 +40,8 @@ class SignupActivity : AppCompatActivity(), Callback<ResponseBody> {
         imageView.setOnClickListener { popupMenu.show() }
         val bt_createAccount_click = findViewById<TextView>(R.id.bt_createAccount)
         bt_createAccount_click.setOnClickListener {
-            val intent = Intent(this, InterestsActivty::class.java)
-            startActivity(intent)
-           // val user = UserModel(etEmail!!.text.toString(),20, nationality.text.toString(), etUsername!!.text.toString(),1, etPassword!!.text.toString())
-           // service.addUser(user)?.enqueue(this)
+            val user = UserModel(etEmail!!.text.toString(),20, nationality.text.toString(), etUsername!!.text.toString(),1, etPassword!!.text.toString())
+            service.addUser(user)?.enqueue(this)
         }
     }
 

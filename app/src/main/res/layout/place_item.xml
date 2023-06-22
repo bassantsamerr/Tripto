@@ -68,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:drawableLeft="@drawable/baseline_location_on_24"
-                    android:drawableTint="@color/red"
                     android:fontFamily="@font/montserrat"
                     android:text="location"
                     android:textColor="@color/black" />

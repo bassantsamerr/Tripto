@@ -1,6 +1,7 @@
 package com.example.tripto.fragments
 
 import SearchAdapter
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripto.DetailedActivity
+import com.example.tripto.PlaceActivity
 import com.example.tripto.utils.SampleData
 
 class SearchActivity : Fragment() {
@@ -55,6 +58,6 @@ class SearchActivity : Fragment() {
 
         // Update the adapter with the filtered data
         searchAdapter.updateData(filteredData)
-
     }
+
 }
