@@ -11,9 +11,9 @@
         tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.tripto.fragments.SecondFragment"
+        android:name="com.example.tripto.fragments.SmartTourGuideService"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/activity_smarttourguide" />
     <fragment
         android:id="@+id/thirdFragment"
         android:name="com.example.tripto.fragments.SearchActivity"

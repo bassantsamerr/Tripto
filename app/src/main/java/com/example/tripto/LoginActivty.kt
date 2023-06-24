@@ -1,6 +1,9 @@
 package com.example.tripto
 
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,11 +23,13 @@ class LoginActivty : AppCompatActivity() {
             Toast.makeText(this,"Login Successfully",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+
         }
         val tv_signup_click = findViewById<TextView>(R.id.tv_signup)
         tv_signup_click.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
+
         }
     }
 }
