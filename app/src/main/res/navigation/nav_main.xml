@@ -24,11 +24,11 @@
         android:name="com.example.tripto.fragments.ChatbotActivity"
         android:label="fragment_fourth"
         tools:layout="@layout/activity_chatbot" />
+
     <fragment
         android:id="@+id/fifthFragment"
         android:name="com.example.tripto.fragments.ProfileActivity"
         android:label="fragment_fifth"
         tools:layout="@layout/activity_profile" />
-
 
 </navigation>
