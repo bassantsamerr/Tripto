@@ -11,6 +11,7 @@ import com.example.tripto.model.PlaceModel
 
 class PlaceAdapter (private val placeModel: List<PlaceModel>) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>(){
 
+    var onItemClick :  ((PlaceModel)->Unit)?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
         val view =LayoutInflater.from(parent.context).inflate(R.layout.place_item,parent,false)
         return PlaceViewHolder(view)
@@ -22,6 +23,10 @@ class PlaceAdapter (private val placeModel: List<PlaceModel>) : RecyclerView.Ada
             placeName.text=placeModel[position].title
             placeLocation.text=placeModel[position].location
             placeRating.text=placeModel[position].ratings.toString()
+        }
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(placeModel[position])
+
         }
     }
 

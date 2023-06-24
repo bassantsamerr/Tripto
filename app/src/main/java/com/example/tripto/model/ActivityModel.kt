@@ -3,21 +3,19 @@ package com.example.tripto.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class PlaceModel(
+data class ActivityModel(
     val title: String,
     val imageUrl: String,
-    val description: String,
+    val description:String,
     val ratings: Double,
-    val location: String,
-    val activities: Array<ActivityModel>
-) : Parcelable {
+    val location: String
+):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readDouble(),
-        parcel.readString()!!,
-        parcel.createTypedArray(ActivityModel.CREATOR)!!
+        parcel.readString()!!
     ) {
     }
 
@@ -27,19 +25,18 @@ data class PlaceModel(
         parcel.writeString(description)
         parcel.writeDouble(ratings)
         parcel.writeString(location)
-        parcel.writeTypedArray(activities, flags)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<PlaceModel> {
-        override fun createFromParcel(parcel: Parcel): PlaceModel {
-            return PlaceModel(parcel)
+    companion object CREATOR : Parcelable.Creator<ActivityModel> {
+        override fun createFromParcel(parcel: Parcel): ActivityModel {
+            return ActivityModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<PlaceModel?> {
+        override fun newArray(size: Int): Array<ActivityModel?> {
             return arrayOfNulls(size)
         }
     }

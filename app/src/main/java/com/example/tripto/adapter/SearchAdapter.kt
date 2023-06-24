@@ -19,26 +19,23 @@ class SearchAdapter(private var placeModel: List<PlaceModel>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = placeModel[position]
         holder.itemView.apply {
-            val placeMoviePoster = findViewById<ImageView>(R.id.placePoster)
+            val placePoster = findViewById<ImageView>(R.id.placePoster)
             val placeName = findViewById<TextView>(R.id.placeName)
             val placeLocation = findViewById<TextView>(R.id.placeLocation)
             val placeRating = findViewById<TextView>(R.id.placeRating)
             val description = findViewById<TextView>(R.id.description)
 
-            placeMoviePoster.load(currentItem.imageUrl)
+            placePoster.load(currentItem.imageUrl)
             placeName.text = currentItem.title
             placeLocation.text = currentItem.location
             placeRating.text = currentItem.ratings.toString()
 
-
             val maxLength = 80 // Maximum length of the truncated text
-
             if (currentItem.description.length > maxLength) {
                 description.text = currentItem.description.substring(0,80)
             }
             else {
                 description.text = currentItem.description
-
             }
         }
     }
