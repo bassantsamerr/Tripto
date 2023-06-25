@@ -2,6 +2,7 @@ package com.example.tripto.fragments
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -19,7 +20,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.tripto.ApiInterface
+import com.example.tripto.InterestsActivty
 import com.example.tripto.R
+import com.example.tripto.model.NearbyPlaceModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -31,6 +34,10 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,12 +62,13 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
+    private val service: ApiInterface = ApiInterface.create()
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var googleMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var lat: Float = 0.0f
-    private var log: Float = 0.0f
+    private var lat: Double = 0.0
+    private var log: Double = 0.0
+    private lateinit var nearbyPlaces:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -97,8 +105,8 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
 
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
                     Log.d("dddddebug", "dddddebug")
-                    lat= it.latitude.toFloat()
-                    log=it.longitude.toFloat()
+                    lat= it.latitude
+                    log=it.longitude
                 }
 
             }
@@ -123,7 +131,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
             uriBuilder.appendQueryParameter("longitude", log.toString())
             // Build the final URL
             val finalUrl = uriBuilder.build().toString()
-            Log.d("ammar darb nar", "${lat} ${log}")
+            Log.d("lat and long", "${lat} ${log}")
             Log.d("el url el lazez", finalUrl)
             print("final url is ${finalUrl}")
             mediaPlayer.apply {
@@ -137,6 +145,38 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
             }
             false
         })
+        Log.d("before", "before")
+        val call =service.get_nearby_places(lat,log,3)
+        Log.d("after", call.toString())
+//        for (place in nearbyPlaces) {
+//
+//
+
+// Enqueue the call asynchronously
+        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                val nearbyPlaces = response.body()
+                if (response.isSuccessful) {
+                    if (nearbyPlaces != null) {
+                        for(nearbyPlace in nearbyPlaces){
+                                val latLng = LatLng(nearbyPlace.latitude, nearbyPlace.longitude)
+                                googleMap.addMarker(MarkerOptions().position(latLng).title(nearbyPlace.placeName))
+                                  Log.d("besoooo", "${nearbyPlace.latitude} ${nearbyPlace.longitude}")
+
+                        }
+                    }
+                    response.body()?.let { Log.d("success awe", nearbyPlaces.toString()) }
+                } else {
+                    response.body()?.let { Log.d("fail", nearbyPlaces.toString()) }
+                }
+            }
+
+            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                Log.d("failure error",t.message.toString())
+            }
+        })
+
+
     }
     private fun BitmapFromVector(context: Context, @DrawableRes vectorResId: Int): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
@@ -150,6 +190,8 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
+
+
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 123
