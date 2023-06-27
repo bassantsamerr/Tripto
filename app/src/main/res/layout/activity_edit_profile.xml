@@ -84,7 +84,7 @@
         android:layout_width="370dp"
         android:layout_height="430dp"
         android:layout_gravity="center"
-        android:layout_marginTop="155dp"
+        android:layout_marginTop="175dp"
         app:cardCornerRadius="25dp">
 
         <LinearLayout

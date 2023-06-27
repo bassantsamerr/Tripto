@@ -3,7 +3,9 @@ package com.example.tripto
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -36,6 +38,17 @@ class DetailedActivity : AppCompatActivity() {
         view_pager2.orientation= ViewPager2.ORIENTATION_HORIZONTAL
         val indicator = findViewById<CircleIndicator3>(R.id.indicator)
         indicator.setViewPager(view_pager2)
+
+        val downWardBox: CheckBox = findViewById(R.id.downMenu)
+        val descriptionTextView: TextView = findViewById(R.id.description)
+
+        downWardBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                descriptionTextView.visibility = View.VISIBLE
+            } else {
+                descriptionTextView.visibility = View.GONE
+            }
+        }
 
         val showAct = findViewById<Button>(R.id.showActivities)
         showAct.setOnClickListener {
