@@ -66,4 +66,5 @@ dependencies {
     implementation 'me.relex:circleindicator:2.1.6'
     implementation 'com.google.android.gms:play-services-base:7.3.0'
     implementation 'org.slf4j:slf4j-nop:1.7.25'
+
 }

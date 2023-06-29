@@ -6,17 +6,17 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class NearbyPlaceModel(
-    @SerializedName("placeName"   ) var placeName   : String? = null,
-    @SerializedName("description" ) var description : String? = null,
-    @SerializedName("image"       ) var image       : String? = null,
-    @SerializedName("location"    ) var location    : String? = null,
-    @SerializedName("latitude"    ) var latitude    : Double,
-    @SerializedName("address"     ) var address     : String? = null,
-    @SerializedName("id"          ) var id          : Int,
-    @SerializedName("rating"      ) var rating      : Double,
-    @SerializedName("longitude"   ) var longitude   : Double
+    @SerializedName("placeName") var placeName: String? = null,
+    @SerializedName("description") var description: String? = null,
+    @SerializedName("image") var image: String? = null,
+    @SerializedName("location") var location: String? = null,
+    @SerializedName("latitude") var latitude: Double,
+    @SerializedName("address") var address: String? = null,
+    @SerializedName("id") var id: Int,
+    @SerializedName("rating") var rating: Double,
+    @SerializedName("longitude") var longitude: Double
 
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -29,6 +29,7 @@ data class NearbyPlaceModel(
         parcel.readDouble(),
     ) {
     }
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(placeName)
         parcel.writeString(description)
@@ -45,12 +46,12 @@ data class NearbyPlaceModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<PlaceModel> {
-        override fun createFromParcel(parcel: Parcel): PlaceModel {
-            return PlaceModel(parcel)
+    companion object CREATOR : Parcelable.Creator<NearbyPlaceModel> {
+        override fun createFromParcel(parcel: Parcel): NearbyPlaceModel {
+            return NearbyPlaceModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<PlaceModel?> {
+        override fun newArray(size: Int): Array<NearbyPlaceModel?> {
             return arrayOfNulls(size)
         }
     }
