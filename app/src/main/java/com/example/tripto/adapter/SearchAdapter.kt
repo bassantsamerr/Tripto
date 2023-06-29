@@ -25,10 +25,10 @@ class SearchAdapter(private var placeModel: List<PlaceModel>) : RecyclerView.Ada
             val placeRating = findViewById<TextView>(R.id.placeRating)
             val description = findViewById<TextView>(R.id.description)
 
-            placePoster.load(currentItem.imageUrl)
-            placeName.text = currentItem.title
-            placeLocation.text = currentItem.location
-            placeRating.text = currentItem.ratings.toString()
+            placePoster.load(currentItem.image)
+            placeName.text = currentItem.placeName
+            placeLocation.text = currentItem.address
+            placeRating.text = currentItem.rating.toString()
 
             val maxLength = 80 // Maximum length of the truncated text
             if (currentItem.description.length > maxLength) {

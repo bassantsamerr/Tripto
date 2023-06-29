@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import com.example.tripto.EditProfileActivity
-import com.example.tripto.HomeActivity
+import com.example.tripto.activities.EditProfileActivity
+import com.example.tripto.activities.HomeActivity
 import com.example.tripto.R
 class ProfileActivity : Fragment() {
 

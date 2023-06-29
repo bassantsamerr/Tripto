@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.example.tripto.HomeActivity" />
+            type="com.example.tripto.activities.HomeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeActivity">
+        tools:context=".activities.HomeActivity">
 
         <fragment
             android:id="@+id/activity_main_nav_host_fragment"

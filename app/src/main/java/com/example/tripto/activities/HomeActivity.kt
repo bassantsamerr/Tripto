@@ -1,15 +1,12 @@
-package com.example.tripto
+package com.example.tripto.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.tripto.adapter.MainAdapter
+import androidx.navigation.ui.NavigationUI
+import com.example.tripto.R
 import com.example.tripto.databinding.ActivityHomeBinding
-import com.example.tripto.utils.SampleData
 
 class HomeActivity : AppCompatActivity() {
 
@@ -23,8 +20,8 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navController= Navigation.findNavController(this,R.id.activity_main_nav_host_fragment)
-        setupWithNavController(binding.bottomNavigationView,navController)
+        navController= Navigation.findNavController(this, R.id.activity_main_nav_host_fragment)
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
     }
 

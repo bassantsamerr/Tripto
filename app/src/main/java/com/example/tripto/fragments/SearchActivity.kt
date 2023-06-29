@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tripto.DetailedActivity
-import com.example.tripto.PlaceActivity
+import com.example.tripto.activities.DetailedActivity
+import com.example.tripto.activities.PlaceActivity
 import com.example.tripto.utils.SampleData
 
 class SearchActivity : Fragment() {
@@ -34,7 +34,7 @@ class SearchActivity : Fragment() {
         searchEditText = view.findViewById(R.id.searchEditText)
 
         // Set the RecyclerView adapter
-        searchAdapter = SearchAdapter(SampleData.collections[3].placeModels)
+        searchAdapter = SearchAdapter(SampleData.collections[3].AllPlacesModel)
         recyclerView.adapter = searchAdapter
 
         // Set a touch listener for the drawable in the search EditText
@@ -51,8 +51,8 @@ class SearchActivity : Fragment() {
     private fun performSearch() {
         val query = searchEditText.text.toString().trim()
         // Filter the data based on the search query
-        val filteredData = SampleData.collections[3].placeModels.filter { placeModel ->
-            placeModel.title.contains(query, ignoreCase = true) ||
+        val filteredData = SampleData.collections[3].AllPlacesModel.filter { placeModel ->
+            placeModel.placeName.contains(query, ignoreCase = true) ||
                     placeModel.location.contains(query, ignoreCase = true)
         }
 

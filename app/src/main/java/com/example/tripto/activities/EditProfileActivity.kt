@@ -1,15 +1,15 @@
-package com.example.tripto
+package com.example.tripto.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.tripto.R
 
 class EditProfileActivity : AppCompatActivity() {
     private val SELECT_IMAGE_REQUEST = 1
@@ -30,11 +30,16 @@ class EditProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == SELECT_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == SELECT_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             val imageUri: Uri? = data.data
             try {
                 val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-                val scaledBitmap = Bitmap.createScaledBitmap(bitmap, profileImageView.width, profileImageView.height, false)
+                val scaledBitmap = Bitmap.createScaledBitmap(
+                    bitmap,
+                    profileImageView.width,
+                    profileImageView.height,
+                    false
+                )
                 val drawable = BitmapDrawable(resources, scaledBitmap)
                 profileImageView.setImageDrawable(drawable)
             } catch (e: Exception) {

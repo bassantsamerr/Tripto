@@ -1,36 +1,33 @@
-package com.example.tripto
+package com.example.tripto.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.example.tripto.R
 import com.example.tripto.adapter.ImageSwiperAdapter
-import com.example.tripto.databinding.ActivityDetailedBinding
-import com.example.tripto.databinding.ActivityHomeBinding
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.utils.Images
 import me.relex.circleindicator.CircleIndicator3
 
-private var imageList = mutableListOf<String>()
-
 class DetailedActivity : AppCompatActivity() {
+    var imageList = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_detailed)
         val place = intent.getParcelableExtra<PlaceModel>("placemodel")
         if(place!=null){
-            val text1 :TextView= findViewById(R.id.title)
-            val text2 :TextView= findViewById(R.id.description)
-            text1.setText(place.title)
+            val text1 : TextView = findViewById(R.id.title)
+            val text2 : TextView = findViewById(R.id.description)
+            val text3 : TextView = findViewById(R.id.placeLocation)
+            text1.setText(place.placeName)
             text2.setText(place.description)
+            text3.setText(place.address)
         }
         postToList()
         val view_pager2 = findViewById<ViewPager2>(R.id.view_pager2)

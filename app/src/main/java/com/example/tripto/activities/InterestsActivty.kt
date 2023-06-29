@@ -1,10 +1,10 @@
-package com.example.tripto
+package com.example.tripto.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.tripto.R
 
 class InterestsActivty : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

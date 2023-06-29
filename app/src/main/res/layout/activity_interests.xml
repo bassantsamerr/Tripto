@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context=".InterestsActivty">
+    tools:context=".activities.InterestsActivty">
 
     <ImageView
         android:id="@+id/logo"

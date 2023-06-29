@@ -1,10 +1,16 @@
-package com.example.tripto
+package com.example.tripto.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.tripto.retrofit.ApiInterface
+import com.example.tripto.R
 import com.example.tripto.model.UserModel
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -33,26 +39,32 @@ class SignupActivity : AppCompatActivity(), Callback<ResponseBody> {
             nationality.text = selectedNationality // set the selected nationality on the TextView
             true
         }
-        etUsername=findViewById(R.id.et_username)
-        etEmail=findViewById(R.id.et_email)
-        etPassword=findViewById(R.id.et_password)
-        conPassword=findViewById(R.id.et_repeatedPassword)
+        etUsername = findViewById(R.id.et_username)
+        etEmail = findViewById(R.id.et_email)
+        etPassword = findViewById(R.id.et_password)
+        conPassword = findViewById(R.id.et_repeatedPassword)
         imageView.setOnClickListener { popupMenu.show() }
         val bt_createAccount_click = findViewById<TextView>(R.id.bt_createAccount)
         bt_createAccount_click.setOnClickListener {
-            val user = UserModel(etEmail!!.text.toString(),20, nationality.text.toString(), etUsername!!.text.toString(),1, etPassword!!.text.toString())
+            val user = UserModel(
+                etEmail!!.text.toString(),
+                20,
+                nationality.text.toString(),
+                etUsername!!.text.toString(),
+                1,
+                etPassword!!.text.toString()
+            )
             service.addUser(user)?.enqueue(this)
         }
     }
 
     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-        if(response.isSuccessful){
+        if (response.isSuccessful) {
             Toast.makeText(this, "Register Successfully", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, InterestsActivty::class.java)
             startActivity(intent)
             response.body()?.string()?.let { Log.d("response body", it) }
-        }
-        else if(!response.isSuccessful){
+        } else if (!response.isSuccessful) {
             Toast.makeText(this, "Already Have Account", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, InterestsActivty::class.java)
             startActivity(intent)
@@ -62,7 +74,8 @@ class SignupActivity : AppCompatActivity(), Callback<ResponseBody> {
 
     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
         Toast.makeText(this, "Can not Register", Toast.LENGTH_SHORT).show()
-        Log.d("",t.message.toString())
-        Log.d("failure error","Can not Register")
+        Log.d("", t.message.toString())
+        Log.d("failure error", "Can not Register")
     }
+
 }

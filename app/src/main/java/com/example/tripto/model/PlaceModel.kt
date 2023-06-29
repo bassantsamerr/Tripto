@@ -4,29 +4,40 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class PlaceModel(
-    val title: String,
-    val imageUrl: String,
+    val id: Int,
+    val placeName: String,
     val description: String,
-    val ratings: Double,
+    val address: String,
+    val image: String,
+    val rating: Double,
     val location: String,
+    val longitude: Double,
+    val latitude: Double,
     val activities: Array<ActivityModel>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readDouble(),
         parcel.readString()!!,
+        parcel.readDouble(),
+        parcel.readDouble(),
         parcel.createTypedArray(ActivityModel.CREATOR)!!
     ) {
     }
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(title)
-        parcel.writeString(imageUrl)
+        parcel.writeInt(id)
+        parcel.writeString(placeName)
         parcel.writeString(description)
-        parcel.writeDouble(ratings)
+        parcel.writeString(address)
+        parcel.writeString(image)
+        parcel.writeDouble(rating)
         parcel.writeString(location)
+        parcel.writeDouble(longitude)
+        parcel.writeDouble(latitude)
         parcel.writeTypedArray(activities, flags)
     }
 

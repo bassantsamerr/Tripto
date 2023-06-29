@@ -19,10 +19,10 @@ class PlaceAdapter (private val placeModel: List<PlaceModel>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
         holder.binding.apply {
-            placePoster.load(placeModel[position].imageUrl)
-            placeName.text=placeModel[position].title
-            placeLocation.text=placeModel[position].location
-            placeRating.text=placeModel[position].ratings.toString()
+            placePoster.load(placeModel[position].image)
+            placeName.text=placeModel[position].placeName
+            placeLocation.text=placeModel[position].address
+            placeRating.text=placeModel[position].rating.toString()
         }
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(placeModel[position])

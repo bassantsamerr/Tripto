@@ -1,37 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context=".PlaceActivity">
+    android:orientation="vertical"
+    tools:context=".activities.PlaceActivity">
 
     <TextView
         android:id="@+id/PlaceName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:text="PlaceName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:text="PlaceName"
         android:textColor="@color/black"
-        />
+        android:textSize="35dp" />
+
     <TextView
+        android:id="@+id/activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:text="Activities" />
+        android:layout_below="@+id/PlaceName"
+        android:layout_centerHorizontal="true"
+        android:text="Activities"
+        android:textColor="@color/black"
+        android:textSize="30dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ActivityRV"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_below="@+id/activity"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/search_item" />
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:backgroundTint="@color/orange"
+        android:tint="@color/white"
+        android:contentDescription="fab_content_desc"
+        app:fabSize="mini"
+        app:rippleColor="@color/white"
+        app:srcCompat="@drawable/baseline_plus" />
+
+</RelativeLayout>
