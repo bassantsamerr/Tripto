@@ -64,7 +64,6 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var lat: Double = 0.0
     private var log: Double = 0.0
-    private lateinit var nearbyPlaces:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -128,6 +127,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
             // Build the final URL
             val finalUrl = uriBuilder.build().toString()
             Log.d("lat and long", "${lat} ${log}")
+
             Log.d("el url el lazez", finalUrl)
             print("final url is ${finalUrl}")
             mediaPlayer.apply {
@@ -144,9 +144,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
         Log.d("before", "before")
         val call =service.get_nearby_places(lat,log,3)
         Log.d("after", call.toString())
-//        for (place in nearbyPlaces) {
-//
-//
+
 
 // Enqueue the call asynchronously
         call.enqueue(object : Callback<List<NearbyPlaceModel>> {
@@ -158,6 +156,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
                                 val latLng = LatLng(nearbyPlace.latitude, nearbyPlace.longitude)
                                 googleMap.addMarker(MarkerOptions().position(latLng).title(nearbyPlace.placeName))
                                   Log.d("besoooo", "${nearbyPlace.latitude} ${nearbyPlace.longitude}")
+                            println("data type of latlng${latLng.javaClass}") // Prints "int"
 
                         }
                     }
@@ -186,7 +185,13 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
-
+    private fun getURL(from : LatLng, to : LatLng) : String {
+        val origin = "origin=" + from.latitude + "," + from.longitude
+        val dest = "destination=" + to.latitude + "," + to.longitude
+        val sensor = "sensor=false"
+        val params = "$origin&$dest&$sensor"
+        return "https://maps.googleapis.com/maps/api/directions/json?$params"
+    }
 
 
     companion object {
