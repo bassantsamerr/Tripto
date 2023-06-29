@@ -2,6 +2,7 @@ package com.example.tripto.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,13 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.tripto.R
+import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.retrofit.ApiInterface
+import com.example.tripto.utils.SampleData
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ChatbotActivity : Fragment() {
@@ -21,7 +29,7 @@ class ChatbotActivity : Fragment() {
     private lateinit var chatContainer: LinearLayout
     private lateinit var userInputEditText: EditText
     private lateinit var sendButton: ImageButton
-
+    private val service: ApiInterface = ApiInterface.create()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,12 +67,22 @@ class ChatbotActivity : Fragment() {
         // Here you would send the user message to your chatbot backend and handle the response accordingly
 
         // Example response from the chatbot
-        val botResponse = "Hello! How can I assist you?"
-        val botMessageView = createBotMessageView(botResponse)
-        chatContainer.addView(botMessageView)
+        val call: Call<String> = service.get_chatbot_reponse(message)
+        call.enqueue(object :Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                val botResponse = response.body().toString()
+                val botMessageView = createBotMessageView(botResponse)
+                chatContainer.addView(botMessageView)
+                Log.d("message response",botResponse)
+                // Clear the input field
+                userInputEditText.text.clear()
+            }
 
-        // Clear the input field
-        userInputEditText.text.clear()
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
     }
 
     private fun createUserMessageView(message: String): View {

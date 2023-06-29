@@ -22,6 +22,8 @@ interface ApiInterface {
         @GET("/nearestPlace")
         fun get_nearest_places(@Query("latitude") latitude: Float, @Query("longitude") longitude: Float): Call<ResponseBody>
 
+        @GET("/chatting")
+        fun get_chatbot_reponse(@Query("text") text: String): Call<String>
 
     companion object {
         fun create(): ApiInterface {
