@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tripto.R
 import com.example.tripto.adapter.ImageSwiperAdapter
+import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.utils.Images
 import me.relex.circleindicator.CircleIndicator3
@@ -20,7 +21,7 @@ class DetailedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_detailed)
-        val place = intent.getParcelableExtra<PlaceModel>("placemodel")
+        val place = intent.getParcelableExtra<NearbyPlaceModel>("nearbyplacemodel")
         if(place!=null){
             val text1 : TextView = findViewById(R.id.title)
             val text2 : TextView = findViewById(R.id.description)

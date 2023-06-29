@@ -2,5 +2,5 @@ package com.example.tripto.model
 
 data class MainModel (
     val title: String,
-    val AllPlacesModel: List<PlaceModel>
+    val AllPlacesModel: List<NearbyPlaceModel>
 )

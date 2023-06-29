@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.R
 import com.example.tripto.databinding.PlaceItemBinding
+import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.PlaceModel
 
-class SearchAdapter(private var placeModel: List<PlaceModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_item, parent, false)
@@ -31,8 +32,8 @@ class SearchAdapter(private var placeModel: List<PlaceModel>) : RecyclerView.Ada
             placeRating.text = currentItem.rating.toString()
 
             val maxLength = 80 // Maximum length of the truncated text
-            if (currentItem.description.length > maxLength) {
-                description.text = currentItem.description.substring(0,80)
+            if (currentItem.description?.length !!> maxLength) {
+                description.text = currentItem.description?.substring(0,80)
             }
             else {
                 description.text = currentItem.description
@@ -44,7 +45,7 @@ class SearchAdapter(private var placeModel: List<PlaceModel>) : RecyclerView.Ada
         return placeModel.size
     }
 
-    fun updateData(newData: List<PlaceModel>) {
+    fun updateData(newData: ArrayList<NearbyPlaceModel>) {
         placeModel = newData
         notifyDataSetChanged()
     }

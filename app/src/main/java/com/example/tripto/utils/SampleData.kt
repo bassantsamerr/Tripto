@@ -1,10 +1,18 @@
 package com.example.tripto.utils
 
-import com.example.tripto.model.ActivityModel
-import com.example.tripto.model.MainModel
-import com.example.tripto.model.PlaceModel
+import android.annotation.SuppressLint
+import android.util.Log
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tripto.adapter.PlaceAdapter
+import com.example.tripto.model.*
+import com.example.tripto.retrofit.ApiInterface
 import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.net.URL
+
 
 object SampleData {
     private val activities = listOf(
@@ -17,36 +25,62 @@ object SampleData {
         )
     )
     private val placeModels = listOf(
-        PlaceModel(
-            1,
+        NearbyPlaceModel(
+            "ahmed",
             "The Egyptian Museum In Cairo",
             "The Egyptian Museum is the oldest archaeological museum in the Middle East, and houses the largest collection of Pharaonic antiquities in the world. The museum displays an extensive collection spanning from the Predynastic Period to the Greco-Roman Era.",
             "Cairo",
-            "https://tinyurl.com/yffcchwp",
-            4.5,
-            "https://goo.gl/maps/RBKxVzj3sa6zpFcL9",
+            2514.2,
+            "cairo",
+            5,
             30.04846529,
-            31.23365667,
-            activities.toTypedArray()
-        ),PlaceModel(
-            2,
-            "The Hanging Church",
-            "Its unusual moniker comes from the fact that it's built on top of the gates of an old Roman fortress. Located within Old Coptic Cairo (Masr al-Qadima) in what was ancient Egypt's Heliopolite Nome, the Hanging Church is just a stone's throw from the famous Babylon Fortress",
-            "Cairo",
-            "https://tinyurl.com/2p82vznx",
-            4.6,
-            "https://goo.gl/maps/xuWFMckZMCXia6uG7",
-            30.0053777913529,
-            31.2301825999999,
-            activities.toTypedArray()
-        ),
+            31.23365667
+
         )
+    )
+    private val service: ApiInterface = ApiInterface.create()
+    var list: ArrayList<NearbyPlaceModel>
+    init {
+        list = ArrayList()
+    }
+     fun getPlaceModels(): ArrayList<NearbyPlaceModel> {
+        val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
+        //list= ArrayList()
+        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                if(response.isSuccessful){
+                    list.clear()
+                    for(myData in response.body()!!){
+                        list.add(myData)
+                    }
+                    for (placeModel in list) {
+                        Log.d("SampleData", placeModel.toString())
+                    }
+                    list.toList()
+                    for (placeModel in list) {
+                        Log.d("Bassant", placeModel.toString())
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            }
+
+        })
+         Log.d("satalana", list.size.toString())
+         for (placeModel in list) {
+             Log.d("Reeko", placeModel.toString())
+         }
+        return list
+    }
+
 
     val collections = listOf(
-        MainModel("Recommended Places", placeModels),
-        MainModel("Top 10", placeModels.reversed()),
-        MainModel("Tour Packages", placeModels.shuffled()),
-        MainModel("All Places", placeModels)
+        MainModel("Recommended Places", list),
+        MainModel("Top 10", list),
+        MainModel("Tour Packages", list),
+        MainModel("All Places", list)
     )
 
 }
