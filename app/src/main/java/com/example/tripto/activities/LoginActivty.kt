@@ -9,8 +9,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tripto.R
+import com.example.tripto.model.CurrentUserModel
+import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.TokenModel
 import com.example.tripto.retrofit.ApiInterface
+import com.example.tripto.utils.SampleData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +22,7 @@ class LoginActivty : AppCompatActivity() {
     private val service: ApiInterface = ApiInterface.create()
     var etUsername: EditText? = null
     var etPassword: EditText? = null
+    var token:TokenModel= TokenModel("","")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         Log.d("Application started", "Application started");
@@ -37,6 +41,8 @@ class LoginActivty : AppCompatActivity() {
                     if(response.isSuccessful){
                         Toast.makeText(this@LoginActivty, "Login Successfully", Toast.LENGTH_SHORT).show()
                         Log.d("success login token", response.body().toString())
+                        token= response.body()!!
+                        Log.d("tokentokentokentoken",token.accessToken.toString())
                         val intent = Intent(this@LoginActivty, HomeActivity::class.java)
                         startActivity(intent)
                     }
@@ -60,5 +66,26 @@ class LoginActivty : AppCompatActivity() {
             startActivity(intent)
 
         }
+        Log.d("tokentoken",token.accessToken.toString())
+        val call: Call<CurrentUserModel> = service.get_current_user("Bearer "+token?.accessToken.toString())
+        call.enqueue(object : Callback<CurrentUserModel>{
+            override fun onResponse(call: Call<CurrentUserModel>, response: Response<CurrentUserModel>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("success current user api", response.body().toString())
+
+                }
+                if(!response.isSuccessful){
+                    Toast.makeText(this@LoginActivty, "Username or password is incorrect, Please try again", Toast.LENGTH_SHORT).show()
+                    Log.d("fail current user api", response.toString())
+                    Log.d("fail current user api", response?.errorBody()?.string().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<CurrentUserModel>, t: Throwable) {
+                Log.d("fail awe login token", t.toString())
+            }
+        })
     }
+
 }

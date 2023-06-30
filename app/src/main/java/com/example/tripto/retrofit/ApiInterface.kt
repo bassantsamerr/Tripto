@@ -1,5 +1,6 @@
 package com.example.tripto.retrofit
 
+import com.example.tripto.model.CurrentUserModel
 import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.TokenModel
 import com.example.tripto.model.UserModel
@@ -24,8 +25,9 @@ interface ApiInterface {
         fun get_chatbot_reponse(@Query("text") text: String): Call<String>
         @FormUrlEncoded
         @POST("/token")
-        fun login_for_access_token(@Field("username") username: String,
-                                   @Field("password") password: String): Call<TokenModel>
+        fun login_for_access_token(@Field("username") username: String, @Field("password") password: String): Call<TokenModel>
+        @GET("/users/me")
+        fun get_current_user(@Header("Authorization") token:String ):Call<CurrentUserModel>
     companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()

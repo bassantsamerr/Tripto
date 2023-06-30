@@ -2,16 +2,14 @@ package com.example.tripto.utils
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tripto.adapter.PlaceAdapter
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URL
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 
 object SampleData {
@@ -39,26 +37,31 @@ object SampleData {
         )
     )
     private val service: ApiInterface = ApiInterface.create()
-    var list: ArrayList<NearbyPlaceModel>
+    var allPlacesList: ArrayList<NearbyPlaceModel>
     init {
-        list = ArrayList()
+        allPlacesList = ArrayList()
     }
-     fun getPlaceModels(): ArrayList<NearbyPlaceModel> {
+    var top10List : ArrayList<NearbyPlaceModel>
+    init {
+        top10List = ArrayList()
+    }
+
+     fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
         call.enqueue(object : Callback<List<NearbyPlaceModel>> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
                 if(response.isSuccessful){
-                    list.clear()
+                    allPlacesList.clear()
                     for(myData in response.body()!!){
-                        list.add(myData)
+                        allPlacesList.add(myData)
                     }
-                    for (placeModel in list) {
+                    for (placeModel in allPlacesList) {
                         Log.d("SampleData", placeModel.toString())
                     }
-                    list.toList()
-                    for (placeModel in list) {
+                    allPlacesList.toList()
+                    for (placeModel in allPlacesList) {
                         Log.d("Bassant", placeModel.toString())
                     }
                 }
@@ -68,19 +71,27 @@ object SampleData {
             }
 
         })
-         Log.d("satalana", list.size.toString())
-         for (placeModel in list) {
+         Log.d("satalana", allPlacesList.size.toString())
+         for (placeModel in allPlacesList) {
              Log.d("Reeko", placeModel.toString())
          }
-        return list
+        return allPlacesList
+    }
+    fun getTop10Places(allPlaces:ArrayList<NearbyPlaceModel>): ArrayList<NearbyPlaceModel> {
+        allPlaces.sortByDescending { it.rating }
+        Log.d("top10placess", allPlaces.toString())
+        Log.d("top10places", top10List.toString())
+        top10List.addAll(allPlacesList)
+        return top10List
     }
 
 
+
     val collections = listOf(
-        MainModel("Recommended Places", list),
-        MainModel("Top 10", list),
-        MainModel("Tour Packages", list),
-        MainModel("All Places", list)
+        MainModel("Recommended Places", allPlacesList),
+        MainModel("Top 10",allPlacesList),
+        MainModel("Tour Packages", allPlacesList),
+        MainModel("All Places", allPlacesList)
     )
 
 }

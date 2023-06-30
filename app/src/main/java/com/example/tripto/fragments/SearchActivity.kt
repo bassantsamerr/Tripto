@@ -1,7 +1,6 @@
 package com.example.tripto.fragments
 
 import SearchAdapter
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +10,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tripto.activities.DetailedActivity
-import com.example.tripto.activities.PlaceActivity
 import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.utils.SampleData
 
@@ -35,7 +32,7 @@ class SearchActivity : Fragment() {
         searchEditText = view.findViewById(R.id.searchEditText)
 
         // Set the RecyclerView adapter
-        searchAdapter = SearchAdapter(SampleData.getPlaceModels())
+        searchAdapter = SearchAdapter(SampleData.getAllPlaces())
         recyclerView.adapter = searchAdapter
 
         // Set a touch listener for the drawable in the search EditText
