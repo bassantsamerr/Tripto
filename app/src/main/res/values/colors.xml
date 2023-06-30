@@ -17,7 +17,9 @@
     <color name="mustarda">#FFD966</color>
     <color name="orange">#ED7D31</color>
     <color name="yellow">#F3F302</color>
-    <color name="lighter_grey">#D5CACA</color>
+    <color name="lighter_grey">#FFFAF7D9</color>
     <color name="dark_grey">#727272</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="black_transparent">#4D000000</color>
+
 </resources>

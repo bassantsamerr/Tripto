@@ -15,15 +15,7 @@ import java.net.URL
 
 
 object SampleData {
-    private val activities = listOf(
-        ActivityModel(
-            "horseRiding",
-            "https://www.horseriding-hurghada-egypt.com/wp-content/uploads/2018/12/girl2horsesswimming-1600x900.png",
-            "horse Riding description",
-            3.0,
-            "Cairo"
-        )
-    )
+
     private val placeModels = listOf(
         NearbyPlaceModel(
             "ahmed",
@@ -58,9 +50,6 @@ object SampleData {
                         Log.d("SampleData", placeModel.toString())
                     }
                     list.toList()
-                    for (placeModel in list) {
-                        Log.d("Bassant", placeModel.toString())
-                    }
                 }
             }
 
@@ -68,10 +57,6 @@ object SampleData {
             }
 
         })
-         Log.d("satalana", list.size.toString())
-         for (placeModel in list) {
-             Log.d("Reeko", placeModel.toString())
-         }
         return list
     }
 

@@ -53,7 +53,7 @@ class DetailedActivity : AppCompatActivity() {
         val showAct = findViewById<Button>(R.id.showActivities)
         showAct.setOnClickListener {
             val intent = Intent(this, PlaceActivity::class.java)
-            intent.putExtra("placemodel",place)
+            intent.putExtra("nearbyplacemodel",place)
             startActivity(intent)
         }
         }

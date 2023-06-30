@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.databinding.SearchItemBinding
 import com.example.tripto.model.ActivityModel
+import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.PlaceModel
 
 class ActivityAdapter(private var placeModel: PlaceModel) :
@@ -29,10 +30,10 @@ class ActivityAdapter(private var placeModel: PlaceModel) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(activity: ActivityModel) {
             binding.apply {
-                placePoster.load(activity.imageUrl)
-                placeName.text = activity.title
+                placePoster.load(activity.image)
+                placeName.text = activity.name
                 placeLocation.text = activity.location
-                placeRating.text = activity.ratings.toString()
+                placeRating.text = activity.price.toString()
                 val maxLength = 80 // Maximum length of the truncated text
                 if (activity.description.length > maxLength) {
                     description.text = activity.description.substring(0, maxLength)

@@ -5,11 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChatbotActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="110dp"
+            android:src="@drawable/logo" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -27,8 +32,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
 
             <EditText
                 android:id="@+id/userInputEditText"
