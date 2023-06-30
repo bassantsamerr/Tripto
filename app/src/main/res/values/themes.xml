@@ -1,3 +1,4 @@
+
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Tripto" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -11,7 +12,6 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
     <style name="custom_card_view_style" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/custom_card_view</item>
@@ -27,6 +27,10 @@
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color</item>
         <item name="chipStrokeWidth">2dp</item>
-
+    </style>
+    
+    <style name="FullScreenDialogueTheme" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="android:statusBarColor">@color/primary_color</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>
