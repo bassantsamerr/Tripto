@@ -17,6 +17,7 @@ import me.relex.circleindicator.CircleIndicator3
 
 class DetailedActivity : AppCompatActivity() {
     var imageList = mutableListOf<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,6 +31,7 @@ class DetailedActivity : AppCompatActivity() {
             text2.setText(place.description)
             text3.setText(place.address)
         }
+        addToList(place?.image.toString())
         postToList()
         val view_pager2 = findViewById<ViewPager2>(R.id.view_pager2)
         view_pager2.adapter= ImageSwiperAdapter(imageList)
