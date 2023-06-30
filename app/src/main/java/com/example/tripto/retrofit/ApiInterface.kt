@@ -13,14 +13,14 @@ import retrofit2.http.*
 interface ApiInterface {
         @GET("/places/all")
         fun getAllPlaces(): Call<List<NearbyPlaceModel>>
+        @GET("/topRatedPlaces")
+        fun getTop10Places(): Call<List<NearbyPlaceModel>>
         @POST("/addUser")
         fun addUser(@Body user: UserModel): Call<ResponseBody>
         @GET("/nearbyPlaces")
         fun get_nearby_places(@Query("latitude") latitude: Double, @Query("longitude")longitude: Double,@Query("n")n: Int): Call<List<NearbyPlaceModel>>
-
         @GET("/nearestPlace")
         fun get_nearest_places(@Query("latitude") latitude: Float, @Query("longitude") longitude: Float): Call<ResponseBody>
-
         @GET("/chatting")
         fun get_chatbot_reponse(@Query("text") text: String): Call<String>
         @FormUrlEncoded

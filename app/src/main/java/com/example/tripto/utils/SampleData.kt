@@ -2,16 +2,11 @@ package com.example.tripto.utils
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tripto.adapter.PlaceAdapter
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URL
 
 
 object SampleData {
@@ -31,25 +26,29 @@ object SampleData {
         )
     )
     private val service: ApiInterface = ApiInterface.create()
-    var list: ArrayList<NearbyPlaceModel>
+    var allPlaceslist: ArrayList<NearbyPlaceModel>
     init {
-        list = ArrayList()
+        allPlaceslist = ArrayList()
     }
-     fun getPlaceModels(): ArrayList<NearbyPlaceModel> {
+    var top10Placeslist: ArrayList<NearbyPlaceModel>
+    init {
+        top10Placeslist = ArrayList()
+    }
+     fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
         call.enqueue(object : Callback<List<NearbyPlaceModel>> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
                 if(response.isSuccessful){
-                    list.clear()
+                    allPlaceslist.clear()
                     for(myData in response.body()!!){
-                        list.add(myData)
+                        allPlaceslist.add(myData)
                     }
-                    for (placeModel in list) {
+                    for (placeModel in allPlaceslist) {
                         Log.d("SampleData", placeModel.toString())
                     }
-                    list.toList()
+                    allPlaceslist.toList()
                 }
             }
 
@@ -57,15 +56,38 @@ object SampleData {
             }
 
         })
-        return list
+        return allPlaceslist
+    }
+    fun getTop10laces(): ArrayList<NearbyPlaceModel> {
+        val call: Call<List<NearbyPlaceModel>> = service.getTop10Places()
+        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                if(response.isSuccessful){
+                    top10Placeslist.clear()
+                    for(myData in response.body()!!){
+                        top10Placeslist.add(myData)
+                    }
+                    for (placeModel in top10Placeslist) {
+                        Log.d("Top10", placeModel.toString())
+                    }
+                    top10Placeslist.toList()
+                }
+            }
+
+            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            }
+
+        })
+        return top10Placeslist
     }
 
 
     val collections = listOf(
-        MainModel("Recommended Places", list),
-        MainModel("Top 10", list),
-        MainModel("Tour Packages", list),
-        MainModel("All Places", list)
+        MainModel("Recommended Places", allPlaceslist),
+        MainModel("Top 10", getTop10laces()),
+        MainModel("Tour Packages", allPlaceslist),
+        MainModel("All Places", allPlaceslist)
     )
 
 }
