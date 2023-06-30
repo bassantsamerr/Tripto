@@ -1,15 +1,13 @@
 package com.example.tripto.retrofit
 
 import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.TokenModel
 import com.example.tripto.model.UserModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiInterface {
         @GET("/places/all")
@@ -24,7 +22,10 @@ interface ApiInterface {
 
         @GET("/chatting")
         fun get_chatbot_reponse(@Query("text") text: String): Call<String>
-
+        @FormUrlEncoded
+        @POST("/token")
+        fun login_for_access_token(@Field("username") username: String,
+                                   @Field("password") password: String): Call<TokenModel>
     companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()

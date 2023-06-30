@@ -50,7 +50,7 @@
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/primary_color"
                 android:ems="10"
-                android:hint="Email or Username"
+                android:hint="Username"
                 android:inputType="textPersonName"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
