@@ -7,8 +7,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tripto.R
@@ -22,7 +24,20 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
         profileImageView = findViewById(R.id.profileImageView)
         val selectImageButton: Button = findViewById(R.id.selectImageButton)
-
+        val Nationalities = resources.getStringArray(R.array.nationalities)
+        val imageView = findViewById<ImageView>(R.id.iv_spinner)
+        val popupMenu = PopupMenu(this, imageView)
+        Nationalities.forEach { nationality ->
+            popupMenu.menu.add(nationality)
+        }
+        val nationalityv = findViewById<TextView>(R.id.nationality_value)
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            val selectedNationality = menuItem.title
+            Log.d("Nationality","hi")
+            nationalityv.text = selectedNationality // set the selected nationality on the TextView
+            true
+        }
+        imageView.setOnClickListener { popupMenu.show() }
         // Set click listener for the select image button
         selectImageButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -31,7 +46,7 @@ class EditProfileActivity : AppCompatActivity() {
         val sharedPreference =getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val tv_username=findViewById<TextView>(R.id.textView2)
         val tv_usernamevalue=findViewById<TextView>(R.id.username_value)
-        val tv_nationality=findViewById<TextView>(R.id.nationality)
+        val tv_nationality=findViewById<TextView>(R.id.nationality_value)
         val tv_email=findViewById<TextView>(R.id.email_value)
         val username=sharedPreference.getString("USERNAME","").toString()
         val nationality=sharedPreference.getString("COUNTRY","").toString()

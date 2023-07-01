@@ -108,7 +108,7 @@
                     android:textColor="@color/black"
                     android:textSize="28sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/username_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -144,16 +144,26 @@
 
                 <TextView
                     android:id="@+id/nationality_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="128dp"
+                    android:layout_height="38dp"
                     android:layout_weight="1"
                     android:autoSizeMaxTextSize="28sp"
                     android:autoSizeMinTextSize="12sp"
                     android:autoSizeTextType="uniform"
-                    android:text="Egypt"
+                    android:text="Egypt "
                     android:textAlignment="viewEnd"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
+
+                <ImageView
+                    android:id="@+id/iv_spinner"
+                    style="?android:attr/spinnerItemStyle"
+                    android:layout_width="20dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/spinner"
+                    android:backgroundTint="@color/primary_color"
+                    android:textColor="@color/primary_color"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
@@ -176,7 +186,7 @@
                     android:textColor="@color/black"
                     android:textSize="28sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/email_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,33 +207,7 @@
                 app:dividerInsetStart="16dp" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address:"
-                    android:textColor="@color/black"
-                    android:textSize="28sp" />
-
-                <TextView
-                    android:id="@+id/address_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoSizeMaxTextSize="28sp"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="dokki street"
-                    android:textAlignment="viewEnd"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
-            </LinearLayout>
 
             <Button
                 android:id="@+id/edit_profile"
