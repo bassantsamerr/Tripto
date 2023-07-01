@@ -1,5 +1,6 @@
 package com.example.tripto.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tripto.R
 
@@ -26,6 +28,18 @@ class EditProfileActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, SELECT_IMAGE_REQUEST)
         }
+        val sharedPreference =getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        val tv_username=findViewById<TextView>(R.id.textView2)
+        val tv_usernamevalue=findViewById<TextView>(R.id.username_value)
+        val tv_nationality=findViewById<TextView>(R.id.nationality)
+        val tv_email=findViewById<TextView>(R.id.email_value)
+        val username=sharedPreference.getString("USERNAME","").toString()
+        val nationality=sharedPreference.getString("COUNTRY","").toString()
+        val email=sharedPreference.getString("EMAIL","").toString()
+        tv_username.text=username
+        tv_usernamevalue.text=username
+        tv_nationality.text=nationality
+        tv_email.text=email
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
