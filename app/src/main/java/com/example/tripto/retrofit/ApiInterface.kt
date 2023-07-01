@@ -1,9 +1,6 @@
 package com.example.tripto.retrofit
 
-import com.example.tripto.model.CurrentUserModel
-import com.example.tripto.model.NearbyPlaceModel
-import com.example.tripto.model.TokenModel
-import com.example.tripto.model.UserModel
+import com.example.tripto.model.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -29,6 +26,13 @@ interface ApiInterface {
         @GET("/users/me")
         fun get_current_user(@Header("Authorization") token:String ):Call<CurrentUserModel>
         @PUT("/editUser/{userid}") fun editUser(@Path("userid") userId: Int, @Body user: UserModel): Call<ResponseBody>
+        @POST("/addFavplace")
+        fun addFavPlace(@Body placetouser: PlaceToUserModel): Call<ResponseBody>
+        @DELETE("/deleteFavPlace/{FavPlace_id}")
+        fun deleteFavPlace(@Path("FavPlace_id") favPlaceId: Int,@Query ("placeid") placeid:Int,@Query ("userid") userid:Int): Call<DeleteResponse>
+        @GET("/getFavplaces")
+        fun getFavPlaces(@Query("userid") userid: Int):Call<List<Int>>
+
     companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()
