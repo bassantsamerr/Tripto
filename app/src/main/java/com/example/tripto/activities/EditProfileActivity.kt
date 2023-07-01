@@ -8,12 +8,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.PopupMenu
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tripto.R
+import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.UserModel
+import com.example.tripto.retrofit.ApiInterface
+import com.example.tripto.utils.SampleData
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EditProfileActivity : AppCompatActivity() {
     private val SELECT_IMAGE_REQUEST = 1
@@ -27,6 +32,8 @@ class EditProfileActivity : AppCompatActivity() {
         val Nationalities = resources.getStringArray(R.array.nationalities)
         val imageView = findViewById<ImageView>(R.id.iv_spinner)
         val popupMenu = PopupMenu(this, imageView)
+        val service: ApiInterface = ApiInterface.create()
+
         Nationalities.forEach { nationality ->
             popupMenu.menu.add(nationality)
         }
@@ -48,13 +55,68 @@ class EditProfileActivity : AppCompatActivity() {
         val tv_usernamevalue=findViewById<TextView>(R.id.username_value)
         val tv_nationality=findViewById<TextView>(R.id.nationality_value)
         val tv_email=findViewById<TextView>(R.id.email_value)
-        val username=sharedPreference.getString("USERNAME","").toString()
-        val nationality=sharedPreference.getString("COUNTRY","").toString()
-        val email=sharedPreference.getString("EMAIL","").toString()
+        var username=sharedPreference.getString("USERNAME","").toString()
+        var nationality=sharedPreference.getString("COUNTRY","").toString()
+        var email=sharedPreference.getString("EMAIL","").toString()
+        val id=sharedPreference.getInt("ID",0)
+        val age=sharedPreference.getInt("AGE",0)
+        val roleid=sharedPreference.getInt("ROLEID",0)
+        val password=sharedPreference.getString("PASSWORD","")
         tv_username.text=username
         tv_usernamevalue.text=username
         tv_nationality.text=nationality
         tv_email.text=email
+
+
+        val bt_edit = findViewById<TextView>(R.id.edit_profile)
+
+
+        bt_edit.setOnClickListener{
+            val sharedPreference =getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+            val editor = sharedPreference.edit()
+            Log.d("new username",tv_usernamevalue.text.toString())
+            editor.putString("USERNAME", tv_usernamevalue.text.toString())
+            editor.putString("COUNTRY",tv_nationality.text.toString())
+            editor.putString("EMAIL",tv_email.text.toString())
+            editor.apply()
+            username=sharedPreference.getString("USERNAME","").toString()
+            nationality=sharedPreference.getString("COUNTRY","").toString()
+            email=sharedPreference.getString("EMAIL","").toString()
+            tv_username.text=username
+            tv_usernamevalue.text=username
+            tv_nationality.text=nationality
+            tv_email.text=email
+            val user = UserModel(
+                email,
+                age,
+                nationality,
+                username,
+                roleid,
+                password.toString()
+            )
+            Log.d("id edit user", id.toString())
+            Log.d("user edit user", user.toString())
+            val call: Call<ResponseBody> = service.editUser(id,user)
+         call.enqueue(object : Callback<ResponseBody>{
+             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                 if (response.isSuccessful) {
+                     Toast.makeText(this@EditProfileActivity, "Account Updated Successfully", Toast.LENGTH_SHORT).show()
+                     Log.d("edit api response", response.body().toString())
+                 }
+                  else if (!response.isSuccessful) {
+                     Toast.makeText(this@EditProfileActivity, "Updating failed", Toast.LENGTH_SHORT).show()
+                     Log.d("fail edit api", response.toString())
+                     Log.d("fail edit api", response?.errorBody()?.string().toString())
+                  }
+                 }
+
+
+             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                 Log.d("on fail  edit ", t.toString())
+             }
+
+         })
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
