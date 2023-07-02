@@ -30,8 +30,12 @@ interface ApiInterface {
         fun addFavPlace(@Body placetouser: PlaceToUserModel): Call<ResponseBody>
         @DELETE("/deleteFavPlace/{FavPlace_id}")
         fun deleteFavPlace(@Path("FavPlace_id") favPlaceId: Int,@Query ("placeid") placeid:Int,@Query ("userid") userid:Int): Call<DeleteResponse>
+        @GET("/getFavplacesIDs")
+        fun getFavPlacesIDs(@Query("userid") userid: Int):Call<List<Int>>
         @GET("/getFavplaces")
-        fun getFavPlaces(@Query("userid") userid: Int):Call<List<Int>>
+        fun getFavPlaces(@Query("userid") userid: Int):Call<List<NearbyPlaceModel>>
+        @GET("/place")
+        fun getPlace(@Query("id") id: Int):Call<NearbyPlaceModel>
 
     companion object {
         fun create(): ApiInterface {

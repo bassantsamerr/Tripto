@@ -19,6 +19,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".FavoriteAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ShowFavoritesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.Fullscreen"
             android:exported="false" />
         <activity
@@ -40,14 +46,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".activities.HomeActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activities.InterestsActivty"
             android:exported="false" />

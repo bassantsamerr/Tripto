@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import com.example.tripto.R
 import com.example.tripto.databinding.PlaceItemBinding
 import com.example.tripto.model.NearbyPlaceModel
@@ -27,6 +28,7 @@ class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : Recyc
             val description = findViewById<TextView>(R.id.description)
 
             placePoster.load(currentItem.image)
+
             placeName.text = currentItem.placeName
             placeLocation.text = currentItem.address
             placeRating.text = currentItem.rating.toString()

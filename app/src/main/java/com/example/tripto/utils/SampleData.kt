@@ -1,6 +1,7 @@
 package com.example.tripto.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
@@ -34,6 +35,14 @@ object SampleData {
     init {
         top10Placeslist = ArrayList()
     }
+    var favPlacesList: ArrayList<NearbyPlaceModel>
+    init {
+        favPlacesList = ArrayList()
+    }
+    var favPlaces: ArrayList<NearbyPlaceModel>
+    init {
+        favPlaces = ArrayList()
+    }
      fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
@@ -58,6 +67,7 @@ object SampleData {
         })
         return allPlaceslist
     }
+
     fun getTop10laces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getTop10Places()
         call.enqueue(object : Callback<List<NearbyPlaceModel>> {
@@ -80,6 +90,32 @@ object SampleData {
 
         })
         return top10Placeslist
+    }
+    fun getfavPlaces(context: Context): ArrayList<NearbyPlaceModel> {
+        val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        val userid=sharedPreference.getInt("ID",0)
+        val callGetFavPlacesId: Call<List<NearbyPlaceModel>> = service.getFavPlaces(userid)
+        callGetFavPlacesId.enqueue(object : Callback<List<NearbyPlaceModel>> {
+            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                if(response.isSuccessful){
+                    favPlaces.clear()
+                    for(myData in response.body()!!){
+                        favPlaces.add(myData)
+                    }
+                    for (placeModel in favPlaces) {
+                        Log.d("FavData", placeModel.toString())
+                    }
+                    favPlaces.toList()
+                }
+            }
+
+            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                Log.d("on fail get fav places ids ", t.toString())
+            }
+
+        })
+        Log.d("hhhhh","hhhhh")
+        return favPlaces
     }
 
 

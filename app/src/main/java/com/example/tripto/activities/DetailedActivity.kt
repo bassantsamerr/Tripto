@@ -16,11 +16,9 @@ import com.example.tripto.R
 import com.example.tripto.adapter.ImageSwiperAdapter
 import com.example.tripto.model.DeleteResponse
 import com.example.tripto.model.NearbyPlaceModel
-import com.example.tripto.model.PlaceModel
 import com.example.tripto.model.PlaceToUserModel
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.Images
-import com.example.tripto.utils.SampleData
 import me.relex.circleindicator.CircleIndicator3
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -49,7 +47,7 @@ class DetailedActivity : AppCompatActivity() {
             text1.setText(place.placeName)
             text2.setText(place.description)
             text3.setText(place.address)
-            val call: Call<List<Int>> = service.getFavPlaces(userid)
+            val call: Call<List<Int>> = service.getFavPlacesIDs(userid)
             call.enqueue(object : Callback<List<Int>>{
                 override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
                     val favPlaces=response.body()
