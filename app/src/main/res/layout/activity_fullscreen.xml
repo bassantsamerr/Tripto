@@ -61,63 +61,65 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="vertical">
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Activity Name:-"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/activityName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_background"
-            android:drawableTint="@color/primary_color"
-            android:hint="Activity Name"
-            android:inputType="text"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Activity Name:-"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/activityName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableTint="@color/primary_color"
+                android:hint="Activity Name"
+                android:inputType="text"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Description:-"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Description:-"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
-        <EditText
-            android:id="@+id/ActivtiyDescription"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_background"
-            android:drawableTint="@color/primary_color"
-            android:hint="Provide a description for your activity"
-            android:inputType="text"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+            <EditText
+                android:id="@+id/ActivtiyDescription"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableTint="@color/primary_color"
+                android:hint="Provide a description for your activity"
+                android:inputType="text"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
 
-        <ImageView
-            android:id="@+id/ActivityImage"
-            android:layout_width="180dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="fitXY"
-            android:src="@drawable/bg" />
+            <ImageView
+                android:id="@+id/ActivityImage"
+                android:layout_width="180dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg" />
 
             <Button
                 android:id="@+id/selectImageButton"
@@ -126,178 +128,178 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Upload Image" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Price:-"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/price"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="L.E"
+                    android:inputType="text"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="Time:-"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/time"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="text"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Minutes" />
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Price:-"
+                android:layout_marginTop="10dp"
+                android:text="Location:-"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
-
+                android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/price"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="L.E"
+                android:drawableTint="@color/primary_color"
+                android:hint="Provide a Location for your activity "
                 android:inputType="text"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="20dp"
-                android:text="Time:-"
+                android:layout_marginTop="10dp"
+                android:autoSizeMaxTextSize="25sp"
+                android:autoSizeMinTextSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:text="provide the longitude and latitude:- "
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="22sp" />
 
-            <EditText
-                android:id="@+id/time"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background"
-                android:inputType="text"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:text="Minutes" />
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="long:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Location:-"
-            android:textColor="@color/black"
-            android:textSize="25sp" />
+                <EditText
+                    android:id="@+id/longitude"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="longitude"
+                    android:inputType="text"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" />
 
-        <EditText
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_background"
-            android:drawableTint="@color/primary_color"
-            android:hint="Provide a Location for your activity "
-            android:inputType="text"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="lat:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="provide the longitude and latitude:- "
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="15sp"
-            android:autoSizeMaxTextSize="25sp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/latt"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="text"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="latitude" />
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="long:"
+                android:layout_marginTop="10dp"
+                android:text="Phone Number:- "
                 android:textColor="@color/black"
-                android:textSize="20sp" />
-
+                android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/longitude"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
+                android:id="@+id/phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="longitude"
+                android:drawableTint="@color/primary_color"
+                android:hint="Provide a phone number "
                 android:inputType="text"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="lat:"
+                android:layout_marginTop="10dp"
+                android:text="Social Media:- "
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/latt"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+                android:id="@+id/socialmedia"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_background"
+                android:drawableTint="@color/primary_color"
+                android:hint="Provide a Social Media Page"
                 android:inputType="text"
                 android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:text="latitude" />
+                android:paddingRight="16dp" />
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Phone Number:- "
-            android:textColor="@color/black"
-            android:textSize="25sp" />
-
-        <EditText
-            android:id="@+id/phonenumber"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_background"
-            android:drawableTint="@color/primary_color"
-            android:hint="Provide a phone number "
-            android:inputType="text"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
-<TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Social Media:- "
-            android:textColor="@color/black"
-            android:textSize="25sp" />
-
-        <EditText
-            android:id="@+id/socialmedia"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_background"
-            android:drawableTint="@color/primary_color"
-            android:hint="Provide a Social Media Page"
-            android:inputType="text"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
-
-    </LinearLayout>
-</ScrollView>
 </LinearLayout>

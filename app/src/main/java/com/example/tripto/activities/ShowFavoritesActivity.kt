@@ -1,8 +1,10 @@
 package com.example.tripto.activities
 
 import SearchAdapter
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.R
 import com.example.tripto.model.NearbyPlaceModel
@@ -30,6 +32,11 @@ class ShowFavoritesActivity : AppCompatActivity() {
 
         // Set the RecyclerView adapter
         searchAdapter = SearchAdapter(RetrievingData.getfavPlaces(this))
+        searchAdapter.onItemClick = { nearbyPlaceModel ->
+            val intent = Intent(this, DetailedActivity::class.java)
+            intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
+            startActivity(intent)
+        }
         recyclerView.adapter = searchAdapter
     }
 
