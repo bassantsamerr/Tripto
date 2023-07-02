@@ -11,10 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tripto.R
 import com.example.tripto.model.CurrentUserModel
-import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.TokenModel
 import com.example.tripto.retrofit.ApiInterface
-import com.example.tripto.utils.SampleData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

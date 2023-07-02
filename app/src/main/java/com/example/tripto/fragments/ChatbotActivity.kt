@@ -10,15 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
-import androidx.appcompat.widget.AppCompatImageButton
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.tripto.R
-import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.retrofit.ApiInterface
-import com.example.tripto.utils.SampleData
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

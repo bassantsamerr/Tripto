@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.R
 import com.example.tripto.adapter.MainAdapter
-import com.example.tripto.utils.SampleData
+import com.example.tripto.utils.RetrievingData
 
 class FirstFragment : Fragment() {
 
@@ -24,7 +24,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.rvMain)
         // Set the RecyclerView adapter
-        recyclerView.adapter = MainAdapter(SampleData.collections)
+        recyclerView.adapter = MainAdapter(RetrievingData.collections)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
     }

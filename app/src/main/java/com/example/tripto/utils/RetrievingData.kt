@@ -10,7 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-object SampleData {
+object RetrievingData {
 
     private val placeModels = listOf(
         NearbyPlaceModel(

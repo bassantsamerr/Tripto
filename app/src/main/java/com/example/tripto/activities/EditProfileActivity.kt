@@ -11,10 +11,8 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tripto.R
-import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.UserModel
 import com.example.tripto.retrofit.ApiInterface
-import com.example.tripto.utils.SampleData
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
