@@ -1,5 +1,6 @@
 package com.example.tripto.retrofit
 
+import com.example.example.SignUpResponseModel
 import com.example.tripto.model.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -13,7 +14,7 @@ interface ApiInterface {
         @GET("/topRatedPlaces")
         fun getTop10Places(): Call<List<NearbyPlaceModel>>
         @POST("/addUser")
-        fun addUser(@Body user: UserModel): Call<ResponseBody>
+        fun addUser(@Body user: UserModel): Call<SignUpResponseModel>
         @GET("/nearbyPlaces")
         fun get_nearby_places(@Query("latitude") latitude: Double, @Query("longitude")longitude: Double,@Query("n")n: Int): Call<List<NearbyPlaceModel>>
         @GET("/nearestPlace")

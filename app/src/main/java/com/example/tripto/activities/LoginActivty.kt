@@ -39,8 +39,6 @@ class LoginActivty : AppCompatActivity() {
 //            startActivity(intent)
 //        }
         bt_login_click.setOnClickListener {
-
-
             val call: Call<TokenModel> = service.login_for_access_token(username = etUsername!!.text.toString(),
                 etPassword!!.text.toString())
             call.enqueue(object : Callback<TokenModel>{
