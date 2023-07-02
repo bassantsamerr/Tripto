@@ -36,6 +36,8 @@ interface ApiInterface {
         fun getFavPlacesIDs(@Query("userid") userid: Int):Call<List<Int>>
         @GET("/getFavplaces")
         fun getFavPlaces(@Query("userid") userid: Int):Call<List<NearbyPlaceModel>>
+        @GET("/getSearchHistoryForUser")
+        fun getSearchHistoryForUser(@Query("userid") userid: Int):Call<List<NearbyPlaceModel>>
         @GET("/place")
         fun getPlace(@Query("id") id: Int):Call<NearbyPlaceModel>
 

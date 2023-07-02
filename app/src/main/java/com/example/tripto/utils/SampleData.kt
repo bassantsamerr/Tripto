@@ -43,6 +43,10 @@ object SampleData {
     init {
         favPlaces = ArrayList()
     }
+    var searchHistoryPlaces: ArrayList<NearbyPlaceModel>
+    init {
+        searchHistoryPlaces = ArrayList()
+    }
      fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
@@ -114,16 +118,40 @@ object SampleData {
             }
 
         })
-        Log.d("hhhhh","hhhhh")
         return favPlaces
+    }
+    fun getSearchHistoryPlaces(context: Context): ArrayList<NearbyPlaceModel> {
+        val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        val userid=sharedPreference.getInt("ID",0)
+        val callGetFavPlacesId: Call<List<NearbyPlaceModel>> = service.getSearchHistoryForUser(userid)
+        callGetFavPlacesId.enqueue(object : Callback<List<NearbyPlaceModel>> {
+            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                if(response.isSuccessful){
+                    searchHistoryPlaces.clear()
+                    for(myData in response.body()!!){
+                        searchHistoryPlaces.add(myData)
+                    }
+                    for (placeModel in searchHistoryPlaces) {
+                        Log.d("FavData", placeModel.toString())
+                    }
+                    searchHistoryPlaces.toList()
+                }
+            }
+
+            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                Log.d("on fail get fav places ids ", t.toString())
+            }
+
+        })
+        return searchHistoryPlaces
     }
 
 
     val collections = listOf(
-        MainModel("Recommended Places", allPlaceslist),
+        MainModel("Recommended Places", getAllPlaces()),
         MainModel("Top 10", getTop10laces()),
-        MainModel("Tour Packages", allPlaceslist),
-        MainModel("All Places", allPlaceslist)
+        MainModel("Tour Packages", getAllPlaces()),
+        MainModel("All Places", getAllPlaces())
     )
 
 }

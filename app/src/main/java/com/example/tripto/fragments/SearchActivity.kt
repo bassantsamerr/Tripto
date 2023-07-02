@@ -32,7 +32,7 @@ class SearchActivity : Fragment() {
         searchEditText = view.findViewById(R.id.searchEditText)
 
         // Set the RecyclerView adapter
-        searchAdapter = SearchAdapter(SampleData.getAllPlaces())
+        searchAdapter = SearchAdapter(SampleData.getSearchHistoryPlaces(requireContext()))
         recyclerView.adapter = searchAdapter
 
         // Set a touch listener for the drawable in the search EditText

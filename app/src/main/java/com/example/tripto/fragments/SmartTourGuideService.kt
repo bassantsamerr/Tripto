@@ -102,6 +102,34 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
                     Log.d("dddddebug", "dddddebug")
                     lat= it.latitude
                     log=it.longitude
+                    Log.d("before", "before")
+                    val call =service.get_nearby_places(lat,log,3)
+                    Log.d("after", call.toString())
+                    call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+
+                        override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                            Log.d("yalahwaaaaaaaaaaaaaaaaaaaaay","yalahwaaaaaaaaaaaaaaaaaaaaay")
+                            val nearbyPlaces = response.body()
+                            if (response.isSuccessful) {
+                                if (nearbyPlaces != null) {
+                                    for(nearbyPlace in nearbyPlaces){
+                                        val latLng = LatLng(nearbyPlace.latitude, nearbyPlace.longitude)
+                                        googleMap.addMarker(MarkerOptions().position(latLng).title(nearbyPlace.placeName))
+                                        Log.d("besoooo", "${nearbyPlace.latitude} ${nearbyPlace.longitude}")
+                                        println("data type of latlng${latLng.javaClass}") // Prints "int"
+
+                                    }
+                                }
+                                response.body()?.let { Log.d("success awe", nearbyPlaces.toString()) }
+                            } else {
+                                response.body()?.let { Log.d("fail", nearbyPlaces.toString()) }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                            Log.d("failure error",t.message.toString())
+                        }
+                    })
                 }
 
             }
@@ -141,35 +169,8 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
             }
             false
         })
-        Log.d("before", "before")
-        val call =service.get_nearby_places(lat,log,3)
-        Log.d("after", call.toString())
 
 
-// Enqueue the call asynchronously
-        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
-            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
-                val nearbyPlaces = response.body()
-                if (response.isSuccessful) {
-                    if (nearbyPlaces != null) {
-                        for(nearbyPlace in nearbyPlaces){
-                                val latLng = LatLng(nearbyPlace.latitude, nearbyPlace.longitude)
-                                googleMap.addMarker(MarkerOptions().position(latLng).title(nearbyPlace.placeName))
-                                  Log.d("besoooo", "${nearbyPlace.latitude} ${nearbyPlace.longitude}")
-                            println("data type of latlng${latLng.javaClass}") // Prints "int"
-
-                        }
-                    }
-                    response.body()?.let { Log.d("success awe", nearbyPlaces.toString()) }
-                } else {
-                    response.body()?.let { Log.d("fail", nearbyPlaces.toString()) }
-                }
-            }
-
-            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
-                Log.d("failure error",t.message.toString())
-            }
-        })
 
 
     }
@@ -184,13 +185,6 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
         vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
-    }
-    private fun getURL(from : LatLng, to : LatLng) : String {
-        val origin = "origin=" + from.latitude + "," + from.longitude
-        val dest = "destination=" + to.latitude + "," + to.longitude
-        val sensor = "sensor=false"
-        val params = "$origin&$dest&$sensor"
-        return "https://maps.googleapis.com/maps/api/directions/json?$params"
     }
 
 
