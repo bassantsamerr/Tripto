@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.R
-import com.example.tripto.adapter.FavoriteAdapter
 import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.SampleData
