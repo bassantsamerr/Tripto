@@ -25,8 +25,8 @@ interface ApiInterface {
         fun login_for_access_token(@Field("username") username: String, @Field("password") password: String): Call<TokenModel>
         @GET("/users/me")
         fun get_current_user(@Header("Authorization") token:String ):Call<CurrentUserModel>
-        @GET("/logout")
-        fun logout(@Header("Authorization") token:String ):Call<CurrentUserModel>
+        @POST("/logout")
+        fun logout(@Header("Authorization") token:String ):Call<DeleteResponse>
         @PUT("/editUser/{userid}") fun editUser(@Path("userid") userId: Int, @Body user: UserModel): Call<ResponseBody>
         @POST("/addFavplace")
         fun addFavPlace(@Body placetouser: PlaceToUserModel): Call<ResponseBody>
