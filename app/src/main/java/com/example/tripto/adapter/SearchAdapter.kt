@@ -5,19 +5,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.bumptech.glide.Glide
 import com.example.tripto.R
 import com.example.tripto.databinding.PlaceItemBinding
 import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.model.PlaceModel
 
 class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+    var onItemClick: ((NearbyPlaceModel) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_item, parent, false)
         return ViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = placeModel[position]
         holder.itemView.apply {
@@ -28,7 +27,6 @@ class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : Recyc
             val description = findViewById<TextView>(R.id.description)
 
             placePoster.load(currentItem.image)
-
             placeName.text = currentItem.placeName
             placeLocation.text = currentItem.address
             placeRating.text = currentItem.rating.toString()
@@ -52,6 +50,21 @@ class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : Recyc
         notifyDataSetChanged()
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = PlaceItemBinding.bind(itemView)
+        private val placePoster: ImageView = itemView.findViewById(R.id.placePoster)
+        private val placeName: TextView = itemView.findViewById(R.id.placeName)
+        private val placeLocation: TextView = itemView.findViewById(R.id.placeLocation)
+        private val placeRating: TextView = itemView.findViewById(R.id.placeRating)
+        private val description: TextView = itemView.findViewById(R.id.description)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val clickedItem = placeModel[position]
+                    onItemClick?.invoke(clickedItem)
+                }
+            }
+        }
     }
+
 }

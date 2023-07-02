@@ -1,6 +1,7 @@
 package com.example.tripto.fragments
 
 import SearchAdapter
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,13 +11,16 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripto.activities.DetailedActivity
 import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.utils.RetrievingData
+
 
 class SearchActivity : Fragment() {
     private lateinit var searchEditText: EditText
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchAdapter: SearchAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +38,11 @@ class SearchActivity : Fragment() {
         // Set the RecyclerView adapter
         searchAdapter = SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
         recyclerView.adapter = searchAdapter
-
+        searchAdapter.onItemClick = { nearbyPlaceModel ->
+            val intent = Intent(requireContext(), DetailedActivity::class.java)
+            intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
+            startActivity(intent)
+        }
         // Set a touch listener for the drawable in the search EditText
         searchEditText.setOnTouchListener { _, event ->
             val drawableRight = 2

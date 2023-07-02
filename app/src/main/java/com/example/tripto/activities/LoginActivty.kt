@@ -57,6 +57,7 @@ class LoginActivty : AppCompatActivity() {
                                 if(response.isSuccessful){
                                     currentUser= response.body()!!
                                     val editor = sharedPreference.edit()
+                                    editor.putString("TOKEN","Bearer "+token?.accessToken.toString())
                                     editor.putString("PASSWORD",etPassword!!.text.toString())
                                     editor.putString("EMAIL",currentUser.email)
                                     editor.putInt("AGE",currentUser.age)
@@ -101,7 +102,6 @@ class LoginActivty : AppCompatActivity() {
         tv_signup_click.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
-
         }
         Log.d("tokentoken",token.accessToken.toString())
 

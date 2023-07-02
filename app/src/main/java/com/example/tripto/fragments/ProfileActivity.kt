@@ -11,7 +11,11 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.tripto.activities.EditProfileActivity
 import com.example.tripto.R
+import com.example.tripto.activities.LoginActivty
 import com.example.tripto.activities.ShowFavoritesActivity
+import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.utils.RetrievingData
+import retrofit2.Call
 
 class ProfileActivity : Fragment() {
 
@@ -33,7 +37,14 @@ class ProfileActivity : Fragment() {
         val username=sharedPreference.getString("USERNAME","").toString()
         val password=sharedPreference.getString("PASSWORD","").toString()
         tv_username.text=username
-
+        val bt_logout=view.findViewById<Button>(R.id.logout)
+//        bt_logout.setOnClickListener {
+//            val intent = Intent(requireContext(), LoginActivty::class.java)
+//            startActivity(intent)
+//            val sharedPreference = context?.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+//            val token= sharedPreference?.getInt("Token",0)
+//            val callGetFavPlacesId: Call<List<NearbyPlaceModel>> = RetrievingData.service.getFavPlaces(userid)
+//        }
         return view
     }
 
