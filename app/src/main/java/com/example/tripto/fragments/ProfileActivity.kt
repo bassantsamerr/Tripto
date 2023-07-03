@@ -16,9 +16,7 @@ import com.example.tripto.R
 import com.example.tripto.activities.LoginActivty
 import com.example.tripto.activities.ShowFavoritesActivity
 import com.example.tripto.model.DeleteResponse
-import com.example.tripto.model.NearbyPlaceModel
 import com.example.tripto.retrofit.ApiInterface
-import com.example.tripto.utils.RetrievingData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

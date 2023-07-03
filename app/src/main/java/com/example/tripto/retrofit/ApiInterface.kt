@@ -32,7 +32,7 @@ interface ApiInterface {
         @POST("/addFavplace")
         fun addFavPlace(@Body placetouser: PlaceToUserModel): Call<ResponseBody>
         @POST("/addSearchHistory")
-        fun addSearchHistory(@Body placetouser: PlaceToUserModel): Call<ResponseBody>
+        fun addSearchHistory(@Body placetouser: PlaceToUserSearchModel): Call<ResponseBody>
         @DELETE("/deleteFavPlace/{FavPlace_id}")
         fun deleteFavPlace(@Path("FavPlace_id") favPlaceId: Int,@Query ("placeid") placeid:Int,@Query ("userid") userid:Int): Call<DeleteResponse>
         @GET("/getFavplacesIDs")
