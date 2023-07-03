@@ -45,6 +45,8 @@ interface ApiInterface {
         fun getRecommendedPlaces(@Query("user_id") user_id: Int):Call<List<NearbyPlaceModel>>
         @GET("/place")
         fun getPlace(@Query("id") id: Int):Call<NearbyPlaceModel>
+        @GET("/search")
+        fun search(@Query("query") query: String):Call<List<NearbyPlaceModel>>
 
     companion object {
         fun create(): ApiInterface {

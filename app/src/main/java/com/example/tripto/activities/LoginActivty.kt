@@ -50,8 +50,7 @@ class LoginActivty : AppCompatActivity() {
                         Log.d("tokentokentokentoken",token.accessToken.toString())
                         val call: Call<CurrentUserModel> = service.get_current_user("Bearer "+token?.accessToken.toString())
                         call.enqueue(object : Callback<CurrentUserModel>{
-                            override fun onResponse(call: Call<CurrentUserModel>, response: Response<CurrentUserModel>
-                            ) {
+                            override fun onResponse(call: Call<CurrentUserModel>, response: Response<CurrentUserModel>) {
                                 if(response.isSuccessful){
                                     currentUser= response.body()!!
                                     val editor = sharedPreference.edit()
@@ -104,5 +103,6 @@ class LoginActivty : AppCompatActivity() {
         Log.d("tokentoken",token.accessToken.toString())
 
     }
+
 
 }

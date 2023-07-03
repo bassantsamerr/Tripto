@@ -31,12 +31,13 @@ class DetailedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val service: ApiInterface = ApiInterface.create()
-
-
         setContentView(R.layout.activity_detailed)
         val place = intent.getParcelableExtra<NearbyPlaceModel>("nearbyplacemodel")
         val sharedPreference =getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val userid=sharedPreference.getInt("ID",0)
+        val editor = sharedPreference.edit()
+        editor.putInt("PLACEID", place?.id!!)
+        editor.apply()
         val placeid=place?.id
         val addFav = findViewById<ImageView>(R.id.cdHeart)
         var isFav=false
@@ -95,7 +96,6 @@ class DetailedActivity : AppCompatActivity() {
 
         addFav.setOnClickListener{
             val placetouser=PlaceToUserModel(placeid!!,userid)
-
             val callAdd: Call<ResponseBody> = service.addFavPlace(placetouser)
             val callDelete: Call<DeleteResponse> = service.deleteFavPlace(placeid,placeid,userid)
             Log.d("call add",callAdd.toString())
@@ -109,6 +109,24 @@ class DetailedActivity : AppCompatActivity() {
                             Log.d("add fav api response", response.body().toString())
                             addFav.setImageResource(R.drawable.heart_filled)
                             isFav==true
+                            val call: Call<List<Int>> = service.getFavPlacesIDs(userid)
+                            call.enqueue(object : Callback<List<Int>>{
+                                override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
+                                    val favPlaces=response.body()
+                                    if (favPlaces != null) {
+                                        if(favPlaces.contains(placeid!!)){
+                                            addFav.setImageResource(R.drawable.heart_filled)
+                                            isFav=true
+                                        }
+                                    }
+                                    Log.d("fav places",favPlaces.toString())
+                                }
+
+                                override fun onFailure(call: Call<List<Int>>, t: Throwable) {
+                                    Log.d("on fail get fav places ", t.toString())
+                                }
+
+                            })
                         }
                         else if (!response.isSuccessful) {
                             Toast.makeText(this@DetailedActivity, "add to favorites failed", Toast.LENGTH_SHORT).show()
@@ -125,13 +143,30 @@ class DetailedActivity : AppCompatActivity() {
             }
             else{
                 callDelete.enqueue(object : Callback<DeleteResponse>{
-                    override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>
-                    ) {
+                    override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>) {
                         if (response.isSuccessful) {
                             Toast.makeText(this@DetailedActivity, "place deleted from your favorites", Toast.LENGTH_SHORT).show()
                             Log.d("delete fav api response", response.body().toString())
                             addFav.setImageResource(R.drawable.heart_outlined)
                             isFav==false
+                            val call: Call<List<Int>> = service.getFavPlacesIDs(userid)
+                            call.enqueue(object : Callback<List<Int>>{
+                                override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
+                                    val favPlaces=response.body()
+                                    if (favPlaces != null) {
+                                        if(favPlaces.contains(placeid!!)){
+                                            addFav.setImageResource(R.drawable.heart_filled)
+                                            isFav=true
+                                        }
+                                    }
+                                    Log.d("fav places",favPlaces.toString())
+                                }
+
+                                override fun onFailure(call: Call<List<Int>>, t: Throwable) {
+                                    Log.d("on fail get fav places ", t.toString())
+                                }
+
+                            })
                         }
                         else if (!response.isSuccessful) {
                             Toast.makeText(this@DetailedActivity, "add to favorites failed", Toast.LENGTH_SHORT).show()

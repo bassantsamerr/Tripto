@@ -3,6 +3,7 @@ package com.example.tripto.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import com.example.tripto.activities.LoginActivty
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
@@ -162,7 +163,7 @@ object RetrievingData {
 
 
     val collections = listOf(
-        MainModel("Recommended Places", getRecommendedPlaces(33)),
+        MainModel("Recommended Places", getRecommendedPlaces(34)),
         MainModel("Top 10", getTop10laces()),
         MainModel("Tour Packages", getAllPlaces()),
         MainModel("All Places", getAllPlaces())

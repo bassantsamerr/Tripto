@@ -15,10 +15,7 @@ import android.widget.Toast
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.activities.DetailedActivity
-import com.example.tripto.model.DeleteResponse
-import com.example.tripto.model.NearbyPlaceModel
-import com.example.tripto.model.PlaceToUserModel
-import com.example.tripto.model.PlaceToUserSearchModel
+import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.RetrievingData
 import okhttp3.ResponseBody
@@ -58,8 +55,8 @@ class SearchActivity : Fragment() {
             val placetouser = PlaceToUserSearchModel(nearbyPlaceModel.id, userid)
             Log.d("nearbyPlaceModel.id", nearbyPlaceModel.id.toString())
             Log.d("userid search", userid.toString())
-            val call: Call<ResponseBody> = service.addSearchHistory(placetouser)
-            call.enqueue(object : Callback<ResponseBody> {
+            val callClick: Call<ResponseBody> = service.addSearchHistory(placetouser)
+            callClick.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
@@ -85,7 +82,34 @@ class SearchActivity : Fragment() {
         searchEditText.setOnTouchListener { _, event ->
             val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP && event.rawX >= searchEditText.right - searchEditText.compoundDrawables[drawableRight].bounds.width()) {
-                performSearch()
+                val call: Call<List<NearbyPlaceModel>> =
+                    service.search(searchEditText.text.toString())
+                call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+                    override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                        if(response.isSuccessful) {
+                            searchAdapter.updateData(response.body() as ArrayList<NearbyPlaceModel>)
+                            searchAdapter.onItemClick = { nearbyPlaceModel ->
+                                val intent = Intent(requireContext(), DetailedActivity::class.java)
+                                intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
+                                val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+                                val placed=sharedPreference.getInt("PLACEID",0)
+                                Log.d("nearbyplacemodelnearbyplacemodel",nearbyPlaceModel.id.toString())
+                                startActivity(intent)
+                            }
+                        }
+                        else
+                        {
+                                Log.d("fail search", response.toString())
+                                Log.d("fail search", response?.errorBody()?.string().toString())
+                        }
+
+
+                    }
+
+                    override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                        Log.d("fail search", t.toString())
+                    }
+                })
                 return@setOnTouchListener true
             }
             false
