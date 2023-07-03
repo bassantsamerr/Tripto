@@ -94,6 +94,27 @@ class SearchActivity : Fragment() {
                                 val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
                                 val placed=sharedPreference.getInt("PLACEID",0)
                                 Log.d("nearbyplacemodelnearbyplacemodel",nearbyPlaceModel.id.toString())
+                                val userid = sharedPreference.getInt("ID", 0)
+                                val placetouser = PlaceToUserSearchModel(placed, userid)
+                                val callClick: Call<ResponseBody> = service.addSearchHistory(placetouser)
+                                callClick.enqueue(object : Callback<ResponseBody> {
+                                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>
+                                    ) {
+                                        searchAdapter =
+                                            SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
+                                        recyclerView.adapter = searchAdapter
+                                        if (response.isSuccessful) {
+                                            Log.d("add search history response", response.body().toString())
+                                        } else if (!response.isSuccessful) {
+                                            Log.d("add search history api", response.toString())
+                                            Log.d("add search history api", response?.errorBody()?.string().toString())
+                                        }
+                                    }
+
+                                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                                        TODO("Not yet implemented")
+                                    }
+                                })
                                 startActivity(intent)
                             }
                         }
