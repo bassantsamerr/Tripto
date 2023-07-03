@@ -49,29 +49,32 @@ class SearchActivity : Fragment() {
         // Set the RecyclerView adapter
         searchAdapter = SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
         recyclerView.adapter = searchAdapter
-        searchAdapter.onItemClick = {
-
-                nearbyPlaceModel ->
+        searchAdapter.onItemClick = { nearbyPlaceModel ->
             val intent = Intent(requireContext(), DetailedActivity::class.java)
             intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
-            val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+            val sharedPreference =
+                requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
             val userid = sharedPreference.getInt("ID", 0)
-            val placetouser= PlaceToUserSearchModel(nearbyPlaceModel.id,userid)
-            Log.d("nearbyPlaceModel.id",nearbyPlaceModel.id.toString())
-            Log.d("userid search",userid.toString())
+            val placetouser = PlaceToUserSearchModel(nearbyPlaceModel.id, userid)
+            Log.d("nearbyPlaceModel.id", nearbyPlaceModel.id.toString())
+            Log.d("userid search", userid.toString())
             val call: Call<ResponseBody> = service.addSearchHistory(placetouser)
-            call.enqueue(object :Callback<ResponseBody>{
-                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                    searchAdapter = SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
+            call.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    searchAdapter =
+                        SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
                     recyclerView.adapter = searchAdapter
                     if (response.isSuccessful) {
                         Log.d("add search history response", response.body().toString())
-                    }
-                    else if (!response.isSuccessful) {
+                    } else if (!response.isSuccessful) {
                         Log.d("add search history api", response.toString())
-                        Log.d("add earch history api", response?.errorBody()?.string().toString())
+                        Log.d("add search history api", response?.errorBody()?.string().toString())
                     }
                 }
+
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     TODO("Not yet implemented")
                 }
@@ -97,9 +100,14 @@ class SearchActivity : Fragment() {
                     placeModel.location?.contains(query, ignoreCase = true) == true
         }
 
-
         // Update the adapter with the filtered data
         searchAdapter.updateData(filteredData as ArrayList<NearbyPlaceModel>)
+        searchAdapter.onItemClick = { nearbyPlaceModel ->
+            val intent = Intent(requireContext(), DetailedActivity::class.java)
+            intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
+            startActivity(intent)
+        }
+
     }
 
 }
