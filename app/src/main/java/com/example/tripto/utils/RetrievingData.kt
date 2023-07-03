@@ -11,21 +11,6 @@ import retrofit2.Response
 
 
 object RetrievingData {
-
-    private val placeModels = listOf(
-        NearbyPlaceModel(
-            "ahmed",
-            "The Egyptian Museum In Cairo",
-            "The Egyptian Museum is the oldest archaeological museum in the Middle East, and houses the largest collection of Pharaonic antiquities in the world. The museum displays an extensive collection spanning from the Predynastic Period to the Greco-Roman Era.",
-            "Cairo",
-            2514.2,
-            "cairo",
-            5,
-            30.04846529,
-            31.23365667
-
-        )
-    )
     private val service: ApiInterface = ApiInterface.create()
     var allPlaceslist: ArrayList<NearbyPlaceModel>
     init {
@@ -46,6 +31,10 @@ object RetrievingData {
     var searchHistoryPlaces: ArrayList<NearbyPlaceModel>
     init {
         searchHistoryPlaces = ArrayList()
+    }
+    var recommendedPlaces: ArrayList<NearbyPlaceModel>
+    init {
+        recommendedPlaces = ArrayList()
     }
      fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
@@ -145,10 +134,35 @@ object RetrievingData {
         })
         return searchHistoryPlaces
     }
+    fun getRecommendedPlaces(userid:Int): ArrayList<NearbyPlaceModel> {
+//        val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+//        val userid=sharedPreference.getInt("ID",0)
+        val call: Call<List<NearbyPlaceModel>> = service.getRecommendedPlaces(userid)
+        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                if(response.isSuccessful){
+                    recommendedPlaces.clear()
+                    for(myData in response.body()!!){
+                        recommendedPlaces.add(myData)
+                    }
+                    for (placeModel in recommendedPlaces) {
+                        Log.d("RecoData", placeModel.toString())
+                    }
+                    recommendedPlaces.toList()
+                }
+            }
+
+            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                Log.d("on fail get fav places ids ", t.toString())
+            }
+
+        })
+        return recommendedPlaces
+    }
 
 
     val collections = listOf(
-        MainModel("Recommended Places", getAllPlaces()),
+        MainModel("Recommended Places", getRecommendedPlaces(33)),
         MainModel("Top 10", getTop10laces()),
         MainModel("Tour Packages", getAllPlaces()),
         MainModel("All Places", getAllPlaces())
