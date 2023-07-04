@@ -92,10 +92,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
                     // Get the current location
                     val currentLocation = LatLng(it.latitude, it.longitude)
                     googleMap.addMarker(
-                        MarkerOptions()
-                            .position(currentLocation)
-                            .title("Current Location")
-                            .icon(BitmapFromVector(requireContext(), R.drawable.marker_map_speaker))
+                        MarkerOptions().position(currentLocation).title("Current Location").icon(BitmapFromVector(requireContext(), R.drawable.marker_map_speaker))
                     )
 
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))

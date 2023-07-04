@@ -19,8 +19,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".FavoriteAdapter"
-            android:exported="false" />
+            android:name=".activities.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activities.ShowFavoritesActivity"
             android:exported="false" />
@@ -39,13 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivty"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".activities.SignupActivity"
             android:exported="false" />
