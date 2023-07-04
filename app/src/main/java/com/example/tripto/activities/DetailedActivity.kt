@@ -45,9 +45,11 @@ class DetailedActivity : AppCompatActivity() {
             val text1 : TextView = findViewById(R.id.title)
             val text2 : TextView = findViewById(R.id.description)
             val text3 : TextView = findViewById(R.id.placeLocation)
+            val text4 : TextView = findViewById(R.id.price)
             text1.setText(place.placeName)
             text2.setText(place.description)
             text3.setText(place.address)
+            text4.text=place.ticketPrice.toString()+"L.E"
             val call: Call<List<Int>> = service.getFavPlacesIDs(userid)
             call.enqueue(object : Callback<List<Int>>{
                 override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {

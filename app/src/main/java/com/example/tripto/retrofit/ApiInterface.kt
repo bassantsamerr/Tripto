@@ -42,7 +42,7 @@ interface ApiInterface {
         @GET("/getSearchHistoryForUser")
         fun getSearchHistoryForUser(@Query("userid") userid: Int):Call<List<NearbyPlaceModel>>
         @GET("/recommendedP")
-        fun getRecommendedPlaces(@Query("user_id") user_id: Int):Call<List<NearbyPlaceModel>>
+        fun getRecommendedPlaces(@Query("user_id") user_id: Int,@Query("nationality") nationality: String):Call<List<NearbyPlaceModel>>
         @GET("/place")
         fun getPlace(@Query("id") id: Int):Call<NearbyPlaceModel>
         @GET("/search")

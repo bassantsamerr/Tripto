@@ -88,6 +88,7 @@ class EditProfileActivity : AppCompatActivity() {
                 email,
                 age,
                 nationality,
+                nationality,
                 username,
                 roleid,
                 password.toString()

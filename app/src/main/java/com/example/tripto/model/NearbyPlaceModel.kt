@@ -14,7 +14,9 @@ data class NearbyPlaceModel(
     @SerializedName("address") var address: String? = null,
     @SerializedName("id") var id: Int,
     @SerializedName("rating") var rating: Double,
-    @SerializedName("longitude") var longitude: Double
+    @SerializedName("longitude") var longitude: Double,
+    @SerializedName("ticketPrice") var ticketPrice: Double,
+    @SerializedName("estimatedDuration") var estimatedDuration: Double
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -27,6 +29,8 @@ data class NearbyPlaceModel(
         parcel.readInt(),
         parcel.readDouble(),
         parcel.readDouble(),
+        parcel.readDouble(),
+        parcel.readDouble()
     ) {
     }
 
@@ -40,6 +44,8 @@ data class NearbyPlaceModel(
         parcel.writeInt(id)
         parcel.writeDouble(rating)
         parcel.writeDouble(longitude)
+        parcel.writeDouble(ticketPrice)
+        parcel.writeDouble(estimatedDuration)
     }
 
     override fun describeContents(): Int {

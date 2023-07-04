@@ -52,6 +52,7 @@ class SignupActivity : AppCompatActivity(){
                 etEmail!!.text.toString(),
                 20,
                 nationality.text.toString(),
+                nationality.text.toString(),
                 etUsername!!.text.toString(),
                 1,
                 etPassword!!.text.toString()
@@ -77,10 +78,8 @@ class SignupActivity : AppCompatActivity(){
                         startActivity(intent)
                     } else if (!response.isSuccessful) {
                         Toast.makeText(this@SignupActivity, "Already Have Account", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SignupActivity, InterestsActivty::class.java)
-
-                        startActivity(intent)
-
+                        Log.d("add search history api", response.toString())
+                        Log.d("add search history api", response?.errorBody()?.string().toString())
                     }
                 }
                 override fun onFailure(call: Call<SignUpResponseModel>, t: Throwable) {

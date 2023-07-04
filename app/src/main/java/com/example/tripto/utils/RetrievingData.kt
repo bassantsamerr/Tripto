@@ -135,10 +135,10 @@ object RetrievingData {
         })
         return searchHistoryPlaces
     }
-    fun getRecommendedPlaces(userid:Int): ArrayList<NearbyPlaceModel> {
+    fun getRecommendedPlaces(userid:Int,Nationality:String): ArrayList<NearbyPlaceModel> {
 //        val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
 //        val userid=sharedPreference.getInt("ID",0)
-        val call: Call<List<NearbyPlaceModel>> = service.getRecommendedPlaces(userid)
+        val call: Call<List<NearbyPlaceModel>> = service.getRecommendedPlaces(userid,Nationality)
         call.enqueue(object : Callback<List<NearbyPlaceModel>> {
             override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
                 if(response.isSuccessful){
@@ -150,6 +150,10 @@ object RetrievingData {
                         Log.d("RecoData", placeModel.toString())
                     }
                     recommendedPlaces.toList()
+                }
+                else{
+                    Log.d("reco api", response.toString())
+                    Log.d("reco api", response?.errorBody()?.string().toString())
                 }
             }
 
@@ -163,7 +167,7 @@ object RetrievingData {
 
 
     val collections = listOf(
-        MainModel("Recommended Places", getRecommendedPlaces(34)),
+        MainModel("Recommended Places", getRecommendedPlaces(37,"Russia")),
         MainModel("Top 10", getTop10laces()),
         MainModel("Tour Packages", getAllPlaces()),
         MainModel("All Places", getAllPlaces())

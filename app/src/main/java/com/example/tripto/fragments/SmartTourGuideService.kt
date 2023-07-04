@@ -103,7 +103,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
                     lat= it.latitude
                     log=it.longitude
                     Log.d("before", "before")
-                    val call =service.get_nearby_places(lat,log,3)
+                    val call =service.get_nearby_places(lat,log,5)
                     Log.d("after", call.toString())
                     call.enqueue(object : Callback<List<NearbyPlaceModel>> {
 
