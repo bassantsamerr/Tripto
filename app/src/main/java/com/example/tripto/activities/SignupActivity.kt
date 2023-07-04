@@ -4,19 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.PopupMenu
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.example.SignUpResponseModel
-import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.R
 import com.example.tripto.model.UserModel
+import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity(){
 
@@ -48,8 +45,21 @@ class SignupActivity : AppCompatActivity(){
         imageView.setOnClickListener { popupMenu.show() }
         val bt_createAccount_click = findViewById<TextView>(R.id.bt_createAccount)
         bt_createAccount_click.setOnClickListener {
+            // Perform authentication checks
+            if (etEmail!!.text.toString().isEmpty() || etUsername!!.text.toString().isEmpty() || etPassword!!.text.toString().isEmpty() || conPassword!!.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
+            } else if (!etPassword!!.text.toString().equals(conPassword!!.text.toString())) {
+                Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+            }
+            else if (!isEmailValid(etEmail!!.text.toString())) {
+                Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
+            }
+            else if (!isPasswordValid(etPassword!!.text.toString())) {
+                Toast.makeText(this, "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.", Toast.LENGTH_SHORT).show();
+            }
+            else{
             var user = UserModel(
-                etEmail!!.text.toString(),
+                etUsername!!.text.toString(),
                 20,
                 nationality.text.toString(),
                 nationality.text.toString(),
@@ -68,6 +78,7 @@ class SignupActivity : AppCompatActivity(){
                         editor.putString("EMAIL",currentUser.email)
                         editor.putInt("AGE", currentUser.age!!)
                         editor.putString("COUNTRY",currentUser.country)
+                        editor.putString("NATIONALITY",currentUser.nationality)
                         editor.putString("USERNAME",currentUser.username)
                         editor.putInt("ROLEID",currentUser.roleId!!)
                         editor.putInt("ID",currentUser.id!!)
@@ -89,8 +100,19 @@ class SignupActivity : AppCompatActivity(){
                 }
             })
         }
-    }
+    }}}
 
-
-
+private fun isPasswordValid(password: String): Boolean {
+    // Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character
+    val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"
+    val pattern: Pattern = Pattern.compile(passwordPattern)
+    return pattern.matcher(password).matches()
 }
+private fun isEmailValid(email: String): Boolean {
+    val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    val pattern = Pattern.compile(emailPattern)
+    return pattern.matcher(email).matches()
+}
+
+
+

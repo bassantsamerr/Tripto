@@ -12,6 +12,6 @@ data class SignUpResponseModel (
   @SerializedName("role_id"         ) var roleId         : Int?     = null,
   @SerializedName("age"             ) var age            : Int?     = null,
   @SerializedName("hashed_password" ) var hashedPassword : String?  = null,
-  @SerializedName("username"        ) var username       : String?  = null
-
+  @SerializedName("username"        ) var username       : String?  = null,
+  @SerializedName("nationality"        ) var nationality       : String?  = null
 )
