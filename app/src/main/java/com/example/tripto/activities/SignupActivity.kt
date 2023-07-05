@@ -48,15 +48,17 @@ class SignupActivity : AppCompatActivity(){
             // Perform authentication checks
             if (etEmail!!.text.toString().isEmpty() || etUsername!!.text.toString().isEmpty() || etPassword!!.text.toString().isEmpty() || conPassword!!.text.toString().isEmpty()) {
                 Toast.makeText(this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
-            } else if (!etPassword!!.text.toString().equals(conPassword!!.text.toString())) {
-                Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
             }
             else if (!isEmailValid(etEmail!!.text.toString())) {
                 Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
             }
             else if (!isPasswordValid(etPassword!!.text.toString())) {
-                Toast.makeText(this, "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and from 8 to 20 chars", Toast.LENGTH_SHORT).show();
             }
+            else if (etPassword!!.text.toString() != conPassword!!.text.toString()) {
+                Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+            }
+
             else{
             var user = UserModel(
                 etUsername!!.text.toString(),
@@ -104,7 +106,7 @@ class SignupActivity : AppCompatActivity(){
 
 private fun isPasswordValid(password: String): Boolean {
     // Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character
-    val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"
+    val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=()])(?=\\S+\$).{8,20}\$"
     val pattern: Pattern = Pattern.compile(passwordPattern)
     return pattern.matcher(password).matches()
 }
