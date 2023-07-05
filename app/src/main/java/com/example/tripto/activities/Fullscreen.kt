@@ -1,6 +1,6 @@
 package com.example.tripto.activities
 
-import com.example.tripto.model.ActivityModel
+import com.example.tripto.model.Activity
 import android.os.Bundle
 import com.example.tripto.R
 import android.view.LayoutInflater
@@ -74,14 +74,14 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
             R.id.fullscreen_dialog_action -> {
                 val name = activityNameEditText.text.toString()
                 val description = activityDescriptionEditText.text.toString()
-                val price = priceEditText.text.toString().toDouble()
-                val time = timeEditText.text.toString().toInt()
+                val price = priceEditText.text.toString()
+                val time = timeEditText.text.toString()
                 val location = locationEditText.text.toString()
                 val longitude = longitudeEditText.text.toString()
                 val latitude = latitudeEditText.text.toString()
                 val socialMedia = socialMediaEditText.text.toString()
 
-                val activityModel = ActivityModel(
+                val activity = Activity(
                     name = activityNameEditText.text.toString(),
                     description = activityDescriptionEditText.text.toString(),
                     placeId = 0, // Set the appropriate value for placeId
@@ -92,15 +92,15 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
                     time = timeEditText.text.toString().toIntOrNull() ?: 0,
                     socialMedia = socialMediaEditText.text.toString()
                 )
-                println(activityModel)
+                println(activity)
 
-                callback?.onActionClick(activityModel)
+                callback?.onActionClick(activity)
                 dismiss()
             }
         }
     }
 
     interface Callback {
-        fun onActionClick(activityModel: ActivityModel)
+        fun onActionClick(activity: Activity)
     }
 }

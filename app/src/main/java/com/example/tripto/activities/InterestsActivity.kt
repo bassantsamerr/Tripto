@@ -36,13 +36,14 @@ class InterestsActivity : AppCompatActivity() {
         }
 
         buttonClick.setOnClickListener {
-            selectedChips = listOf("pharaonic", "modern")
                 val call: Call<String> = service.newUserInterests(userid, selectedChips!!)
                 call.enqueue(object : Callback<String> {
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         if(response.isSuccessful){
 
                             Toast.makeText(this@InterestsActivity, "interests successed", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@InterestsActivity, HomeActivity::class.java)
+                            startActivity(intent)
                         }
                         if(!response.isSuccessful){
 
@@ -52,7 +53,7 @@ class InterestsActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<String>, t: Throwable) {
-                        Log.d("failure error", "add interests")
+                        Log.d("failure error", t.message.toString())
                     }
                 })
 
@@ -60,8 +61,7 @@ class InterestsActivity : AppCompatActivity() {
                 for (chipText in selectedChips!!) {
                     Log.d("Selected Interest", chipText)
                 }
-                val intent = Intent(this@InterestsActivity, HomeActivity::class.java)
-                startActivity(intent)
+
         }
     }
 }

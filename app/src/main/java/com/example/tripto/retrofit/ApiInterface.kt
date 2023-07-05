@@ -1,6 +1,8 @@
 package com.example.tripto.retrofit
 
+import com.example.example.ActivityModel
 import com.example.example.SignUpResponseModel
+import com.example.example.addActivityResponse
 import com.example.tripto.model.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -49,7 +51,11 @@ interface ApiInterface {
         fun search(@Query("query") query: String):Call<List<NearbyPlaceModel>>
         @POST("/interestsOfNewUser")
         fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<String>
-    companion object {
+        @POST("/addActivity/{id}")
+        fun addActivity(@Path("id") id: Int, @Body activity: ActivityModel): Call<addActivityResponse>
+
+
+        companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8000")

@@ -3,8 +3,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.databinding.SearchItemBinding
-import com.example.tripto.model.ActivityModel
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.Activity
 import com.example.tripto.model.PlaceModel
 
 class ActivityAdapter(private var placeModel: PlaceModel) :
@@ -28,7 +27,7 @@ class ActivityAdapter(private var placeModel: PlaceModel) :
 
     inner class ViewHolder(private val binding: SearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(activity: ActivityModel) {
+        fun bind(activity: Activity) {
             binding.apply {
                 placePoster.load(activity.image)
                 placeName.text = activity.name

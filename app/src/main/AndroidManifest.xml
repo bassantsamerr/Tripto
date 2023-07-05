@@ -32,9 +32,6 @@
             android:name=".activities.ShowFavoritesActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Fullscreen"
-            android:exported="false" />
-        <activity
             android:name=".activities.EditProfileActivity"
             android:exported="false"
             android:label="Edit Profile" />

@@ -61,7 +61,7 @@ class SignupActivity : AppCompatActivity(){
 
             else{
             var user = UserModel(
-                etUsername!!.text.toString(),
+                etEmail!!.text.toString(),
                 20,
                 nationality.text.toString(),
                 nationality.text.toString(),
@@ -90,9 +90,9 @@ class SignupActivity : AppCompatActivity(){
                         val intent = Intent(this@SignupActivity, InterestsActivity::class.java)
                         startActivity(intent)
                     } else if (!response.isSuccessful) {
-                        Toast.makeText(this@SignupActivity, "Already Have Account", Toast.LENGTH_SHORT).show()
-                        Log.d("add search history api", response.toString())
-                        Log.d("add search history api", response?.errorBody()?.string().toString())
+                        Toast.makeText(this@SignupActivity, response?.errorBody()?.string().toString(), Toast.LENGTH_SHORT).show()
+                        Log.d("signup api", response.toString())
+                        Log.d("signup api", response?.errorBody()?.string().toString())
                     }
                 }
                 override fun onFailure(call: Call<SignUpResponseModel>, t: Throwable) {

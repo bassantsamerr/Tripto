@@ -13,7 +13,7 @@ data class PlaceModel(
     val location: String,
     val longitude: Double,
     val latitude: Double,
-    val activities: Array<ActivityModel>
+    val activities: Array<Activity>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -25,7 +25,7 @@ data class PlaceModel(
         parcel.readString()!!,
         parcel.readDouble(),
         parcel.readDouble(),
-        parcel.createTypedArray(ActivityModel.CREATOR)!!
+        parcel.createTypedArray(Activity.CREATOR)!!
     ) {
     }
     override fun writeToParcel(parcel: Parcel, flags: Int) {

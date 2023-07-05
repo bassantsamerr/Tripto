@@ -1,15 +1,12 @@
 package com.example.tripto.activities
 
-import ActivityAdapter
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.R
-import com.example.tripto.model.ActivityModel
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.Activity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PlaceActivity : AppCompatActivity() {
@@ -29,7 +26,7 @@ class PlaceActivity : AppCompatActivity() {
         fabButton.setOnClickListener {
             val dialog: DialogFragment = FullscreenDialog.newInstance()
             (dialog as FullscreenDialog).setCallback(object : FullscreenDialog.Callback {
-                override fun onActionClick(activitymodel: ActivityModel) {
+                override fun onActionClick(activitymodel: Activity) {
                     Toast.makeText(this@PlaceActivity, activitymodel.name, Toast.LENGTH_SHORT).show()
                 }
             })
