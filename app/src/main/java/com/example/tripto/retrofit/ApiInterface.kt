@@ -47,7 +47,8 @@ interface ApiInterface {
         fun getPlace(@Query("id") id: Int):Call<NearbyPlaceModel>
         @GET("/search")
         fun search(@Query("query") query: String):Call<List<NearbyPlaceModel>>
-
+        @POST("/interestsOfNewUser")
+        fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<String>
     companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()

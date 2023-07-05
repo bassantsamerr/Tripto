@@ -55,7 +55,7 @@
             android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.InterestsActivty"
+            android:name=".activities.InterestsActivity"
             android:exported="false" />
 
         <meta-data

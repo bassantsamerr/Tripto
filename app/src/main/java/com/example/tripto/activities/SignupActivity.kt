@@ -53,7 +53,7 @@ class SignupActivity : AppCompatActivity(){
                 Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
             }
             else if (!isPasswordValid(etPassword!!.text.toString())) {
-                Toast.makeText(this, "Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and from 8 to 20 chars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and at least 8 characters at most 20 characters", Toast.LENGTH_SHORT).show();
             }
             else if (etPassword!!.text.toString() != conPassword!!.text.toString()) {
                 Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ class SignupActivity : AppCompatActivity(){
                         editor.putBoolean("ISACTIVE",currentUser.isActive!!)
                         editor.apply()
                         Toast.makeText(this@SignupActivity, "Register Successfully", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SignupActivity, InterestsActivty::class.java)
+                        val intent = Intent(this@SignupActivity, InterestsActivity::class.java)
                         startActivity(intent)
                     } else if (!response.isSuccessful) {
                         Toast.makeText(this@SignupActivity, "Already Have Account", Toast.LENGTH_SHORT).show()
@@ -106,7 +106,7 @@ class SignupActivity : AppCompatActivity(){
 
 private fun isPasswordValid(password: String): Boolean {
     // Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character
-    val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=()])(?=\\S+\$).{8,20}\$"
+    val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=()])(?=\\S+\$).{8,20}\$"
     val pattern: Pattern = Pattern.compile(passwordPattern)
     return pattern.matcher(password).matches()
 }

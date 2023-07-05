@@ -137,22 +137,6 @@ class SearchActivity : Fragment() {
         }
     }
 
-    private fun performSearch() {
-        val query = searchEditText.text.toString().trim()
-        // Filter the data based on the search query
-        val filteredData = RetrievingData.collections[3].AllPlacesModel.filter { placeModel ->
-            placeModel.placeName?.contains(query, ignoreCase = true) == true ||
-                    placeModel.location?.contains(query, ignoreCase = true) == true
-        }
 
-        // Update the adapter with the filtered data
-        searchAdapter.updateData(filteredData as ArrayList<NearbyPlaceModel>)
-        searchAdapter.onItemClick = { nearbyPlaceModel ->
-            val intent = Intent(requireContext(), DetailedActivity::class.java)
-            intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
-            startActivity(intent)
-        }
-
-    }
 
 }

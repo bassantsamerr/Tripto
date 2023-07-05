@@ -166,11 +166,11 @@ object RetrievingData {
     }
 
 
-    val collections = listOf(
-        MainModel("Recommended Places", getRecommendedPlaces(37,"Russia")),
-        MainModel("Top 10", getTop10laces()),
-        MainModel("Tour Packages", getAllPlaces()),
-        MainModel("All Places", getAllPlaces())
-    )
+//    val collections = listOf(
+//        MainModel("Recommended Places", getRecommendedPlaces(37,"Russia")),
+//        MainModel("Top 10", getTop10laces()),
+//        MainModel("Tour Packages", getAllPlaces()),
+//        MainModel("All Places", getAllPlaces())
+//    )
 
 }
