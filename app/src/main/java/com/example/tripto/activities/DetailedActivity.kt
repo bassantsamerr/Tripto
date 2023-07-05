@@ -49,7 +49,10 @@ class DetailedActivity : AppCompatActivity() {
             text1.setText(place.placeName)
             text2.setText(place.description)
             text3.setText(place.address)
-            text4.text=place.ticketPrice.toString()+"L.E"
+            if(place.ticketPrice.toString()=="0.0"){text4.text="Free"}
+            else {
+                text4.text = place.ticketPrice.toString() + "L.E"
+            }
             val call: Call<List<Int>> = service.getFavPlacesIDs(userid)
             call.enqueue(object : Callback<List<Int>>{
                 override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
