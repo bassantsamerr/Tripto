@@ -11,7 +11,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.activities.DetailedActivity
@@ -82,12 +81,12 @@ class SearchActivity : Fragment() {
         searchEditText.setOnTouchListener { _, event ->
             val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP && event.rawX >= searchEditText.right - searchEditText.compoundDrawables[drawableRight].bounds.width()) {
-                val call: Call<List<NearbyPlaceModel>> =
+                val call: Call<List<PlaceModel>> =
                     service.search(searchEditText.text.toString())
-                call.enqueue(object : Callback<List<NearbyPlaceModel>> {
-                    override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                call.enqueue(object : Callback<List<PlaceModel>> {
+                    override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                         if(response.isSuccessful) {
-                            searchAdapter.updateData(response.body() as ArrayList<NearbyPlaceModel>)
+                            searchAdapter.updateData(response.body() as ArrayList<PlaceModel>)
                             searchAdapter.onItemClick = { nearbyPlaceModel ->
                                 val intent = Intent(requireContext(), DetailedActivity::class.java)
                                 intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
@@ -127,7 +126,7 @@ class SearchActivity : Fragment() {
 
                     }
 
-                    override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                    override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
                         Log.d("fail search", t.toString())
                     }
                 })

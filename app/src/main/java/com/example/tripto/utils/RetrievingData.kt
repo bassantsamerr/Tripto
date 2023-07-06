@@ -4,7 +4,6 @@ import ActivityModel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import com.example.tripto.activities.LoginActivty
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
@@ -14,27 +13,27 @@ import retrofit2.Response
 
 object RetrievingData {
     private val service: ApiInterface = ApiInterface.create()
-    var allPlaceslist: ArrayList<NearbyPlaceModel>
+    var allPlaceslist: ArrayList<PlaceModel>
     init {
         allPlaceslist = ArrayList()
     }
-    var top10Placeslist: ArrayList<NearbyPlaceModel>
+    var top10Placeslist: ArrayList<PlaceModel>
     init {
         top10Placeslist = ArrayList()
     }
-    var favPlacesList: ArrayList<NearbyPlaceModel>
+    var favPlacesList: ArrayList<PlaceModel>
     init {
         favPlacesList = ArrayList()
     }
-    var favPlaces: ArrayList<NearbyPlaceModel>
+    var favPlaces: ArrayList<PlaceModel>
     init {
         favPlaces = ArrayList()
     }
-    var searchHistoryPlaces: ArrayList<NearbyPlaceModel>
+    var searchHistoryPlaces: ArrayList<PlaceModel>
     init {
         searchHistoryPlaces = ArrayList()
     }
-    var recommendedPlaces: ArrayList<NearbyPlaceModel>
+    var recommendedPlaces: ArrayList<PlaceModel>
     init {
         recommendedPlaces = ArrayList()
     }
@@ -42,12 +41,12 @@ object RetrievingData {
     init {
         ActivitiesForOnePlace = ArrayList()
     }
-     fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
-        val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
+     fun getAllPlaces(): ArrayList<PlaceModel> {
+        val call: Call<List<PlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
-        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+        call.enqueue(object : Callback<List<PlaceModel>> {
             @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                 if(response.isSuccessful){
                     allPlaceslist.clear()
                     for(myData in response.body()!!){
@@ -60,18 +59,18 @@ object RetrievingData {
                 }
             }
 
-            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
             }
 
         })
         return allPlaceslist
     }
 
-    fun getTop10laces(): ArrayList<NearbyPlaceModel> {
-        val call: Call<List<NearbyPlaceModel>> = service.getTop10Places()
-        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+    fun getTop10laces(): ArrayList<PlaceModel> {
+        val call: Call<List<PlaceModel>> = service.getTop10Places()
+        call.enqueue(object : Callback<List<PlaceModel>> {
             @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                 if(response.isSuccessful){
                     top10Placeslist.clear()
                     for(myData in response.body()!!){
@@ -84,18 +83,18 @@ object RetrievingData {
                 }
             }
 
-            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
             }
 
         })
         return top10Placeslist
     }
-    fun getfavPlaces(context: Context): ArrayList<NearbyPlaceModel> {
+    fun getfavPlaces(context: Context): ArrayList<PlaceModel> {
         val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val userid=sharedPreference.getInt("ID",0)
-        val callGetFavPlacesId: Call<List<NearbyPlaceModel>> = service.getFavPlaces(userid)
-        callGetFavPlacesId.enqueue(object : Callback<List<NearbyPlaceModel>> {
-            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+        val callGetFavPlacesId: Call<List<PlaceModel>> = service.getFavPlaces(userid)
+        callGetFavPlacesId.enqueue(object : Callback<List<PlaceModel>> {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                 if(response.isSuccessful){
                     favPlaces.clear()
                     for(myData in response.body()!!){
@@ -108,19 +107,19 @@ object RetrievingData {
                 }
             }
 
-            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
                 Log.d("on fail get fav places ids ", t.toString())
             }
 
         })
         return favPlaces
     }
-    fun getSearchHistoryPlaces(context: Context): ArrayList<NearbyPlaceModel> {
+    fun getSearchHistoryPlaces(context: Context): ArrayList<PlaceModel> {
         val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val userid=sharedPreference.getInt("ID",0)
-        val callGetFavPlacesId: Call<List<NearbyPlaceModel>> = service.getSearchHistoryForUser(userid)
-        callGetFavPlacesId.enqueue(object : Callback<List<NearbyPlaceModel>> {
-            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+        val callGetFavPlacesId: Call<List<PlaceModel>> = service.getSearchHistoryForUser(userid)
+        callGetFavPlacesId.enqueue(object : Callback<List<PlaceModel>> {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                 if(response.isSuccessful){
                     searchHistoryPlaces.clear()
                     for(myData in response.body()!!){
@@ -133,19 +132,19 @@ object RetrievingData {
                 }
             }
 
-            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
                 Log.d("on fail get fav places ids ", t.toString())
             }
 
         })
         return searchHistoryPlaces
     }
-    fun getRecommendedPlaces(userid:Int,Nationality:String): ArrayList<NearbyPlaceModel> {
+    fun getRecommendedPlaces(userid:Int,Nationality:String): ArrayList<PlaceModel> {
 //        val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
 //        val userid=sharedPreference.getInt("ID",0)
-        val call: Call<List<NearbyPlaceModel>> = service.getRecommendedPlaces(userid,Nationality)
-        call.enqueue(object : Callback<List<NearbyPlaceModel>> {
-            override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+        val call: Call<List<PlaceModel>> = service.getRecommendedPlaces(userid,Nationality)
+        call.enqueue(object : Callback<List<PlaceModel>> {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                 if(response.isSuccessful){
                     recommendedPlaces.clear()
                     for(myData in response.body()!!){
@@ -162,7 +161,7 @@ object RetrievingData {
                 }
             }
 
-            override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
                 Log.d("on fail get fav places ids ", t.toString())
             }
 

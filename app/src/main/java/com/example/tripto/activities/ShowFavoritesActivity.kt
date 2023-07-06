@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.R
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.PlaceModel
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.RetrievingData
 
@@ -17,7 +17,7 @@ class ShowFavoritesActivity : AppCompatActivity() {
     init {
         favPlacesIDs = ArrayList()
     }
-    var favPlaces: ArrayList<NearbyPlaceModel>
+    var favPlaces: ArrayList<PlaceModel>
     init {
         favPlaces = ArrayList()
     }

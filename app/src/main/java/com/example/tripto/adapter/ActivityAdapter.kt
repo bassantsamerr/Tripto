@@ -3,8 +3,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.databinding.SearchItemBinding
-import com.example.tripto.model.Activity
-import com.example.tripto.model.NearbyPlaceModel
 
 class ActivityAdapter(private var activityModel: List<ActivityModel>) :
     RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {

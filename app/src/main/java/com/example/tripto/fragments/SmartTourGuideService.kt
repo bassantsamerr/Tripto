@@ -19,7 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.R
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.PlaceModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -102,9 +102,9 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
                     Log.d("before", "before")
                     val call =service.get_nearby_places(lat,log,5)
                     Log.d("after", call.toString())
-                    call.enqueue(object : Callback<List<NearbyPlaceModel>> {
+                    call.enqueue(object : Callback<List<PlaceModel>> {
 
-                        override fun onResponse(call: Call<List<NearbyPlaceModel>>, response: Response<List<NearbyPlaceModel>>) {
+                        override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                             Log.d("yalahwaaaaaaaaaaaaaaaaaaaaay","yalahwaaaaaaaaaaaaaaaaaaaaay")
                             val nearbyPlaces = response.body()
                             if (response.isSuccessful) {
@@ -123,7 +123,7 @@ class SmartTourGuideService : Fragment(), OnMapReadyCallback {
                             }
                         }
 
-                        override fun onFailure(call: Call<List<NearbyPlaceModel>>, t: Throwable) {
+                        override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
                             Log.d("failure error",t.message.toString())
                         }
                     })

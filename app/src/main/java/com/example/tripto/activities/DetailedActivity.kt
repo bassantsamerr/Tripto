@@ -15,7 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.tripto.R
 import com.example.tripto.adapter.ImageSwiperAdapter
 import com.example.tripto.model.DeleteResponse
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.PlaceModel
 import com.example.tripto.model.PlaceToUserModel
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.Images
@@ -32,7 +32,7 @@ class DetailedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val service: ApiInterface = ApiInterface.create()
         setContentView(R.layout.activity_detailed)
-        val place = intent.getParcelableExtra<NearbyPlaceModel>("nearbyplacemodel")
+        val place = intent.getParcelableExtra<PlaceModel>("nearbyplacemodel")
         val sharedPreference =getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val userid=sharedPreference.getInt("ID",0)
         val editor = sharedPreference.edit()

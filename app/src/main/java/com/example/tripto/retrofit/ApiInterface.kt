@@ -13,13 +13,13 @@ import retrofit2.http.*
 
 interface ApiInterface {
         @GET("/places/all")
-        fun getAllPlaces(): Call<List<NearbyPlaceModel>>
+        fun getAllPlaces(): Call<List<PlaceModel>>
         @GET("/topRatedPlaces")
-        fun getTop10Places(): Call<List<NearbyPlaceModel>>
+        fun getTop10Places(): Call<List<PlaceModel>>
         @POST("/addUser")
         fun addUser(@Body user: UserModel): Call<SignUpResponseModel>
         @GET("/nearbyPlaces")
-        fun get_nearby_places(@Query("latitude") latitude: Double, @Query("longitude")longitude: Double,@Query("n")n: Int): Call<List<NearbyPlaceModel>>
+        fun get_nearby_places(@Query("latitude") latitude: Double, @Query("longitude")longitude: Double,@Query("n")n: Int): Call<List<PlaceModel>>
         @GET("/nearestPlace")
         fun get_nearest_places(@Query("latitude") latitude: Float, @Query("longitude") longitude: Float): Call<ResponseBody>
         @GET("/chatting")
@@ -42,15 +42,15 @@ interface ApiInterface {
         @GET("/getFavplacesIDs")
         fun getFavPlacesIDs(@Query("userid") userid: Int):Call<List<Int>>
         @GET("/getFavplaces")
-        fun getFavPlaces(@Query("userid") userid: Int):Call<List<NearbyPlaceModel>>
+        fun getFavPlaces(@Query("userid") userid: Int):Call<List<PlaceModel>>
         @GET("/getSearchHistoryForUser")
-        fun getSearchHistoryForUser(@Query("userid") userid: Int):Call<List<NearbyPlaceModel>>
+        fun getSearchHistoryForUser(@Query("userid") userid: Int):Call<List<PlaceModel>>
         @GET("/recommendedP")
-        fun getRecommendedPlaces(@Query("user_id") user_id: Int,@Query("nationality") nationality: String):Call<List<NearbyPlaceModel>>
+        fun getRecommendedPlaces(@Query("user_id") user_id: Int,@Query("nationality") nationality: String):Call<List<PlaceModel>>
         @GET("/place")
-        fun getPlace(@Query("id") id: Int):Call<NearbyPlaceModel>
+        fun getPlace(@Query("id") id: Int):Call<PlaceModel>
         @GET("/search")
-        fun search(@Query("query") query: String):Call<List<NearbyPlaceModel>>
+        fun search(@Query("query") query: String):Call<List<PlaceModel>>
         @POST("/interestsOfNewUser")
         fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<String>
         @POST("/addActivity")

@@ -6,10 +6,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.R
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.PlaceModel
 
-class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-    var onItemClick: ((NearbyPlaceModel) -> Unit)? = null
+class SearchAdapter(private var placeModel: ArrayList<PlaceModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+    var onItemClick: ((PlaceModel) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_item, parent, false)
@@ -43,7 +43,7 @@ class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : Recyc
         return placeModel.size
     }
 
-    fun updateData(newData: ArrayList<NearbyPlaceModel>) {
+    fun updateData(newData: ArrayList<PlaceModel>) {
         placeModel = newData
         notifyDataSetChanged()
     }

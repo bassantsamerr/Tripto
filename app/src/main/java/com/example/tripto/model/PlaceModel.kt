@@ -1,11 +1,10 @@
 package com.example.tripto.model
 
-import android.location.Location
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class NearbyPlaceModel(
+data class PlaceModel(
     @SerializedName("placeName") var placeName: String? = null,
     @SerializedName("description") var description: String? = null,
     @SerializedName("image") var image: String? = null,
@@ -52,12 +51,12 @@ data class NearbyPlaceModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<NearbyPlaceModel> {
-        override fun createFromParcel(parcel: Parcel): NearbyPlaceModel {
-            return NearbyPlaceModel(parcel)
+    companion object CREATOR : Parcelable.Creator<PlaceModel> {
+        override fun createFromParcel(parcel: Parcel): PlaceModel {
+            return PlaceModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<NearbyPlaceModel?> {
+        override fun newArray(size: Int): Array<PlaceModel?> {
             return arrayOfNulls(size)
         }
     }

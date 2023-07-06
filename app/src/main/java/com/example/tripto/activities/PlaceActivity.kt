@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.example.addActivityResponse
 import com.example.tripto.R
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.PlaceModel
 import com.example.tripto.utils.RetrievingData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -26,7 +26,7 @@ class PlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place)
         recyclerView = findViewById(R.id.ActivityRV)
-        val place = intent.getParcelableExtra<NearbyPlaceModel>("nearbyplacemodel")
+        val place = intent.getParcelableExtra<PlaceModel>("nearbyplacemodel")
         if(place!=null){
             val text1 : TextView = findViewById(R.id.PlaceName)
             text1.setText(place.placeName)

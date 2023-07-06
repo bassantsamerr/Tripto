@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.R
 import com.example.tripto.databinding.PlaceItemBinding
-import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.model.PlaceModel
 
-class PlaceAdapter (private val placeModel: List<NearbyPlaceModel>) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>(){
+class PlaceAdapter (private val placeModel: List<PlaceModel>) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>(){
 
-    var onItemClick :  ((NearbyPlaceModel)->Unit)?=null
+    var onItemClick :  ((PlaceModel)->Unit)?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
         val view =LayoutInflater.from(parent.context).inflate(R.layout.place_item,parent,false)
         return PlaceViewHolder(view)
