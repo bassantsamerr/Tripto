@@ -6,9 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.tripto.R
-import com.example.tripto.databinding.PlaceItemBinding
 import com.example.tripto.model.NearbyPlaceModel
-import com.example.tripto.model.PlaceModel
 
 class SearchAdapter(private var placeModel: ArrayList<NearbyPlaceModel>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     var onItemClick: ((NearbyPlaceModel) -> Unit)? = null

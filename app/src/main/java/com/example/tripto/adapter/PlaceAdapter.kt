@@ -8,7 +8,6 @@ import coil.load
 import com.example.tripto.R
 import com.example.tripto.databinding.PlaceItemBinding
 import com.example.tripto.model.NearbyPlaceModel
-import com.example.tripto.model.PlaceModel
 
 class PlaceAdapter (private val placeModel: List<NearbyPlaceModel>) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>(){
 

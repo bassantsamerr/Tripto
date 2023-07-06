@@ -1,14 +1,19 @@
 package com.example.tripto.activities
 
+import ActivityAdapter
 import ActivityModel
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.example.addActivityResponse
 import com.example.tripto.R
+import com.example.tripto.model.NearbyPlaceModel
+import com.example.tripto.utils.RetrievingData
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,13 +25,15 @@ class PlaceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place)
-//        recyclerView = findViewById(R.id.ActivityRV)
-//        val place = intent.getParcelableExtra<NearbyPlaceModel>("nearbyplacemodel")
-//        if(place!=null){
-//            val text1 : TextView = findViewById(R.id.PlaceName)
-//            text1.setText(place.placeName)
-//        }
-//        recyclerView.adapter = place?.let { ActivityAdapter(it) }
+        recyclerView = findViewById(R.id.ActivityRV)
+        val place = intent.getParcelableExtra<NearbyPlaceModel>("nearbyplacemodel")
+        if(place!=null){
+            val text1 : TextView = findViewById(R.id.PlaceName)
+            text1.setText(place.placeName)
+        }
+        val sharedPreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        val placeId = sharedPreference.getInt("PLACEID", 0)
+        recyclerView.adapter = place?.let { ActivityAdapter(RetrievingData.getActivtiesForOnePlace(placeId)) }
         val fabButton: FloatingActionButton = findViewById(R.id.fab)
         fabButton.setOnClickListener {
             val dialog: DialogFragment = FullscreenDialog.newInstance()

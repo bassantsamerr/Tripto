@@ -1,5 +1,6 @@
 package com.example.tripto.utils
 
+import ActivityModel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
@@ -36,6 +37,10 @@ object RetrievingData {
     var recommendedPlaces: ArrayList<NearbyPlaceModel>
     init {
         recommendedPlaces = ArrayList()
+    }
+    var ActivitiesForOnePlace: ArrayList<ActivityModel>
+    init {
+        ActivitiesForOnePlace = ArrayList()
     }
      fun getAllPlaces(): ArrayList<NearbyPlaceModel> {
         val call: Call<List<NearbyPlaceModel>> = service.getAllPlaces()
@@ -163,6 +168,33 @@ object RetrievingData {
 
         })
         return recommendedPlaces
+    }
+    fun getActivtiesForOnePlace(placeid:Int): ArrayList<ActivityModel> {
+        val call: Call<List<ActivityModel>> = service.getActivitesForOnePlace(placeid)
+        call.enqueue(object : Callback<List<ActivityModel>> {
+            override fun onResponse(call: Call<List<ActivityModel>>, response: Response<List<ActivityModel>>) {
+                if(response.isSuccessful){
+                    ActivitiesForOnePlace.clear()
+                    for(myData in response.body()!!){
+                        ActivitiesForOnePlace.add(myData)
+                    }
+                    for (placeModel in ActivitiesForOnePlace) {
+                        Log.d("RecoData", placeModel.toString())
+                    }
+                    ActivitiesForOnePlace.toList()
+                }
+                else{
+                    Log.d("reco api", response.toString())
+                    Log.d("reco api", response?.errorBody()?.string().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<List<ActivityModel>>, t: Throwable) {
+                Log.d("on fail get fav places ids ", t.toString())
+            }
+
+        })
+        return ActivitiesForOnePlace
     }
 
 
