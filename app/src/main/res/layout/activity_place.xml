@@ -31,14 +31,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ActivityRV"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/activity"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/search_item" />
+        tools:listitem="@layout/activity_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

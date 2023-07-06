@@ -66,7 +66,7 @@ object RetrievingData {
         return allPlaceslist
     }
 
-    fun getTop10laces(): ArrayList<PlaceModel> {
+    fun getTop10places(): ArrayList<PlaceModel> {
         val call: Call<List<PlaceModel>> = service.getTop10Places()
         call.enqueue(object : Callback<List<PlaceModel>> {
             @SuppressLint("NotifyDataSetChanged")
@@ -199,7 +199,7 @@ object RetrievingData {
 
 //    val collections = listOf(
 //        MainModel("Recommended Places", getRecommendedPlaces(37,"Russia")),
-//        MainModel("Top 10", getTop10laces()),
+//        MainModel("Top 10", getTop10places()),
 //        MainModel("Tour Packages", getAllPlaces()),
 //        MainModel("All Places", getAllPlaces())
 //    )

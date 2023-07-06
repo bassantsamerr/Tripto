@@ -1,5 +1,4 @@
 package com.example.tripto.fragments
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +14,7 @@ import com.example.tripto.activities.EditProfileActivity
 import com.example.tripto.R
 import com.example.tripto.activities.LoginActivty
 import com.example.tripto.activities.ShowFavoritesActivity
+import com.example.tripto.activities.ShowMyActivities
 import com.example.tripto.model.DeleteResponse
 import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
@@ -28,6 +28,9 @@ class ProfileActivity : Fragment() {
         val service: ApiInterface = ApiInterface.create()
         val bt_editProfile_click = view.findViewById<Button>(R.id.edit_profile)
         val bt_show_favorites = view.findViewById<Button>(R.id.showFav)
+        val bt_show_myActivities = view.findViewById<Button>(R.id.myActivities)
+
+
         bt_editProfile_click.setOnClickListener {
             val intent = Intent(requireContext(), EditProfileActivity::class.java)
             startActivity(intent)
@@ -36,6 +39,11 @@ class ProfileActivity : Fragment() {
             val intent = Intent(requireContext(), ShowFavoritesActivity::class.java)
             startActivity(intent)
         }
+        bt_show_myActivities.setOnClickListener(){
+            val intent = Intent(requireContext(), ShowMyActivities::class.java)
+            startActivity(intent)
+        }
+
         val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val tv_username=view.findViewById<TextView>(R.id.textView2)
         val username=sharedPreference.getString("USERNAME","").toString()
@@ -55,7 +63,6 @@ class ProfileActivity : Fragment() {
                         Toast.makeText(requireContext(), "Username or password is incorrect, Please try again", Toast.LENGTH_SHORT).show()
                     }
                     if(!response.isSuccessful){
-
                         Log.d("fail logout api", response.toString())
                         Log.d("fail logout api", response?.errorBody()?.string().toString())
                     }

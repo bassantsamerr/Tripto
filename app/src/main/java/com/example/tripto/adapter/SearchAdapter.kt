@@ -13,7 +13,7 @@ class SearchAdapter(private var placeModel: ArrayList<PlaceModel>) : RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_item, parent, false)
-        return ViewHolder(view)
+        return  ViewHolder(view)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = placeModel[position]
@@ -36,6 +36,7 @@ class SearchAdapter(private var placeModel: ArrayList<PlaceModel>) : RecyclerVie
             else {
                 description.text = currentItem.description
             }
+
         }
     }
 

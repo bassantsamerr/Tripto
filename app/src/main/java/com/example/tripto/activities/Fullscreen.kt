@@ -66,15 +66,14 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
         val action = view.findViewById<TextView>(R.id.fullscreen_dialog_action)
 
         activityNameEditText = view.findViewById(R.id.activityName)
-        activityDescriptionEditText = view.findViewById(R.id.ActivtiyDescription)
+        activityDescriptionEditText = view.findViewById(R.id.activityDescription)
         priceEditText = view.findViewById(R.id.price)
         timeEditText = view.findViewById(R.id.time)
         locationEditText = view.findViewById(R.id.location)
         longitudeEditText = view.findViewById(R.id.longitude)
-        latitudeEditText = view.findViewById(R.id.latt)
-        phoneNumberEditText = view.findViewById(R.id.phonenumber)
-        socialMediaEditText = view.findViewById(R.id.socialmedia)
-
+        latitudeEditText = view.findViewById(R.id.latitude)
+        phoneNumberEditText = view.findViewById(R.id.phoneNumber)
+        socialMediaEditText = view.findViewById(R.id.socialMedia)
         close.setOnClickListener(this)
         action.setOnClickListener(this)
 
@@ -114,6 +113,7 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
 
                 callback?.onActionClick(activity, userid)
                 dismiss()
+
             }
         }
     }

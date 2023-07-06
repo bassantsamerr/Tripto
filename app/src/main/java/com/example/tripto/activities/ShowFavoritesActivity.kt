@@ -26,7 +26,7 @@ class ShowFavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_favorites)
-        recyclerView = findViewById(R.id.resyclerViewFav)
+        recyclerView = findViewById(R.id.recyclerViewFav)
 
 
         // Set the RecyclerView adapter

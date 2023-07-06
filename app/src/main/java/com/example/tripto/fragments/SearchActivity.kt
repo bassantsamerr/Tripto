@@ -48,8 +48,7 @@ class SearchActivity : Fragment() {
         searchAdapter.onItemClick = { nearbyPlaceModel ->
             val intent = Intent(requireContext(), DetailedActivity::class.java)
             intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
-            val sharedPreference =
-                requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+            val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
             val userid = sharedPreference.getInt("ID", 0)
             val placetouser = PlaceToUserSearchModel(nearbyPlaceModel.id, userid)
             Log.d("nearbyPlaceModel.id", nearbyPlaceModel.id.toString())
@@ -118,12 +117,9 @@ class SearchActivity : Fragment() {
                             }
                         }
                         else
-                        {
-                                Log.d("fail search", response.toString())
+                        {       Log.d("fail search", response.toString())
                                 Log.d("fail search", response?.errorBody()?.string().toString())
                         }
-
-
                     }
 
                     override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
