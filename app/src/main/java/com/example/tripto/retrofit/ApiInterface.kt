@@ -1,6 +1,7 @@
 package com.example.tripto.retrofit
 
-import com.example.example.ActivityModel
+
+import ActivityModel
 import com.example.example.SignUpResponseModel
 import com.example.example.addActivityResponse
 import com.example.tripto.model.*
@@ -30,7 +31,8 @@ interface ApiInterface {
         fun get_current_user(@Header("Authorization") token:String ):Call<CurrentUserModel>
         @POST("/logout")
         fun logout(@Header("Authorization") token:String ):Call<DeleteResponse>
-        @PUT("/editUser/{userid}") fun editUser(@Path("userid") userId: Int, @Body user: UserModel): Call<ResponseBody>
+        @PUT("/editUser/{userid}")
+        fun editUser(@Path("userid") userId: Int, @Body user: UserModel): Call<ResponseBody>
         @POST("/addFavplace")
         fun addFavPlace(@Body placetouser: PlaceToUserModel): Call<ResponseBody>
         @POST("/addSearchHistory")
@@ -51,8 +53,8 @@ interface ApiInterface {
         fun search(@Query("query") query: String):Call<List<NearbyPlaceModel>>
         @POST("/interestsOfNewUser")
         fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<String>
-        @POST("/addActivity/{id}")
-        fun addActivity(@Path("id") id: Int, @Body activity: ActivityModel): Call<addActivityResponse>
+        @POST("/addActivity")
+        fun addActivity(@Body activity: ActivityModel,@Query ("id") id: Int): Call<addActivityResponse>
 
 
         companion object {

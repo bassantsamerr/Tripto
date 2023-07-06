@@ -1,15 +1,26 @@
 package com.example.tripto.activities
 
-import com.example.tripto.model.Activity
+import ActivityModel
+import android.content.Context
+import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import com.example.tripto.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.example.example.addActivityResponse
+import com.example.tripto.retrofit.ApiInterface
+import retrofit2.Call
+import retrofit2.Callback
+import java.io.File
 
 private lateinit var activityNameEditText: EditText
 private lateinit var activityDescriptionEditText: EditText
@@ -20,7 +31,11 @@ private lateinit var longitudeEditText: EditText
 private lateinit var latitudeEditText: EditText
 private lateinit var phoneNumberEditText: EditText
 private lateinit var socialMediaEditText: EditText
-
+lateinit var Image:ImageView
+private var placeId: Int = 0
+private lateinit var sharedPreference: SharedPreferences
+val service: ApiInterface = ApiInterface.create()
+private var userid:Int=0
 class FullscreenDialog : DialogFragment(), View.OnClickListener {
     private var callback: Callback? = null
 
@@ -43,6 +58,9 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        placeId = sharedPreference.getInt("PLACEID", 0)
+        userid=sharedPreference.getInt("ID",0)
         val view = inflater.inflate(R.layout.activity_fullscreen, container, false)
         val close = view.findViewById<ImageButton>(R.id.fullscreen_dialog_close)
         val action = view.findViewById<TextView>(R.id.fullscreen_dialog_action)
@@ -74,33 +92,45 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
             R.id.fullscreen_dialog_action -> {
                 val name = activityNameEditText.text.toString()
                 val description = activityDescriptionEditText.text.toString()
-                val price = priceEditText.text.toString()
-                val time = timeEditText.text.toString()
                 val location = locationEditText.text.toString()
-                val longitude = longitudeEditText.text.toString()
-                val latitude = latitudeEditText.text.toString()
-                val socialMedia = socialMediaEditText.text.toString()
-
-                val activity = Activity(
+                val image = ""
+                val place_id = placeId
+                val Phone = phoneNumberEditText.text.toString()
+                val price = priceEditText.text.toString()
+                val Time = timeEditText.text.toString()
+                val socialmedia = socialMediaEditText.text.toString()
+                val activity = ActivityModel(
                     name = activityNameEditText.text.toString(),
                     description = activityDescriptionEditText.text.toString(),
-                    placeId = 0, // Set the appropriate value for placeId
                     location = locationEditText.text.toString(),
-                    image = "", // Set the appropriate value for image
-                    phone = phoneNumberEditText.text.toString(), // Set the appropriate value for phone
-                    price = priceEditText.text.toString().toDoubleOrNull() ?: 0.0,
-                    time = timeEditText.text.toString().toIntOrNull() ?: 0,
-                    socialMedia = socialMediaEditText.text.toString()
+                    image = "",
+                    place_id = placeId,
+                    Phone = phoneNumberEditText.text.toString(),
+                    price = 0,
+                    Time = 0,
+                    socialmedia = socialMediaEditText.text.toString()
                 )
-                println(activity)
+                Log.d("activity",activity.toString())
 
-                callback?.onActionClick(activity)
+                callback?.onActionClick(activity, userid)
                 dismiss()
             }
         }
     }
 
     interface Callback {
-        fun onActionClick(activity: Activity)
+        fun onActionClick(activity: ActivityModel,userid:Int)
+    }
+    fun getImageUrlFromFile(context: Context, imageFile: File): String {
+        val contentUri = Uri.fromFile(imageFile)
+        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = context.contentResolver.query(contentUri, filePathColumn, null, null, null)
+        cursor?.moveToFirst()
+        val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
+        val imagePath = cursor?.getString(columnIndex ?: 0)
+        cursor?.close()
+
+        return imagePath ?: ""
     }
 }
+
