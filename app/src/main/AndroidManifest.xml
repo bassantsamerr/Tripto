@@ -19,6 +19,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ShowAllActivityRequestsAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".ShowAllActivitiesAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ProfileAdminActivity"
             android:exported="false" />
         <activity

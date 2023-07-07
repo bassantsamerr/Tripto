@@ -121,7 +121,7 @@
                 app:dividerInsetStart="16dp" />
 
             <Button
-                android:id="@+id/showFav"
+                android:id="@+id/show_activity_requests"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
@@ -136,7 +136,7 @@
                 app:dividerInsetStart="16dp" />
 
             <Button
-                android:id="@+id/myActivities"
+                android:id="@+id/show_all_activities"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
