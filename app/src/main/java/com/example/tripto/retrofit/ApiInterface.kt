@@ -54,7 +54,7 @@ interface ApiInterface {
         @POST("/interestsOfNewUser")
         fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<String>
         @POST("/addActivity")
-        fun addActivity(@Body activity: ActivityModel,@Query ("id") id: Int): Call<addActivityResponse>
+        fun addActivity(@Body activity: ActivityModel,@Query ("id") id: Int): Call<Int>
         @GET("/getActivitesForOnePlace")
         fun getActivitesForOnePlace(@Query("placeid") placeid: Int):Call<List<ActivityModel>>
         @GET("/pendingActivities")

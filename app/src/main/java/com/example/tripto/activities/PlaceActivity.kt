@@ -39,9 +39,9 @@ class PlaceActivity : AppCompatActivity() {
             val dialog: DialogFragment = FullscreenDialog.newInstance()
             (dialog as FullscreenDialog).setCallback(object : FullscreenDialog.Callback {
                 override fun onActionClick(activitymodel: ActivityModel,userid:Int) {
-                    val call: Call<addActivityResponse> = service.addActivity(activitymodel,userid)
-                    call.enqueue(object : Callback<addActivityResponse> {
-                        override fun onResponse(call: Call<addActivityResponse>, response: Response<addActivityResponse>
+                    val call: Call<Int> = service.addActivity(activitymodel,userid)
+                    call.enqueue(object : Callback<Int> {
+                        override fun onResponse(call: Call<Int>, response: Response<Int>
                         ) {
                             if (response.isSuccessful) {
                                 Log.d("edit api response", response.body().toString())
@@ -55,7 +55,7 @@ class PlaceActivity : AppCompatActivity() {
 
                         }
 
-                        override fun onFailure(call: Call<addActivityResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<Int>, t: Throwable) {
                             Log.d("on fail add activity ", t.toString())
                         }
                     })

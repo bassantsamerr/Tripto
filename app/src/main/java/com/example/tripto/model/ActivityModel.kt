@@ -4,18 +4,18 @@ import android.os.Parcelable
 import androidx.annotation.RequiresApi
 
 data class ActivityModel(
-  val id:Int,
+  val id: Int,
   val name: String,
   val description: String,
   val location: String,
   val image: String,
-  val enterpreneur_id:Int,
+  val enterpreneur_id: Int,
   val place_id: Int,
   val Phone: String,
   val price: Int,
   val Time: Int,
   val socialmedia: String,
-  val is_active:Boolean
+  val is_active: Boolean
 ) : Parcelable {
   @RequiresApi(Build.VERSION_CODES.Q)
   constructor(parcel: Parcel) : this(
@@ -31,6 +31,32 @@ data class ActivityModel(
     parcel.readInt(),
     parcel.readString() ?: "",
     parcel.readBoolean()
+  )
+
+  constructor(
+    name: String,
+    description: String,
+    location: String,
+    image: String,
+    enterpreneur_id: Int,
+    place_id: Int,
+    Phone: String,
+    price: Int,
+    Time: Int,
+    socialmedia: String
+  ) : this(
+    0,
+    name,
+    description,
+    location,
+    image,
+    enterpreneur_id,
+    place_id,
+    Phone,
+    price,
+    Time,
+    socialmedia,
+    false
   )
 
   @RequiresApi(Build.VERSION_CODES.Q)

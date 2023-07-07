@@ -99,7 +99,6 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
                 val Time = timeEditText.text.toString()
                 val socialmedia = socialMediaEditText.text.toString()
                 val activity = ActivityModel(
-                    id=0,
                     name = activityNameEditText.text.toString(),
                     description = activityDescriptionEditText.text.toString(),
                     location = locationEditText.text.toString(),
@@ -110,7 +109,6 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
                     price = 0,
                     Time = 0,
                     socialmedia = socialMediaEditText.text.toString(),
-                    is_active = false
                 )
                 Log.d("activity",activity.toString())
 
@@ -132,7 +130,6 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
         val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
         val imagePath = cursor?.getString(columnIndex ?: 0)
         cursor?.close()
-
         return imagePath ?: ""
     }
 }
