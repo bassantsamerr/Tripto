@@ -45,8 +45,9 @@ class ActivityRequestAdapter(private var activityList: List<ActivityModel>) :
                 activtiyphoneNumber.text = activity.Phone
                 activtiyprice.text = activity.price.toString()
                 activtiytime.text = activity.Time.toString()
-                val admin_AvtivityResponseModel= admin_AvtivityResponseModel(activity.id,true)
+
                 accept.setOnClickListener{
+                    val admin_AvtivityResponseModel= admin_AvtivityResponseModel(activity.id,true)
                     val call: Call<DeleteResponse> = service.admin_AvtivityResponse(admin_AvtivityResponseModel)
                     call.enqueue(object :  Callback<DeleteResponse>{
                         override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>) {
@@ -59,6 +60,29 @@ class ActivityRequestAdapter(private var activityList: List<ActivityModel>) :
                             }
                             else if (!response.isSuccessful) {
                                 Toast.makeText(itemView.context, "Approving failed", Toast.LENGTH_SHORT).show()
+                                Log.d("fail admin_AvtivityResponse api", response.toString())
+                                Log.d("fail admin_AvtivityResponse api", response?.errorBody()?.string().toString())
+                            }
+                        }
+
+                        override fun onFailure(call: Call<DeleteResponse>, t: Throwable) {
+                            Log.d("on fail  admin_AvtivityResponse ", t.toString())
+                        }
+                    })
+                }
+                reject.setOnClickListener{
+                    val admin_AvtivityResponseModel= admin_AvtivityResponseModel(activity.id,false)
+                    val call: Call<DeleteResponse> = service.admin_AvtivityResponse(admin_AvtivityResponseModel)
+                    call.enqueue(object :  Callback<DeleteResponse>{
+                        override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>) {
+                            if (response.isSuccessful) {
+                                Toast.makeText(itemView.context, "Activity Rejected Successfully", Toast.LENGTH_SHORT).show()
+                                Log.d("admin_AvtivityResponse api response", response.body().toString())
+                                ShowAllActivityRequestsAdmin.activityAdapter.updateData(RetrievingData.getPendingActivitiesAdmin())
+
+                            }
+                            else if (!response.isSuccessful) {
+                                Toast.makeText(itemView.context, "Rejecting failed", Toast.LENGTH_SHORT).show()
                                 Log.d("fail admin_AvtivityResponse api", response.toString())
                                 Log.d("fail admin_AvtivityResponse api", response?.errorBody()?.string().toString())
                             }
