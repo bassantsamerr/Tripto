@@ -41,6 +41,10 @@ object RetrievingData {
     init {
         ActivitiesForOnePlace = ArrayList()
     }
+    var ActivitiesOfEntrepreneur: ArrayList<ActivityModel>
+    init {
+        ActivitiesOfEntrepreneur = ArrayList()
+    }
      fun getAllPlaces(): ArrayList<PlaceModel> {
         val call: Call<List<PlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
@@ -140,8 +144,6 @@ object RetrievingData {
         return searchHistoryPlaces
     }
     fun getRecommendedPlaces(userid:Int,Nationality:String): ArrayList<PlaceModel> {
-//        val sharedPreference =context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
-//        val userid=sharedPreference.getInt("ID",0)
         val call: Call<List<PlaceModel>> = service.getRecommendedPlaces(userid,Nationality)
         call.enqueue(object : Callback<List<PlaceModel>> {
             override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
@@ -178,30 +180,50 @@ object RetrievingData {
                         ActivitiesForOnePlace.add(myData)
                     }
                     for (placeModel in ActivitiesForOnePlace) {
-                        Log.d("RecoData", placeModel.toString())
+                        Log.d("getActivtiesForOnePlace", placeModel.toString())
                     }
                     ActivitiesForOnePlace.toList()
                 }
                 else{
-                    Log.d("reco api", response.toString())
-                    Log.d("reco api", response?.errorBody()?.string().toString())
+                    Log.d("getActivtiesForOnePlace api", response.toString())
+                    Log.d("getActivtiesForOnePlace api", response?.errorBody()?.string().toString())
                 }
             }
 
             override fun onFailure(call: Call<List<ActivityModel>>, t: Throwable) {
-                Log.d("on fail get fav places ids ", t.toString())
+                Log.d("on fail getActivtiesForOnePlace ", t.toString())
             }
 
         })
         return ActivitiesForOnePlace
     }
+    fun getActivitiesOfEntrepreneur(userid:Int): ArrayList<ActivityModel> {
+        val call: Call<List<ActivityModel>> = service.getActivitiesOfEntrepreneur(userid)
+        call.enqueue(object : Callback<List<ActivityModel>> {
+            override fun onResponse(call: Call<List<ActivityModel>>, response: Response<List<ActivityModel>>) {
+                if(response.isSuccessful){
+                    ActivitiesOfEntrepreneur.clear()
+                    for(myData in response.body()!!){
+                        ActivitiesOfEntrepreneur.add(myData)
+                    }
+                    for (placeModel in ActivitiesOfEntrepreneur) {
+                        Log.d("ActivitiesOfEntrepreneur", placeModel.toString())
+                    }
+                    ActivitiesOfEntrepreneur.toList()
+                }
+                else{
+                    Log.d("ActivitiesOfEntrepreneur api", response.toString())
+                    Log.d("ActivitiesOfEntrepreneur api", response?.errorBody()?.string().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<List<ActivityModel>>, t: Throwable) {
+                Log.d("on fail ActivitiesOfEntrepreneur ", t.toString())
+            }
+        })
+        return ActivitiesOfEntrepreneur
+    }
 
 
-//    val collections = listOf(
-//        MainModel("Recommended Places", getRecommendedPlaces(37,"Russia")),
-//        MainModel("Top 10", getTop10places()),
-//        MainModel("Tour Packages", getAllPlaces()),
-//        MainModel("All Places", getAllPlaces())
-//    )
 
 }

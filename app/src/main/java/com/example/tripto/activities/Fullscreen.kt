@@ -103,11 +103,13 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
                     description = activityDescriptionEditText.text.toString(),
                     location = locationEditText.text.toString(),
                     image = "",
+                    enterpreneur_id=userid,
                     place_id = placeId,
                     Phone = phoneNumberEditText.text.toString(),
                     price = 0,
                     Time = 0,
-                    socialmedia = socialMediaEditText.text.toString()
+                    socialmedia = socialMediaEditText.text.toString(),
+                    is_active = false
                 )
                 Log.d("activity",activity.toString())
 

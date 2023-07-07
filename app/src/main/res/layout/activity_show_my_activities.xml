@@ -5,7 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.ShowMyActivities">
+    tools:context=".activities.ShowMyActivities"
+    android:background="@drawable/bg">
+
+    <TextView
+        android:id="@+id/textfav"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="             My Activities"
+        android:textColor="@color/font_color"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/showmyActivityRv"

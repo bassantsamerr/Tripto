@@ -56,9 +56,11 @@ interface ApiInterface {
         @POST("/addActivity")
         fun addActivity(@Body activity: ActivityModel,@Query ("id") id: Int): Call<addActivityResponse>
         @GET("/getActivitesForOnePlace")
-        fun getActivitesForOnePlace(@Query("placeid") userid: Int):Call<List<ActivityModel>>
+        fun getActivitesForOnePlace(@Query("placeid") placeid: Int):Call<List<ActivityModel>>
         @GET("/pendingActivities")
         fun getPendingActivities(): Call<List<ActivityModel>>
+        @GET("/getActivities")
+        fun getActivitiesOfEntrepreneur(@Query("enterprenuerid") enterprenuerid: Int): Call<List<ActivityModel>>
 
         companion object {
         fun create(): ApiInterface {

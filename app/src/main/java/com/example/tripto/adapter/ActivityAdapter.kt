@@ -32,7 +32,13 @@ class ActivityAdapter(private var activityModel: List<ActivityModel>) :
                 activtiyphoneNumber.text = activity.Phone
                 activtiyprice.text = activity.price.toString()
                 activtiytime.text = activity.Time.toString()
-                status.text = "pending"
+                if(activity.is_active==true){
+                    status.text = "Approved"
+                }
+                else{
+                    status.text = "Pending"
+                }
+
             }
         }
     }
