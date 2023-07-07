@@ -45,6 +45,10 @@ object RetrievingData {
     init {
         ActivitiesOfEntrepreneur = ArrayList()
     }
+    var PendingActivities: ArrayList<ActivityModel>
+    init {
+        PendingActivities = ArrayList()
+    }
      fun getAllPlaces(): ArrayList<PlaceModel> {
         val call: Call<List<PlaceModel>> = service.getAllPlaces()
         //list= ArrayList()
@@ -222,6 +226,32 @@ object RetrievingData {
             }
         })
         return ActivitiesOfEntrepreneur
+    }
+    fun getPendingActivitiesAdmin(): ArrayList<ActivityModel> {
+        val call: Call<List<ActivityModel>> = service.getPendingActivities()
+        call.enqueue(object : Callback<List<ActivityModel>> {
+            override fun onResponse(call: Call<List<ActivityModel>>, response: Response<List<ActivityModel>>) {
+                if(response.isSuccessful){
+                    PendingActivities.clear()
+                    for(myData in response.body()!!){
+                        PendingActivities.add(myData)
+                    }
+                    for (placeModel in PendingActivities) {
+                        Log.d("PendingActivities", placeModel.toString())
+                    }
+                    PendingActivities.toList()
+                }
+                else{
+                    Log.d("PendingActivities api", response.toString())
+                    Log.d("PendingActivities api", response?.errorBody()?.string().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<List<ActivityModel>>, t: Throwable) {
+                Log.d("on fail PendingActivities ", t.toString())
+            }
+        })
+        return PendingActivities
     }
 
 
