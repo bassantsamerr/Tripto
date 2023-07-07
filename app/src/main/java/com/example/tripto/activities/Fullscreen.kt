@@ -99,6 +99,7 @@ class FullscreenDialog : DialogFragment(), View.OnClickListener {
                 val Time = timeEditText.text.toString()
                 val socialmedia = socialMediaEditText.text.toString()
                 val activity = ActivityModel(
+                    id=0,
                     name = activityNameEditText.text.toString(),
                     description = activityDescriptionEditText.text.toString(),
                     location = locationEditText.text.toString(),

@@ -9,14 +9,20 @@ import com.example.tripto.utils.RetrievingData
 
 class ShowAllActivityRequestsAdmin : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var ActivityAdapter: ActivityRequestAdapter
+    //private lateinit var ActivityAdapter: ActivityRequestAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_all_requests_admin)
         recyclerView = findViewById(R.id.showmyActivityRv)
         // Set the RecyclerView adapter
-        ActivityAdapter = ActivityRequestAdapter(RetrievingData.getPendingActivitiesAdmin())
-        recyclerView.adapter = ActivityAdapter
+        activityAdapter = ActivityRequestAdapter(RetrievingData.getPendingActivitiesAdmin())
+        recyclerView.adapter = activityAdapter
+        activityAdapter.updateData(RetrievingData.getPendingActivitiesAdmin())
 
 }
+        companion object {
+            lateinit var activityAdapter: ActivityRequestAdapter
+        }
+
+
 }

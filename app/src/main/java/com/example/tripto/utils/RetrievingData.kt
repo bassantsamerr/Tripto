@@ -4,6 +4,7 @@ import ActivityModel
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import com.example.tripto.activities.ShowFavoritesActivity
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
@@ -105,6 +106,7 @@ object RetrievingData {
             override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
                 if(response.isSuccessful){
                     favPlaces.clear()
+
                     for(myData in response.body()!!){
                         favPlaces.add(myData)
                     }
@@ -112,6 +114,7 @@ object RetrievingData {
                         Log.d("FavData", placeModel.toString())
                     }
                     favPlaces.toList()
+                    ShowFavoritesActivity.searchAdapter.updateData(favPlaces)
                 }
             }
 

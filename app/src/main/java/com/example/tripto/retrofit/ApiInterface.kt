@@ -61,7 +61,8 @@ interface ApiInterface {
         fun getPendingActivities(): Call<List<ActivityModel>>
         @GET("/getActivities")
         fun getActivitiesOfEntrepreneur(@Query("enterprenuerid") enterprenuerid: Int): Call<List<ActivityModel>>
-
+        @POST("/admin_AvtivityResponse")
+        fun admin_AvtivityResponse(@Body admin_AvtivityResponseModel:admin_AvtivityResponseModel): Call<DeleteResponse>
         companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()

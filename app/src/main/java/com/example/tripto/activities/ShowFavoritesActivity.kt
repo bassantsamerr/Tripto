@@ -12,7 +12,6 @@ import com.example.tripto.utils.RetrievingData
 
 class ShowFavoritesActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var searchAdapter: SearchAdapter
     var favPlacesIDs:List<Int>
     init {
         favPlacesIDs = ArrayList()
@@ -36,9 +35,11 @@ class ShowFavoritesActivity : AppCompatActivity() {
             intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
             startActivity(intent)
         }
-
+        searchAdapter.updateData(RetrievingData.getfavPlaces(this))
         recyclerView.adapter = searchAdapter
-
+    }
+    companion object {
+        lateinit var searchAdapter: SearchAdapter
     }
 
 }

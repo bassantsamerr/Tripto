@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.RequiresApi
 
 data class ActivityModel(
+  val id:Int,
   val name: String,
   val description: String,
   val location: String,
@@ -18,6 +19,7 @@ data class ActivityModel(
 ) : Parcelable {
   @RequiresApi(Build.VERSION_CODES.Q)
   constructor(parcel: Parcel) : this(
+    parcel.readInt(),
     parcel.readString() ?: "",
     parcel.readString() ?: "",
     parcel.readString() ?: "",
@@ -33,6 +35,7 @@ data class ActivityModel(
 
   @RequiresApi(Build.VERSION_CODES.Q)
   override fun writeToParcel(parcel: Parcel, flags: Int) {
+    parcel.writeInt(id)
     parcel.writeString(name)
     parcel.writeString(description)
     parcel.writeString(location)
