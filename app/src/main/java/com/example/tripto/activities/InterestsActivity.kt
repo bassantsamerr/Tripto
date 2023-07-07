@@ -36,7 +36,9 @@ class InterestsActivity : AppCompatActivity() {
         }
 
         buttonClick.setOnClickListener {
-                val call: Call<String> = service.newUserInterests(userid, selectedChips!!)
+                 val resultList = selectedChips!!.map { "\"$it\"" }
+                Log.d("selectedChips",resultList.toString())
+                val call: Call<String> = service.newUserInterests(userid, resultList!!)
                 call.enqueue(object : Callback<String> {
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         if(response.isSuccessful){

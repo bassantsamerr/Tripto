@@ -5,7 +5,7 @@ data class CurrentUserModel (
         val age: Int,
         val country: String,
         val username: String,
-        val roleId: Int,
+        val role_id: Int,
         val id: Int,
         val isActive: Boolean
 

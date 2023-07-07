@@ -60,12 +60,24 @@ class LoginActivty : AppCompatActivity() {
                                     editor.putInt("AGE",currentUser.age)
                                     editor.putString("COUNTRY",currentUser.country)
                                     editor.putString("USERNAME",currentUser.username)
-                                    editor.putInt("ROLEID",currentUser.roleId)
+                                    editor.putInt("ROLEID",currentUser.role_id)
                                     editor.putInt("ID",currentUser.id)
                                     editor.putBoolean("ISACTIVE",currentUser.isActive)
                                     editor.apply()
                                     Log.d("success current user api", response.body().toString())
                                     Log.d("current user",currentUser.toString())
+                                    val sharedPreference =getSharedPreferences("MY_PRE",Context.MODE_PRIVATE)
+                                    val roleid=sharedPreference.getInt("ROLEID",0)
+                                    Log.d("roleid",roleid.toString())
+                                    if(roleid==1||roleid==2){
+                                        val intent = Intent(this@LoginActivty, HomeActivity::class.java)
+                                        startActivity(intent)
+                                    }
+                                    else if(roleid==3){
+                                        val intent = Intent(this@LoginActivty, ProfileAdminActivity::class.java)
+                                        startActivity(intent)
+                                    }
+
                                 }
                                 if(!response.isSuccessful){
                                     Toast.makeText(this@LoginActivty, "Username or password is incorrect, Please try again", Toast.LENGTH_SHORT).show()
@@ -78,8 +90,7 @@ class LoginActivty : AppCompatActivity() {
                                 Log.d("fail awe login token", t.toString())
                             }
                         })
-                        val intent = Intent(this@LoginActivty, HomeActivity::class.java)
-                        startActivity(intent)
+
                     }
                     if(!response.isSuccessful){
                         Toast.makeText(this@LoginActivty, "Username or password is incorrect, Please try again", Toast.LENGTH_SHORT).show()
