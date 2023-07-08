@@ -3,6 +3,7 @@ package com.example.tripto.activities
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -13,21 +14,22 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var navController: NavController
-
+    private lateinit var toolbar: Toolbar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Inflate the binding object
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         navController= Navigation.findNavController(this, R.id.activity_main_nav_host_fragment)
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_scrolling,menu)
-        return super.onCreateOptionsMenu(menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_scrolling, menu)
+        return true
     }
+
     }

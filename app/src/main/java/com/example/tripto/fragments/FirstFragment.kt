@@ -64,7 +64,6 @@ class FirstFragment : Fragment(),LocationListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.rvMain)
-        val recyclerViewtp: RecyclerView = view.findViewById(R.id.tourpackageRview)
         collections = listOf(
             MainModel("Recommended Places", RetrievingData.getRecommendedPlaces(userid,nationality!!)),
             MainModel("Top 10", RetrievingData.getTop10places()),

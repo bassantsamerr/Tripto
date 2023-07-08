@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DetailedTourPackage"
+            android:exported="false" />
+        <activity
             android:name=".ActiviryRequestAdapter"
             android:exported="false" />
         <activity

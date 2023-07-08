@@ -7,7 +7,7 @@
         android:icon="@drawable/icons8_gift_50"
         android:drawableLeft="@drawable/icons8_gift_50"
         android:orderInCategory="100"
-        android:title="Your Daly Tour Package"
+        android:title="Your Daily Tour Package"
         app:showAsAction="never" />
     <item
         android:id="@+id/Categories"

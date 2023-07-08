@@ -42,7 +42,7 @@ class DetailedActivity : AppCompatActivity() {
             when(ratingBar.rating.toInt()){
                 1->rate=1
                 2->rate=2
-                3->rate=2
+                3->rate=3
                 4->rate=4
                 5->rate=5
             }
