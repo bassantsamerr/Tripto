@@ -116,7 +116,7 @@
                 android:id="@+id/reject"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="Reject"
+                android:text="Decline"
                 android:backgroundTint="@color/red"/>
             <Space
                 android:layout_width="10dp"

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.example.SignUpResponseModel
 import com.example.tripto.R
+import com.example.tripto.model.DeleteResponse
 import com.example.tripto.retrofit.ApiInterface
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -36,11 +37,10 @@ class InterestsActivity : AppCompatActivity() {
         }
 
         buttonClick.setOnClickListener {
-                 val resultList = selectedChips!!.map { "\"$it\"" }
-                Log.d("selectedChips",resultList.toString())
-                val call: Call<String> = service.newUserInterests(userid, resultList!!)
-                call.enqueue(object : Callback<String> {
-                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                Log.d("selectedChips",selectedChips.toString())
+                val call: Call<DeleteResponse> = service.newUserInterests(userid, selectedChips!!)
+                call.enqueue(object : Callback<DeleteResponse> {
+                    override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>) {
                         if(response.isSuccessful){
 
                             Toast.makeText(this@InterestsActivity, "interests successed", Toast.LENGTH_SHORT).show()
@@ -54,7 +54,7 @@ class InterestsActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<String>, t: Throwable) {
+                    override fun onFailure(call: Call<DeleteResponse>, t: Throwable) {
                         Log.d("failure error", t.message.toString())
                     }
                 })

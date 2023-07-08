@@ -52,7 +52,7 @@ interface ApiInterface {
         @GET("/search")
         fun search(@Query("query") query: String):Call<List<PlaceModel>>
         @POST("/interestsOfNewUser")
-        fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<String>
+        fun newUserInterests(@Query("userid") userid: Int, @Body interests: List<String>): Call<DeleteResponse>
         @POST("/addActivity")
         fun addActivity(@Body activity: ActivityModel,@Query ("id") id: Int): Call<Int>
         @GET("/getActivitesForOnePlace")
