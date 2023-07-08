@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.example.tripto.adapter.ImageSwiperAdapter
 import com.example.tripto.model.DeleteResponse
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.model.PlaceToUserModel
+import com.example.tripto.model.RatingModel
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.Images
 import me.relex.circleindicator.CircleIndicator3
@@ -33,8 +35,41 @@ class DetailedActivity : AppCompatActivity() {
         val service: ApiInterface = ApiInterface.create()
         setContentView(R.layout.activity_detailed)
         val place = intent.getParcelableExtra<PlaceModel>("nearbyplacemodel")
+
         val sharedPreference =getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val userid=sharedPreference.getInt("ID",0)
+
+        val ratingBar=findViewById<RatingBar>(R.id.RatingBar)
+        var rate:Int=0
+        ratingBar.setOnRatingBarChangeListener {ratingBar,fl,b->
+            when(ratingBar.rating.toInt()){
+
+                1->rate=1
+                2->rate=2
+                3->rate=2
+                4->rate=4
+                5->rate=5
+            }
+            val ratemodel=RatingModel(rate,place!!.id, userid)
+            val callRate=service.addRating(ratemodel)
+            callRate.enqueue(object :Callback<ResponseBody>{
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if (response.isSuccessful) {
+                        Log.d("add rating successful", response.body().toString())
+                    }
+                    else if (!response.isSuccessful) {
+                        Log.d("fail add rating", response.toString())
+                        Log.d("fail add rating", response.errorBody()?.string().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.d("on fail get fav places ", t.toString())
+
+                }
+            })
+        }
+
         val editor = sharedPreference.edit()
         editor.putInt("PLACEID", place?.id!!)
         editor.apply()

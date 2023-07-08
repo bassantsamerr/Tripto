@@ -161,7 +161,9 @@
                     android:progressBackgroundTint="@color/light_grey"
                     android:progressTint="@color/orange"
                     android:scaleX="0.7"
-                    android:scaleY="0.8" />
+                    android:scaleY="0.8"
+                    android:id="@+id/RatingBar"
+                    android:stepSize="1"/>
 
             </LinearLayout>
 
