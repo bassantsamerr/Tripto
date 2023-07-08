@@ -1,9 +1,11 @@
 package com.example.tripto.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import com.example.tripto.R
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.utils.RetrievingData
@@ -19,6 +21,7 @@ private lateinit var chip9: Button
 private lateinit var chip10: Button
 private lateinit var chip11: Button
 private lateinit var chip12: Button
+
 class CategoriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +53,14 @@ class CategoriesActivity : AppCompatActivity() {
     }
     private fun handleButtonClick(type: String) {
         Log.d("Type",type)
-        //val places:List<PlaceModel> = RetrievingData.getplacescategories(type)
+        places = RetrievingData.getplacescategories(type)
+        catName=type
         Log.d("categories",RetrievingData.getplacescategories(type).toString())
+        val intent = Intent(this, CategoryPlacesActivity::class.java)
+        startActivity(intent)
+    }
+    companion object {
+        lateinit var places: List<PlaceModel>
+        lateinit var catName: String
     }
 }
