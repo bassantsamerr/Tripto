@@ -51,6 +51,10 @@ object RetrievingData {
     init {
         PendingActivities = ArrayList()
     }
+    var placesCategory: ArrayList<ActivityModel>
+    init {
+        placesCategory = ArrayList()
+    }
      fun getAllPlaces(): ArrayList<PlaceModel> {
         val call: Call<List<PlaceModel>> = service.getAllPlaces()
         //list= ArrayList()

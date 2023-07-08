@@ -41,7 +41,8 @@ class HomeActivity : AppCompatActivity() {
                 return true
             }
             R.id.Categories -> {
-
+                val intent = Intent(this, CategoriesActivity::class.java)
+                startActivity(intent)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".activities.CategoriesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="logo"
+            app:srcCompat="@drawable/picture1" />
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <Button
+                    android:id="@+id/chip2"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Natural"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip3"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fun"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip4"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Romanian"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip5"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pharaonic"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip6"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Coptic"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip7"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Islamic"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip8"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ancient"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip9"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adventure"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip10"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Heritage"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip11"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medical"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/chip12"
+                    style="@style/customChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Religious"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
