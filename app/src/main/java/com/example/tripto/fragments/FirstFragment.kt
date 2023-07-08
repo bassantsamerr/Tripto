@@ -15,23 +15,25 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.tripto.R
+import com.example.tripto.adapter.ImageSwiperAdapter
 import com.example.tripto.adapter.MainAdapter
 import com.example.tripto.model.MainModel
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.model.TourPackageModel
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.RetrievingData
+import com.google.android.gms.location.DetectedActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import me.relex.circleindicator.CircleIndicator3
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class FirstFragment : Fragment(),LocationListener {
-    private lateinit var locationManager: LocationManager
-    private val locationPermissionCode = 1
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var lat: Double = 0.0
     private var log: Double = 0.0
@@ -98,15 +100,25 @@ class FirstFragment : Fragment(),LocationListener {
                         if(response.isSuccessful){
                             placesTourPackage= response.body()!!
                             Log.d("placesTourPackage api response", response.body().toString())
-//                            var namepackage:String=""
-//
-//                            for (i in placesTourPackage){
-//                                namepackage=i.placeName+" "
-//                            }
-//                            tourPackage = listOf( TourPackageModel(
-//                                packageName = namepackage,
-//                                places = placesTourPackage
-//                            ))
+                            var namepackage:String=""
+                            var desc:String=""
+                            var address:String=""
+                            var budget:Double=0.0
+                            var time:Double=0.0
+                            for (i in placesTourPackage){
+                                namepackage+=i.placeName+"-"
+                                budget+=i.ticketPrice
+                                time+=i.estimatedDuration
+                                desc+="${i.placeName}: ${i.description} \n"
+                                address= i.address.toString()
+                            }
+                            Log.d("image placepackage",placesTourPackage[0].image.toString())
+                            Log.d("desc placepackage",desc)
+                            Log.d("location placepackage",address)
+                            placePackage= PlaceModel(
+                                namepackage,time,budget,placesTourPackage[0].image, address,desc
+                            )
+                            Log.d("placePackage",placePackage.toString())
                         }
                         if(!response.isSuccessful){
                             Log.d("placesTourPackage api", response.toString())
@@ -124,6 +136,10 @@ class FirstFragment : Fragment(),LocationListener {
         }
 
     }
+        companion object {
+            lateinit var placePackage: PlaceModel
+        }
+
 
     override fun onLocationChanged(p0: Location) {
         TODO("Not yet implemented")

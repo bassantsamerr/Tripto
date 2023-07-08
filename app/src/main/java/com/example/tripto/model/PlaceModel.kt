@@ -16,8 +16,8 @@ data class PlaceModel(
     @SerializedName("longitude") var longitude: Double,
     @SerializedName("ticketPrice") var ticketPrice: Double,
     @SerializedName("estimatedDuration") var estimatedDuration: Double
-
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -30,8 +30,27 @@ data class PlaceModel(
         parcel.readDouble(),
         parcel.readDouble(),
         parcel.readDouble()
-    ) {
-    }
+    )
+
+    constructor(
+        placeName: String?,
+        estimatedDuration: Double,
+        ticketPrice: Double,
+        image: String?,
+        address: String?,
+        description: String?
+    ) : this(
+        placeName = placeName,
+        estimatedDuration = estimatedDuration,
+        ticketPrice = ticketPrice,
+        image = image,
+        address = address,
+        description = description,
+        latitude = 0.0,
+        id = 0,
+        rating = 0.0,
+        longitude = 0.0
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(placeName)
@@ -61,4 +80,3 @@ data class PlaceModel(
         }
     }
 }
-

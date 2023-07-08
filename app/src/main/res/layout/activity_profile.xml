@@ -34,9 +34,9 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="85dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    app:cardCornerRadius="85dp">
 
                     <ImageView
                         android:id="@+id/profileImageView"
@@ -72,18 +72,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="415dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="Account Details"
                 android:textColor="@color/black"
-                android:textSize="30dp"
-                android:gravity="center_horizontal"
-                />
+                android:textSize="30dp" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -95,30 +94,31 @@
                 android:id="@+id/edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
                 android:backgroundTint="@color/background_color"
                 android:text="edit profile"
                 android:textColor="@color/font_color"
                 android:textSize="24sp"
-                app:cornerRadius="16dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"/>
+                app:cornerRadius="16dp" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:dividerInsetEnd="16dp"
                 app:dividerInsetStart="16dp" />
+
             <Button
                 android:id="@+id/changePass"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Change Password"
                 android:textColor="@color/font_color"
                 android:textSize="24sp"
-                app:cornerRadius="16dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"/>
+                app:cornerRadius="16dp" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -130,14 +130,13 @@
                 android:id="@+id/showFav"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Show Favourites"
                 android:textColor="@color/font_color"
                 android:textSize="24sp"
-                app:cornerRadius="16dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                />
+                app:cornerRadius="16dp" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -164,16 +163,16 @@
                 app:dividerInsetStart="16dp" />
 
             <Button
-                android:layout_marginTop="16dp"
                 android:id="@+id/logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log Out"
-                android:backgroundTint="@color/background_color"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/background_color"
+                android:text="Log Out"
                 android:textColor="@color/font_color"
                 android:textSize="24sp"
-                app:cornerRadius="16dp"/>
+                app:cornerRadius="16dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

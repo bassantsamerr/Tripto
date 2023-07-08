@@ -258,7 +258,7 @@ class DetailedActivity : AppCompatActivity() {
     private fun addToList(image: String){
         imageList.add(image)
     }
-    private fun postToList(){
+     fun postToList(){
         imageList.apply {
             addToList(Images.imageUrl0)
             addToList(Images.imageUrl1)

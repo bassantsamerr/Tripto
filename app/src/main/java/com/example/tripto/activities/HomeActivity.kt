@@ -1,7 +1,9 @@
 package com.example.tripto.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
@@ -31,5 +33,20 @@ class HomeActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_scrolling, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.TourPackage -> {
+                val intent = Intent(this, DetailedTourPackage::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.Categories -> {
 
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
+
+
+}
