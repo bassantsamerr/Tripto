@@ -1,6 +1,7 @@
 package com.example.tripto.activities
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -25,4 +26,8 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_scrolling,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
     }

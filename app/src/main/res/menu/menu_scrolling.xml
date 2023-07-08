@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.tripto.ScrollingActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/TourPackage"
+        android:icon="@drawable/icons8_gift_50"
+        android:drawableLeft="@drawable/icons8_gift_50"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Your Daly Tour Package"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/Categories"
+        android:icon="@drawable/icons8_gift_50"
+        android:drawableLeft="@drawable/icons8_gift_50"
+        android:orderInCategory="100"
+        android:title="Places Categories"
+        app:showAsAction="never" />
+
 </menu>

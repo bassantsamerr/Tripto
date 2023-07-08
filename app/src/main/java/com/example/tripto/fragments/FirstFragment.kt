@@ -2,21 +2,30 @@ package com.example.tripto.fragments
 
 import TourpackageAdapter
 import android.content.Context
+import android.location.Location
+import android.location.LocationListener
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide.init
 import com.example.tripto.R
 import com.example.tripto.adapter.MainAdapter
 import com.example.tripto.model.MainModel
 import com.example.tripto.model.PlaceModel
 import com.example.tripto.model.TourPackageModel
+import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.RetrievingData
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class FirstFragment : Fragment() {
+class FirstFragment : Fragment(),LocationListener {
     val sharedPreference by lazy {
         requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
     }
@@ -26,6 +35,7 @@ class FirstFragment : Fragment() {
     val nationality by lazy {
         sharedPreference.getString("COUNTRY", "")
     }
+    val service: ApiInterface = ApiInterface.create()
 
     private lateinit var collections: List<MainModel>
 
@@ -86,17 +96,49 @@ class FirstFragment : Fragment() {
             ticketPrice = 20.0,
             estimatedDuration = 4.5
         )
-
-        val tourPackage = listOf( TourPackageModel(
+        lateinit var placesTourPackage:List<PlaceModel>
+        var tourPackage = listOf( TourPackageModel(
             packageName = "TourPackage1",
             places = arrayListOf(place1, place2, place3)
         )
         )
+        val call: Call<List<PlaceModel>> = service.getTourPackage(userid,30,30)
+        call.enqueue(object:Callback<List<PlaceModel>>{
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
+                if(response.isSuccessful){
+                    placesTourPackage= response.body()!!
+                    Log.d("placesTourPackage api response", response.body().toString())
+                    var namepackage:String=""
+
+                    for (i in placesTourPackage){
+                        namepackage=i.placeName+" "
+                    }
+                        tourPackage = listOf( TourPackageModel(
+                        packageName = namepackage,
+                        places = arrayListOf(place1, place2, place3)
+                    ))
+                }
+                if(!response.isSuccessful){
+                    Log.d("placesTourPackage api", response.toString())
+                    Log.d("placesTourPackage api", response?.errorBody()?.string().toString())
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
+                Log.d("placesTourPackage  edit ", t.toString())
+
+            }
+        })
 
         recyclerViewtp.adapter=TourpackageAdapter(tourPackage)
         recyclerViewtp.layoutManager = LinearLayoutManager(requireContext())
 
         recyclerView.adapter = MainAdapter(collections)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun onLocationChanged(p0: Location) {
+
     }
 }
