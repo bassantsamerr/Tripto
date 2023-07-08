@@ -97,8 +97,9 @@
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
                 android:text="edit profile"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -111,8 +112,9 @@
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Change Password"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -126,8 +128,9 @@
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Show Activity Requests"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -137,12 +140,15 @@
 
             <Button
                 android:id="@+id/show_all_activities"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                app:cornerRadius="16dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Show All Activities"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                 />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -158,8 +164,9 @@
                 android:text="Log Out"
                 android:backgroundTint="@color/background_color"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

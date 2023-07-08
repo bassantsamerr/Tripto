@@ -15,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="250dp"
             android:elevation="10dp"
             app:cardCornerRadius="25dp">
 
@@ -64,7 +64,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="600dp"
         android:layout_gravity="center"
         android:layout_marginTop="180dp"
 
@@ -97,8 +97,11 @@
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
                 android:text="edit profile"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -111,8 +114,11 @@
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Change Password"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+    app:cornerRadius="16dp"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="35dp"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -126,8 +132,12 @@
                 android:layout_height="60dp"
                 android:backgroundTint="@color/background_color"
                 android:text="Show Favourites"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -139,10 +149,13 @@
                 android:id="@+id/myActivities"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
                 android:backgroundTint="@color/background_color"
                 android:text="My Activities"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -158,8 +171,9 @@
                 android:text="Log Out"
                 android:backgroundTint="@color/background_color"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/font_color"
+                android:textSize="24sp"
+                app:cornerRadius="16dp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
