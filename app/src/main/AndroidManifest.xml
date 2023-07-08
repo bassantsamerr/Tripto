@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CategoryPlacesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.CategoriesActivity"
             android:exported="false" />
         <activity

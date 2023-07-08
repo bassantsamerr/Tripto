@@ -69,7 +69,7 @@ interface ApiInterface {
         fun getRatedPlaces(@Query("user_id") user_id: Int): Call<List<getRatedPlacesModel>>
         @GET("/getTourPackage")
         fun getTourPackage(@Query("user_id") user_id: Int,@Query("longitude") longitude: Double,@Query("latitude") latitude: Double): Call<List<PlaceModel>>
-        @GET("//places/{type}")
+        @GET("/places/{type}")
         fun getPlacesBasedOnCategory(@Path("type") type:String): Call<List<PlaceModel>>
         companion object {
         fun create(): ApiInterface {

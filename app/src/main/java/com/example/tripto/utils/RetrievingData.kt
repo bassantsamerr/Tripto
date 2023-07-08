@@ -51,7 +51,7 @@ object RetrievingData {
     init {
         PendingActivities = ArrayList()
     }
-    var placesCategory: ArrayList<ActivityModel>
+    var placesCategory: ArrayList<PlaceModel>
     init {
         placesCategory = ArrayList()
     }
@@ -261,6 +261,32 @@ object RetrievingData {
             }
         })
         return PendingActivities
+    }
+    fun getplacescategories(Type:String): ArrayList<PlaceModel> {
+        val call: Call<List<PlaceModel>> = service.getPlacesBasedOnCategory(Type)
+        call.enqueue(object : Callback<List<PlaceModel>> {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
+                if(response.isSuccessful){
+                    placesCategory.clear()
+                    for(myData in response.body()!!){
+                        placesCategory.add(myData)
+                    }
+                    for (placeModel in placesCategory) {
+                        Log.d("getplacescategories", placeModel.toString())
+                    }
+                    placesCategory.toList()
+                }
+                else{
+                    Log.d("getplacescategories api", response.toString())
+                    Log.d("getplacescategories api", response?.errorBody()?.string().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
+                Log.d("on fail getplacescategories ", t.toString())
+            }
+        })
+        return placesCategory
     }
 
 
