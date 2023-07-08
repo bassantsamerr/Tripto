@@ -48,7 +48,7 @@ class SignupActivity : AppCompatActivity(){
             // Perform authentication checks
             if (etEmail!!.text.toString().isEmpty() || etUsername!!.text.toString().isEmpty() || etPassword!!.text.toString().isEmpty() || conPassword!!.text.toString().isEmpty()) {
                 Toast.makeText(this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
-            }
+           }
             else if (!isEmailValid(etEmail!!.text.toString())) {
                 Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
             }

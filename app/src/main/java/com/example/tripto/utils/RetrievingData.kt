@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import com.example.tripto.activities.ShowFavoritesActivity
+import com.example.tripto.fragments.SearchActivity
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
@@ -141,6 +142,7 @@ object RetrievingData {
                     }
                     searchHistoryPlaces.toList()
                 }
+                SearchActivity.searchAdapter.updateData(searchHistoryPlaces)
             }
 
             override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {

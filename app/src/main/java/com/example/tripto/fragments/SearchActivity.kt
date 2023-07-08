@@ -14,6 +14,7 @@ import android.widget.EditText
 import com.example.tripto.R
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripto.activities.DetailedActivity
+import com.example.tripto.activities.ShowFavoritesActivity
 import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.RetrievingData
@@ -26,8 +27,11 @@ import retrofit2.Response
 class SearchActivity : Fragment() {
     private lateinit var searchEditText: EditText
     private lateinit var recyclerView: RecyclerView
-    private lateinit var searchAdapter: SearchAdapter
     val service: ApiInterface = ApiInterface.create()
+    var searchResults: ArrayList<PlaceModel>
+    init {
+        searchResults = ArrayList()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,13 +45,23 @@ class SearchActivity : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.searchRvMain)
         searchEditText = view.findViewById(R.id.searchEditText)
-
         // Set the RecyclerView adapter
         searchAdapter = SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
         recyclerView.adapter = searchAdapter
+        // Set a touch listener for the drawable in the search EditText
+        searchEditText.setOnTouchListener { _, event ->
+            val drawableRight = 2
+            if (event.action == MotionEvent.ACTION_UP && event.rawX >= searchEditText.right - searchEditText.compoundDrawables[drawableRight].bounds.width()) {
+                performSearch(searchEditText.text.toString())
+                return@setOnTouchListener true
+            }
+            false
+        }
+
         searchAdapter.onItemClick = { nearbyPlaceModel ->
             val intent = Intent(requireContext(), DetailedActivity::class.java)
             intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
+            Log.d("place id",nearbyPlaceModel.id.toString())
             val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
             val userid = sharedPreference.getInt("ID", 0)
             val placetouser = PlaceToUserSearchModel(nearbyPlaceModel.id, userid)
@@ -59,8 +73,7 @@ class SearchActivity : Fragment() {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    searchAdapter =
-                        SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
+                    searchAdapter = SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
                     recyclerView.adapter = searchAdapter
                     if (response.isSuccessful) {
                         Log.d("add search history response", response.body().toString())
@@ -76,57 +89,44 @@ class SearchActivity : Fragment() {
             })
             startActivity(intent)
         }
-        // Set a touch listener for the drawable in the search EditText
-        searchEditText.setOnTouchListener { _, event ->
-            val drawableRight = 2
-            if (event.action == MotionEvent.ACTION_UP && event.rawX >= searchEditText.right - searchEditText.compoundDrawables[drawableRight].bounds.width()) {
-                val call: Call<List<PlaceModel>> = service.search(searchEditText.text.toString())
-                call.enqueue(object : Callback<List<PlaceModel>> {
-                    override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
-                        if(response.isSuccessful) {
-                            searchAdapter.updateData(response.body() as ArrayList<PlaceModel>)
-                            searchAdapter.onItemClick = { nearbyPlaceModel ->
-                                val intent = Intent(requireContext(), DetailedActivity::class.java)
-                                intent.putExtra("nearbyplacemodel", nearbyPlaceModel)
-                                val sharedPreference = requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
-                                val placeid=sharedPreference.getInt("PLACEID",0)
-                                Log.d("nearbyplacemodelnearbyplacemodel",nearbyPlaceModel.id.toString())
-                                val userid = sharedPreference.getInt("ID", 0)
-                                val placetouser = PlaceToUserSearchModel(placeid, userid)
-                                val callClick: Call<ResponseBody> = service.addSearchHistory(placetouser)
-                                callClick.enqueue(object : Callback<ResponseBody> {
-                                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>
-                                    ) {
-                                        searchAdapter = SearchAdapter(RetrievingData.getSearchHistoryPlaces(requireContext()))
-                                        recyclerView.adapter = searchAdapter
-                                        if (response.isSuccessful) {
-                                            Log.d("add search history response", response.body().toString())
-                                        } else if (!response.isSuccessful) {
-                                            Log.d("add search history api", response.toString())
-                                            Log.d("add search history api", response.errorBody()?.string().toString())
-                                        }
-                                    }
 
-                                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                                        Log.d("fail add search history", t.toString())
-                                    }
-                                })
-                                startActivity(intent)
-                            }
-                        }
-                        else
-                        {       Log.d("fail search", response.toString())
-                                Log.d("fail search", response.errorBody()?.string().toString())
-                        }
-                    }
 
-                    override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
-                        Log.d("fail search", t.toString())
+    }
+    private fun performSearch(query:String) :List<PlaceModel>{
+        val call: Call<List<PlaceModel>> = service.search(searchEditText.text.toString())
+        call.enqueue(object : Callback<List<PlaceModel>> {
+            override fun onResponse(call: Call<List<PlaceModel>>, response: Response<List<PlaceModel>>) {
+                if (response.isSuccessful) {
+                    searchResults.clear()
+
+                    for (myData in response.body()!!) {
+                        searchResults.add(myData)
                     }
-                })
-                return@setOnTouchListener true
+                    for (placeModel in searchResults) {
+                        Log.d("searchresult", placeModel.toString())
+                    }
+                    val updatedList = ArrayList(searchResults)
+                    searchAdapter.updateData(updatedList)
+                    recyclerView.adapter = searchAdapter
+                } else {
+                    Log.d("fail searchresult", response.toString())
+                    Log.d("fail searchresult", response.errorBody()?.string().toString())
+                }
             }
-            false
+
+
+            override fun onFailure(call: Call<List<PlaceModel>>, t: Throwable) {
+                Log.d("fail searchresult", t.toString())
+            }
+        })
+        return searchResults
+    }
+
+    companion object {
+         var searchAdapter: SearchAdapter
+
+        init {
+            searchAdapter = SearchAdapter(ArrayList()) // Initialize with an empty ArrayList
         }
     }
 
