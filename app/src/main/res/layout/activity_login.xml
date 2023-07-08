@@ -65,6 +65,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawableRight="@drawable/icons8_eye_30"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/primary_color"
                 android:ems="10"

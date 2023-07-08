@@ -16,8 +16,6 @@ class CategoryPlacesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_places)
         recyclerView = findViewById(R.id.recyclerViewFav)
-
-
         // Set the RecyclerView adapter
         val tvCategory=findViewById<TextView>(R.id.textcategory)
         tvCategory.text="  "+CategoriesActivity.catName
