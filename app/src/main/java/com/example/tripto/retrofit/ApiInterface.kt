@@ -65,6 +65,8 @@ interface ApiInterface {
         fun admin_AvtivityResponse(@Body admin_AvtivityResponseModel:admin_AvtivityResponseModel): Call<DeleteResponse>
         @POST("/addRating")
         fun addRating(@Body RatingModel:RatingModel): Call<ResponseBody>
+        @GET("/getRatedPlaces")
+        fun getRatedPlaces(@Query("user_id") user_id: Int): Call<List<getRatedPlacesModel>>
         companion object {
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()

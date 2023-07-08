@@ -64,7 +64,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="550dp"
         android:layout_gravity="center"
         android:layout_marginTop="180dp"
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 app:dividerInsetEnd="16dp"
                 app:dividerInsetStart="16dp" />
-<Button
+            <Button
                 android:id="@+id/changePass"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -116,9 +116,9 @@
                 android:text="Change Password"
                 android:textColor="@color/font_color"
                 android:textSize="24sp"
-    app:cornerRadius="16dp"
-    android:layout_marginLeft="35dp"
-    android:layout_marginRight="35dp"/>
+                app:cornerRadius="16dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"

@@ -15,10 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tripto.R
 import com.example.tripto.adapter.ImageSwiperAdapter
-import com.example.tripto.model.DeleteResponse
-import com.example.tripto.model.PlaceModel
-import com.example.tripto.model.PlaceToUserModel
-import com.example.tripto.model.RatingModel
+import com.example.tripto.model.*
 import com.example.tripto.retrofit.ApiInterface
 import com.example.tripto.utils.Images
 import me.relex.circleindicator.CircleIndicator3
@@ -43,7 +40,6 @@ class DetailedActivity : AppCompatActivity() {
         var rate:Int=0
         ratingBar.setOnRatingBarChangeListener {ratingBar,fl,b->
             when(ratingBar.rating.toInt()){
-
                 1->rate=1
                 2->rate=2
                 3->rate=2
@@ -113,6 +109,33 @@ class DetailedActivity : AppCompatActivity() {
 
             })
         }
+        val callGetRating: Call<List<getRatedPlacesModel>> = service.getRatedPlaces(userid)
+        callGetRating.enqueue(object : Callback<List<getRatedPlacesModel>>{
+            override fun onResponse(call: Call<List<getRatedPlacesModel>>, response: Response<List<getRatedPlacesModel>>) {
+                if(response.isSuccessful) {
+                    val callGetRating = response.body()
+                    if (callGetRating != null) {
+                        for (i in 0 until callGetRating.size) {
+                            val item = callGetRating.get(i)
+                            if (item.place_id==placeid) {
+                                ratingBar.rating=item.rate.toFloat()
+                            }
+                        }
+                    }
+                    Log.d("callGetRating", callGetRating.toString())
+                }
+                else if(!response.isSuccessful)
+                {
+                    Log.d("fail callGetRating", response.toString())
+                    Log.d("fail callGetRating", response.errorBody()?.string().toString())
+                }
+            }
+            override fun onFailure(call: Call<List<getRatedPlacesModel>>, t: Throwable) {
+                Log.d("on fail callGetRating ", t.toString())
+            }
+
+        })
+
         addToList(place?.image.toString())
         postToList()
         val view_pager2 = findViewById<ViewPager2>(R.id.view_pager2)
