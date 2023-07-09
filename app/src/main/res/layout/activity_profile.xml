@@ -9,26 +9,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:cardCornerRadius="25dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:elevation="10dp"
             app:cardCornerRadius="25dp">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:src="@drawable/bg" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -41,8 +41,9 @@
                     <ImageView
                         android:id="@+id/profileImageView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/profile" />
+
                 </androidx.cardview.widget.CardView>
 
 
@@ -56,125 +57,106 @@
                     android:textSize="40dp"
                     android:textStyle="bold" />
 
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="352dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/edit_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginRight="35dp"
+                            android:backgroundTint="@color/background_color"
+                            android:text="edit profile"
+                            android:textColor="@color/font_color"
+                            android:textSize="24sp"
+                            app:cornerRadius="16dp" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerInsetEnd="16dp"
+                            app:dividerInsetStart="16dp" />
+
+                        <Button
+                            android:id="@+id/changePass"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginRight="35dp"
+                            android:backgroundTint="@color/background_color"
+                            android:text="Change Password"
+                            android:textColor="@color/font_color"
+                            android:textSize="24sp"
+                            app:cornerRadius="16dp" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerInsetEnd="16dp"
+                            app:dividerInsetStart="16dp" />
+
+                        <Button
+                            android:id="@+id/showFav"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginRight="35dp"
+                            android:backgroundTint="@color/background_color"
+                            android:text="Show Favourites"
+                            android:textColor="@color/font_color"
+                            android:textSize="24sp"
+                            app:cornerRadius="16dp" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerInsetEnd="16dp"
+                            app:dividerInsetStart="16dp" />
+
+                        <Button
+                            android:id="@+id/myActivities"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginRight="35dp"
+                            android:backgroundTint="@color/background_color"
+                            android:text="My Activities"
+                            android:textColor="@color/font_color"
+                            android:textSize="24sp"
+                            app:cornerRadius="16dp" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerInsetEnd="16dp"
+                            app:dividerInsetStart="16dp" />
+
+                        <Button
+                            android:id="@+id/logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/background_color"
+                            android:text="Log Out"
+                            android:textColor="@color/font_color"
+                            android:textSize="24sp"
+                            app:cornerRadius="16dp" />
+
+                    </LinearLayout>
+    ]
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="180dp"
-
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="415dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="Account Details"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerInsetEnd="16dp"
-                app:dividerInsetStart="16dp" />
-
-            <Button
-                android:id="@+id/edit_profile"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:backgroundTint="@color/background_color"
-                android:text="edit profile"
-                android:textColor="@color/font_color"
-                android:textSize="24sp"
-                app:cornerRadius="16dp" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerInsetEnd="16dp"
-                app:dividerInsetStart="16dp" />
-
-            <Button
-                android:id="@+id/changePass"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:backgroundTint="@color/background_color"
-                android:text="Change Password"
-                android:textColor="@color/font_color"
-                android:textSize="24sp"
-                app:cornerRadius="16dp" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerInsetEnd="16dp"
-                app:dividerInsetStart="16dp" />
-
-            <Button
-                android:id="@+id/showFav"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:backgroundTint="@color/background_color"
-                android:text="Show Favourites"
-                android:textColor="@color/font_color"
-                android:textSize="24sp"
-                app:cornerRadius="16dp" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerInsetEnd="16dp"
-                app:dividerInsetStart="16dp" />
-
-            <Button
-                android:id="@+id/myActivities"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:backgroundTint="@color/background_color"
-                android:text="My Activities"
-                android:textColor="@color/font_color"
-                android:textSize="24sp"
-                app:cornerRadius="16dp" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:dividerInsetEnd="16dp"
-                app:dividerInsetStart="16dp" />
-
-            <Button
-                android:id="@+id/logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/background_color"
-                android:text="Log Out"
-                android:textColor="@color/font_color"
-                android:textSize="24sp"
-                app:cornerRadius="16dp" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

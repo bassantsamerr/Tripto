@@ -137,12 +137,12 @@ class FirstFragment : Fragment(),LocationListener {
 
     }
         companion object {
-            lateinit var placePackage: PlaceModel
+            var placePackage: PlaceModel? = null
         }
 
 
     override fun onLocationChanged(p0: Location) {
-        TODO("Not yet implemented")
+
     }
 
 }
