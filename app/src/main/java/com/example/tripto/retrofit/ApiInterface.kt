@@ -22,8 +22,8 @@ interface ApiInterface {
         fun get_nearby_places(@Query("latitude") latitude: Double, @Query("longitude")longitude: Double,@Query("n")n: Int): Call<List<PlaceModel>>
         @GET("/nearestPlace")
         fun get_nearest_places(@Query("latitude") latitude: Float, @Query("longitude") longitude: Float): Call<ResponseBody>
-        @GET("/chatting")
-        fun get_chatbot_reponse(@Query("text") text: String): Call<String>
+        @GET("/chat")
+        fun get_chatbot_reponse(@Query("user_message") user_message: String,@Query("user_id") user_id: Int,@Query("nationality") nationality: String): Call<ChatbotResponse>
         @FormUrlEncoded
         @POST("/token")
         fun login_for_access_token(@Field("username") username: String, @Field("password") password: String): Call<TokenModel>

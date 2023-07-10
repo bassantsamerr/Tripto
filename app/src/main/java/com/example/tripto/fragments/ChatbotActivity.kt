@@ -1,5 +1,6 @@
 package com.example.tripto.fragments
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,8 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.tripto.R
+import com.example.tripto.model.ChatbotResponse
+import com.example.tripto.model.DeleteResponse
 import com.example.tripto.retrofit.ApiInterface
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,6 +38,7 @@ class ChatbotActivity : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         // Initialize views
         chatContainer = view.findViewById(R.id.chatContainer)
@@ -62,10 +66,13 @@ class ChatbotActivity : Fragment() {
         // Here you would send the user message to your chatbot backend and handle the response accordingly
 
         // Example response from the chatbot
-        val call: Call<String> = service.get_chatbot_reponse(message)
-        call.enqueue(object :Callback<String>{
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                val botResponse = response.body().toString()
+        val sharedPreference =requireContext().getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        var nationality=sharedPreference.getString("COUNTRY","").toString()
+        val id=sharedPreference.getInt("ID",0)
+        val call: Call<ChatbotResponse> = service.get_chatbot_reponse(message,id, nationality)
+        call.enqueue(object :Callback<ChatbotResponse>{
+            override fun onResponse(call: Call<ChatbotResponse>, response: Response<ChatbotResponse>) {
+                val botResponse = response.body()!!.response
                 val botMessageView = createBotMessageView(botResponse)
                 chatContainer.addView(botMessageView)
                 Log.d("message response",botResponse)
@@ -73,7 +80,7 @@ class ChatbotActivity : Fragment() {
                 userInputEditText.text.clear()
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<ChatbotResponse>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })
